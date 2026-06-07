@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>CartFly — Main</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@600&amp;family=Instrument+Serif&amp;family=Alan+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../design-system.css">
+</head>
+<body class="bg-slate-100">
+  <main class="cf-frame" style="background-image:url(../assets/pattern/airplane_box.svg);background-size:240px;background-repeat:repeat;">
+    <!-- Faint airplane/box pattern background, exported from Figma (207:192) -->
+    
+
+    <!-- Foreground content -->
+    <div class="relative z-10 px-4 pt-8 pb-28">
+
+      <!-- Header: logo + notification bell -->
+      <header class="flex items-center justify-between mb-6">
+        <div class="w-9"></div>
+        <h1 class="font-display text-[32px] leading-none text-center">
+          <span class="text-[#1a3a8f]">Cart</span><span class="text-[#3b82f6]">Fly</span>
+        </h1>
+        <button aria-label="Notifications" class="w-9 h-9 flex items-center justify-center">
+          <svg viewBox="0 0 24 24" fill="#2563eb" class="w-7 h-7">
+            <path d="M12 2a6 6 0 0 0-6 6c0 3.5-1 5-2 6.2-.4.5 0 1.3.7 1.3h14.6c.7 0 1.1-.8.7-1.3C19 13 18 11.5 18 8a6 6 0 0 0-6-6Zm0 20a3 3 0 0 0 2.8-2H9.2A3 3 0 0 0 12 22Z"></path>
+          </svg>
+        </button>
+      </header>
+
+      <!-- My order heading -->
+      <h2 class="text-[24px] font-medium tracking-wide mb-3">My order:</h2>
+
+      <!-- Order status tracker card -->
+      <a href="menu-2.html" class="block">
+        <div class="rounded-xl bg-[#f1f3f5] px-5 py-6 mb-10">
+          <div class="flex items-start justify-between">
+            <!-- Order Placed -->
+            <div class="flex flex-col items-center flex-1">
+              <div class="w-12 h-12 rounded-full bg-[#bcd9f5] flex items-center justify-center relative z-10">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16447b" stroke-width="1.5" class="w-6 h-6">
+                  <path d="M6 8h12l-1 12H7L6 8Z"></path><path d="M9 8a3 3 0 0 1 6 0"></path>
+                </svg>
+              </div>
+              <span class="text-[11px] text-center mt-2 leading-tight">Order<br>Placed</span>
+            </div>
+            <div class="h-12 flex items-center"><div class="w-8 h-[2px] bg-[#bcd9f5] -mx-2"></div></div>
+            <!-- Shipped -->
+            <div class="flex flex-col items-center flex-1">
+              <div class="w-12 h-12 rounded-full bg-[#bcd9f5] flex items-center justify-center relative z-10">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16447b" stroke-width="1.5" class="w-6 h-6">
+                  <path d="M3 7l9-4 9 4-9 4-9-4Z"></path><path d="M3 7v10l9 4 9-4V7"></path><path d="M12 11v10"></path>
+                </svg>
+              </div>
+              <span class="text-[11px] text-center mt-2 leading-tight">Shipped</span>
+            </div>
+            <div class="h-12 flex items-center"><div class="w-8 h-[2px] bg-[#bcd9f5] -mx-2"></div></div>
+            <!-- In Transit -->
+            <div class="flex flex-col items-center flex-1">
+              <div class="w-12 h-12 rounded-full bg-[#bcd9f5] flex items-center justify-center relative z-10">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#16447b" stroke-width="1.5" class="w-6 h-6">
+                  <path d="M1 6h13v9H1z"></path><path d="M14 9h4l3 3v3h-7z"></path><circle cx="6" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle>
+                </svg>
+              </div>
+              <span class="text-[11px] text-center mt-2 leading-tight">In Transit</span>
+            </div>
+            <div class="h-12 flex items-center"><div class="w-8 h-[2px] bg-[#cdd3da] -mx-2"></div></div>
+            <!-- Delivered -->
+            <div class="flex flex-col items-center flex-1">
+              <div class="w-12 h-12 rounded-full border-2 border-[#9aa4b2] flex items-center justify-center relative z-10">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9aa4b2" stroke-width="2" class="w-6 h-6">
+                  <path d="M5 12l4 4 10-10"></path>
+                </svg>
+              </div>
+              <span class="text-[11px] text-center mt-2 leading-tight">Delivered</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Our warehouses -->
+      <a href="warehouses.html" class="flex items-center gap-4 rounded-xl bg-[#f1f3f5] px-3 py-2 mb-5">
+        <img src="../assets/images/main-warehouses-icon.png" alt="" class="w-11 h-11 object-contain">
+        <span class="text-[18px] font-semibold tracking-wide">Our warehouses</span>
+      </a>
+
+      <!-- Locker locations (indented as in design) -->
+      <a href="lockers.html" class="flex items-center gap-4 rounded-xl bg-[#f1f3f5] px-3 py-2 mb-5 ml-auto w-[71%]">
+        <img src="../assets/images/main-lockers-icon.png" alt="" class="w-9 h-9 object-contain">
+        <span class="text-[18px] font-semibold tracking-wide">Locker locations</span>
+      </a>
+
+      <!-- subscription plans -->
+      <a href="our-plans.html" class="flex items-center gap-4 rounded-xl bg-[#f1f3f5] px-3 py-2 w-[71%]">
+        <img src="../assets/images/main-plans-icon.png" alt="" class="w-11 h-11 object-contain">
+        <span class="text-[18px] font-semibold tracking-wide">subscription plans</span>
+      </a>
+    </div>
+
+    <!-- Bottom navigation -->
+    
+  <nav class="cf-bottomnav">
+        <a href="main.html" class="cf-nav-item" aria-label="Home"><img src="../assets/icons/home.svg" alt=""><span>Home</span></a>
+        <a href="my-profile.html" class="cf-nav-item" aria-label="Profile"><img src="../assets/icons/account_circle.svg" alt=""></a>
+        <a href="menu.html" class="cf-nav-item cf-nav-menu" aria-label="Menu">☰</a>
+        <a href="settings.html" class="cf-nav-item" aria-label="Settings"><img src="../assets/icons/settings.svg" alt=""></a></nav></main>
+
+
+
+
+</body></html>

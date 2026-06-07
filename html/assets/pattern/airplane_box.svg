@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <g fill="#3B5EE3" fill-opacity="0.07">
+    <path d="M40 60 l40 -8 l8 -16 l6 0 l-2 14 l28 -6 l4 6 l-30 12 l-2 16 l10 -2 l4 6 l-14 4 l-6 8 l-4 0 l2 -8 l-30 6 l-4 -6 l30 -10 z"/>
+    <path d="M150 130 l30 -10 l30 10 l0 30 l-30 10 l-30 -10 z M150 130 l30 10 l0 30 M210 130 l-30 10 l0 30" fill="none" stroke="#3B5EE3" stroke-opacity="0.18" stroke-width="2"/>
+    <path d="M170 50 l24 -4 l5 -10 l4 0 l-1 9 l16 -3 l3 4 l-18 7 l-1 10 l6 -1 l3 4 l-9 2 l-4 5 l-3 0 l1 -5 l-18 4 l-3 -4 l18 -6 z"/>
+    <path d="M50 160 l22 -8 l22 8 l0 24 l-22 8 l-22 -8 z" fill="none" stroke="#3B5EE3" stroke-opacity="0.18" stroke-width="2"/>
+  </g>
+</svg>

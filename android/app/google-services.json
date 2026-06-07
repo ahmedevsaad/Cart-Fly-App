@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922941791257",
+    "project_id": "cartfly-4382a",
+    "storage_bucket": "cartfly-4382a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922941791257:android:076962cc031c91b3209e88",
+        "android_client_info": {
+          "package_name": "com.example.cartfly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvPHZtbtoKvUUVzvKW55kz4-yNj3D6VJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>CartFly — Order Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:wght@600&amp;family=Instrument+Serif&amp;family=Alan+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../design-system.css">
+</head>
+<body class="bg-slate-100">
+  <main class="cf-frame" style="background-image:url(../assets/pattern/airplane_box.svg);background-size:240px;background-repeat:repeat;">
+    <!-- Faint airplane/box pattern background, exported from Figma (166:213) -->
+    
+
+    <div class="relative z-10 px-5 pt-4 pb-28">
+      <!-- Top row: hamburger menu + logo -->
+      <div class="relative h-10 mb-2">
+        <a href="menu.html" aria-label="Menu" class="absolute left-0 top-1 p-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" class="w-7 h-7"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+        </a>
+        <h1 class="font-display text-[32px] leading-none text-center pt-1">
+          <span class="text-[#1a3a8f]">Cart</span><span class="text-[#3b82f6]">Fly</span>
+        </h1>
+      </div>
+
+      <!-- Title -->
+      <h2 class="font-alt text-[32px] text-center mb-12">Order details</h2>
+
+      <!-- Store name -->
+      <label class="block">
+        <span class="font-alt font-bold text-[24px]">Store name</span>
+        <input type="text" class="mt-2 w-full h-[45px] rounded-[22px] bg-white border border-[#101010] px-4 outline-none">
+      </label>
+
+      <!-- Order Number -->
+      <label class="block mt-7">
+        <span class="font-alt font-bold text-[24px]">Order Number</span>
+        <input type="text" class="mt-2 w-full h-[45px] rounded-[22px] bg-white border border-[#101010] px-4 outline-none">
+      </label>
+
+      <!-- Order Items -->
+      <label class="block mt-7">
+        <span class="font-alt font-bold text-[24px]">Order Items</span>
+        <input type="text" class="mt-2 w-full h-[45px] rounded-[22px] bg-white border border-[#101010] px-4 outline-none">
+      </label>
+
+      <!-- Confirm -->
+      <div class="flex justify-center mt-8">
+        <a href="main.html" class="inline-flex items-center justify-center rounded-[22px] bg-[#f1f3f5] w-48 h-[63px]">
+          <span class="font-alt font-medium text-[18px]">Confirm</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom navigation -->
+    
+  <nav class="cf-bottomnav">
+        <a href="main.html" class="cf-nav-item" aria-label="Home"><img src="../assets/icons/home.svg" alt=""><span>Home</span></a>
+        <a href="my-profile.html" class="cf-nav-item" aria-label="Profile"><img src="../assets/icons/account_circle.svg" alt=""></a>
+        <a href="menu.html" class="cf-nav-item cf-nav-menu" aria-label="Menu">☰</a>
+        <a href="settings.html" class="cf-nav-item" aria-label="Settings"><img src="../assets/icons/settings.svg" alt=""></a></nav></main>
+
+
+
+</body></html>

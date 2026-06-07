@@ -1,0 +1,133 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../data/models/app_user.dart';
+
+enum AuthStatus { loading, authenticated, unauthenticated, pendingOtp }
+
+class AuthState {
+  AuthState({required this.status, this.user, this.pendingEmail});
+
+  final AuthStatus status;
+  final AppUser? user;
+  final String? pendingEmail;
+
+  factory AuthState.initial() => AuthState(status: AuthStatus.loading);
+  factory AuthState.signedOut() => AuthState(status: AuthStatus.unauthenticated);
+  factory AuthState.pendingOtp({required String email}) =>
+      AuthState(status: AuthStatus.pendingOtp, pendingEmail: email);
+  factory AuthState.signedIn(AppUser u) =>
+      AuthState(status: AuthStatus.authenticated, user: u);
+}
+
+class AuthProvider extends ChangeNotifier {
+  AuthProvider({FirebaseAuth? auth, FirebaseFirestore? db})
+      : _auth = auth ?? FirebaseAuth.instance,
+        _db = db ?? FirebaseFirestore.instance {
+    _sub = _auth.authStateChanges().listen(_onAuthChange);
+  }
+
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _db;
+  late final StreamSubscription<User?> _sub;
+
+  AuthState _state = AuthState.initial();
+  AuthState get state => _state;
+  String? errorKey;
+
+  Future<void> _onAuthChange(User? u) async {
+    if (u == null) {
+      _set(AuthState.signedOut());
+      return;
+    }
+    if (!u.emailVerified) {
+      _set(AuthState.pendingOtp(email: u.email ?? ''));
+      return;
+    }
+    final doc = await _db.collection('users').doc(u.uid).get();
+    final profile = AppUser.fromMap(u.uid, doc.data() ?? {'email': u.email});
+    _set(AuthState.signedIn(profile));
+  }
+
+  void _set(AuthState s) {
+    _state = s;
+    errorKey = null;
+    notifyListeners();
+  }
+
+  void _fail(String key) {
+    errorKey = key;
+    notifyListeners();
+  }
+
+  Future<bool> register({
+    required String name,
+    required String phone,
+    required String email,
+    required String country,
+    required String currency,
+    required String password,
+  }) async {
+    try {
+      final cred = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await _db.collection('users').doc(cred.user!.uid).set({
+        'name': name,
+        'phone': phone,
+        'email': email,
+        'country': country,
+        'currency': currency,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+      await cred.user!.sendEmailVerification();
+      _set(AuthState.pendingOtp(email: email));
+      return true;
+    } on FirebaseAuthException catch (e) {
+      _fail('errorAuth_${e.code}');
+      return false;
+    }
+  }
+
+  Future<bool> login(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      _fail('errorAuth_${e.code}');
+      return false;
+    }
+  }
+
+  Future<bool> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      _fail('errorAuth_${e.code}');
+      return false;
+    }
+  }
+
+  Future<bool> reloadVerified() async {
+    await _auth.currentUser?.reload();
+    final u = _auth.currentUser;
+    if (u != null && u.emailVerified) {
+      await _onAuthChange(u);
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> logout() => _auth.signOut();
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
+}
