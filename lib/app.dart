@@ -1,17 +1,52 @@
 import 'package:flutter/material.dart';
-import 'theme/app_theme.dart';
-import 'features/dev/gallery_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
-class CartFlyApp extends StatelessWidget {
+import 'features/auth/auth_provider.dart';
+import 'state/settings_provider.dart';
+import 'l10n/app_localizations.dart';
+import 'router/app_router.dart';
+import 'theme/app_theme.dart';
+
+class CartFlyApp extends StatefulWidget {
   const CartFlyApp({super.key});
+  @override
+  State<CartFlyApp> createState() => _CartFlyAppState();
+}
+
+class _CartFlyAppState extends State<CartFlyApp> {
+  final _auth = AuthProvider();
+  final _settings = SettingsProvider()..load();
+
+  @override
+  void dispose() {
+    _auth.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CartFly',
-      debugShowCheckedModeBanner: false,
-      theme: buildAppTheme(),
-      home: const GalleryScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: _auth),
+        ChangeNotifierProvider.value(value: _settings),
+      ],
+      child: Consumer<SettingsProvider>(
+        builder: (context, s, _) => MaterialApp.router(
+          title: 'CartFly',
+          debugShowCheckedModeBanner: false,
+          theme: buildAppTheme(),
+          locale: s.locale,
+          supportedLocales: const [Locale('en'), Locale('ar')],
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          routerConfig: buildRouter(_auth),
+        ),
+      ),
     );
   }
 }
