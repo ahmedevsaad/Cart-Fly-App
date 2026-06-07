@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../features/auth/auth_provider.dart';
+import '../features/auth/forgot_password_screen.dart';
+import '../features/auth/login_screen.dart';
+import '../features/auth/register_screen.dart';
+import '../features/auth/verify_screen.dart';
 import '../features/home/home_screen.dart';
-import '../features/profile/profile_screen.dart';
 import '../features/menu/menu_screen.dart';
+import '../features/profile/profile_screen.dart';
 import '../features/settings/settings_screen.dart';
+import '../features/splash/splash_screen.dart';
+import '../features/welcome/welcome_screen.dart';
 import '../widgets/cf_bottom_nav.dart';
 import 'routes.dart';
 
@@ -32,7 +38,12 @@ GoRouter buildRouter(AuthProvider auth) {
       return null;
     },
     routes: [
-      // --- auth & full-screen routes (Stage 4+) registered here as added ---
+      GoRoute(path: Routes.splash, builder: (_, __) => const SplashScreen()),
+      GoRoute(path: Routes.login, builder: (_, __) => const LoginScreen()),
+      GoRoute(path: Routes.register, builder: (_, __) => const RegisterScreen()),
+      GoRoute(path: Routes.verify, builder: (_, __) => const VerifyScreen()),
+      GoRoute(path: Routes.forgot, builder: (_, __) => const ForgotPasswordScreen()),
+      GoRoute(path: Routes.welcome, builder: (_, __) => const WelcomeScreen()),
       StatefulShellRoute.indexedStack(
         builder: (ctx, state, shell) => _ShellScaffold(shell: shell),
         branches: [
