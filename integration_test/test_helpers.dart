@@ -13,11 +13,13 @@ const _projectId = 'cartfly-4382a';
 
 /// Call in setUpAll of every integration test before pumping any widget.
 Future<void> initTestFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  }
 }
 
 /// Wipes all emulator accounts and Firestore documents. Call in tearDownAll.
@@ -27,13 +29,19 @@ Future<void> clearEmulatorData() async {
       'http://localhost:9099/emulator/v1/projects/$_projectId/accounts',
       method: 'DELETE',
     );
-  } catch (_) {}
+  } catch (e) {
+    // ignore: avoid_print
+    print('[clearEmulatorData] auth clear failed: $e');
+  }
   try {
     await html.HttpRequest.request(
       'http://localhost:8080/emulator/v1/projects/$_projectId/databases/(default)/documents',
       method: 'DELETE',
     );
-  } catch (_) {}
+  } catch (e) {
+    // ignore: avoid_print
+    print('[clearEmulatorData] firestore clear failed: $e');
+  }
 }
 
 /// Creates a user in the emulator, marks their email as verified, signs out,
@@ -49,10 +57,10 @@ Future<String> createVerifiedUser({
   final uid = cred.user!.uid;
   // Use the emulator admin REST API to set emailVerified without an email link.
   await html.HttpRequest.request(
-    'http://localhost:9099/identitytoolkit.googleapis.com/v1/projects/$_projectId/accounts:update',
-    method: 'POST',
+    'http://localhost:9099/emulator/v1/projects/$_projectId/accounts/$uid',
+    method: 'PATCH',
     requestHeaders: {'Content-Type': 'application/json'},
-    sendData: jsonEncode({'localId': uid, 'emailVerified': true}),
+    sendData: jsonEncode({'emailVerified': true}),
   );
   await FirebaseAuth.instance.signOut();
   return uid;
@@ -71,9 +79,9 @@ Future<void> verifyCurrentUser() async {
   final uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid == null) return;
   await html.HttpRequest.request(
-    'http://localhost:9099/identitytoolkit.googleapis.com/v1/projects/$_projectId/accounts:update',
-    method: 'POST',
+    'http://localhost:9099/emulator/v1/projects/$_projectId/accounts/$uid',
+    method: 'PATCH',
     requestHeaders: {'Content-Type': 'application/json'},
-    sendData: jsonEncode({'localId': uid, 'emailVerified': true}),
+    sendData: jsonEncode({'emailVerified': true}),
   );
 }
