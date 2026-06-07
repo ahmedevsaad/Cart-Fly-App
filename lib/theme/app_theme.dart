@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'app_colors.dart';
+import 'app_text.dart';
+
+ThemeData buildAppTheme() {
+  final base = ThemeData.light(useMaterial3: true);
+  return base.copyWith(
+    scaffoldBackgroundColor: AppColors.bgPage,
+    colorScheme: base.colorScheme.copyWith(
+      primary: AppColors.primary,
+      surface: AppColors.bgPage,
+    ),
+    textTheme: base.textTheme.apply(bodyColor: AppColors.text),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.inputBg,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppColors.radius),
+        borderSide: const BorderSide(color: AppColors.borderStrong),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppColors.radius),
+        borderSide: const BorderSide(color: AppColors.borderStrong),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.btnFill,
+        foregroundColor: Colors.white,
+        textStyle: AppText.bodyMedium.copyWith(color: Colors.white),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppColors.radius)),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+      ),
+    ),
+  );
+}
