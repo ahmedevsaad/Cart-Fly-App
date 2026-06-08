@@ -10,10 +10,10 @@ void main() {
   setUpAll(initTestFirebase);
   tearDownAll(clearEmulatorData);
 
-  testWidgets('stage0: app launches and shows placeholder text', (tester) async {
+  testWidgets('stage0: app launches and shows CartFly brand', (tester) async {
     await tester.pumpWidget(const CartFlyApp());
     await tester.pumpAndSettle(const Duration(seconds: 3));
-    expect(find.text('CartFly — rebuilding'), findsOneWidget);
+    expect(find.text('CartFly'), findsWidgets);
     expect(tester.takeException(), isNull);
   });
 }

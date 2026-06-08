@@ -27,6 +27,12 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider({FirebaseAuth? auth, FirebaseFirestore? db})
       : _auth = auth ?? FirebaseAuth.instance,
         _db = db ?? FirebaseFirestore.instance {
+    // Synchronously resolve "no user" to avoid waiting for the first stream event.
+    // authStateChanges() only fires on CHANGES; on a new subscription after a
+    // prior sign-out it may not re-emit null, leaving auth stuck at "loading".
+    if (_auth.currentUser == null) {
+      _state = AuthState.signedOut();
+    }
     _sub = _auth.authStateChanges().listen(_onAuthChange);
   }
 

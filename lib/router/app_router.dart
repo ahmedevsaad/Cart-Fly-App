@@ -54,7 +54,11 @@ GoRouter buildRouter(AuthProvider auth) {
       const public = {Routes.splash, Routes.login, Routes.register, Routes.forgot};
       if (s == AuthStatus.loading) return loc == Routes.splash ? null : Routes.splash;
       if (s == AuthStatus.pendingOtp) return loc == Routes.verify ? null : Routes.verify;
-      if (s == AuthStatus.unauthenticated) return public.contains(loc) ? null : Routes.login;
+      if (s == AuthStatus.unauthenticated) {
+        // Once auth is determined, leave splash screen and go to login.
+        if (loc == Routes.splash) return Routes.login;
+        return public.contains(loc) ? null : Routes.login;
+      }
       if (public.contains(loc) || loc == Routes.verify) return Routes.home;
       return null;
     },
