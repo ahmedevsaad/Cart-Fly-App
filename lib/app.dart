@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'features/auth/auth_provider.dart';
 import 'state/orders_provider.dart';
+import 'state/plan_provider.dart';
 import 'state/settings_provider.dart';
 import 'l10n/app_localizations.dart';
 import 'router/app_router.dart';
@@ -54,6 +55,8 @@ class _CartFlyAppState extends State<CartFlyApp> {
               providers: [
                 ChangeNotifierProvider(
                     create: (_) => OrdersProvider(uid: uid)),
+                ChangeNotifierProvider(
+                    create: (_) => PlanProvider(uid: uid)),
               ],
               child: child!,
             );

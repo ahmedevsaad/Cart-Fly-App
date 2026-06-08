@@ -123,6 +123,11 @@ class AuthProvider extends ChangeNotifier {
     return false;
   }
 
+  Future<void> refreshProfile() async {
+    final u = _auth.currentUser;
+    if (u != null) await _onAuthChange(u);
+  }
+
   Future<void> logout() => _auth.signOut();
 
   @override

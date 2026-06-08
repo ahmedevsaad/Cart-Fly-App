@@ -7,6 +7,11 @@ import '../features/auth/register_screen.dart';
 import '../features/auth/verify_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/lockers/country_lockers_screen.dart';
+import '../features/payment/payment_error_screen.dart';
+import '../features/payment/payment_screen.dart';
+import '../features/payment/payment_success_screen.dart';
+import '../features/plans/plan_detail_screen.dart';
+import '../features/plans/plans_screen.dart';
 import '../features/lockers/lockers_screen.dart';
 import '../features/menu/menu_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -46,6 +51,20 @@ GoRouter buildRouter(AuthProvider auth) {
       return null;
     },
     routes: [
+      GoRoute(path: Routes.plans, builder: (_, __) => const PlansScreen()),
+      GoRoute(
+          path: Routes.planDetail,
+          builder: (_, s) => PlanDetailScreen(code: s.pathParameters['code']!)),
+      GoRoute(
+          path: Routes.payment,
+          builder: (_, s) =>
+              PaymentScreen(forItem: s.uri.queryParameters['for'] ?? '')),
+      GoRoute(
+          path: Routes.paymentSuccess,
+          builder: (_, __) => const PaymentSuccessScreen()),
+      GoRoute(
+          path: Routes.paymentError,
+          builder: (_, __) => const PaymentErrorScreen()),
       GoRoute(path: Routes.splash, builder: (_, __) => const SplashScreen()),
       GoRoute(path: Routes.login, builder: (_, __) => const LoginScreen()),
       GoRoute(path: Routes.register, builder: (_, __) => const RegisterScreen()),
