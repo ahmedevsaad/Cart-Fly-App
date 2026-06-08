@@ -6,10 +6,14 @@ import '../features/auth/login_screen.dart';
 import '../features/auth/register_screen.dart';
 import '../features/auth/verify_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/lockers/country_lockers_screen.dart';
+import '../features/lockers/lockers_screen.dart';
 import '../features/menu/menu_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/splash/splash_screen.dart';
+import '../features/warehouses/warehouse_detail_screen.dart';
+import '../features/warehouses/warehouses_screen.dart';
 import '../features/welcome/welcome_screen.dart';
 import '../widgets/cf_bottom_nav.dart';
 import 'routes.dart';
@@ -44,6 +48,14 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(path: Routes.verify, builder: (_, __) => const VerifyScreen()),
       GoRoute(path: Routes.forgot, builder: (_, __) => const ForgotPasswordScreen()),
       GoRoute(path: Routes.welcome, builder: (_, __) => const WelcomeScreen()),
+      GoRoute(path: Routes.warehouses, builder: (_, __) => const WarehousesScreen()),
+      GoRoute(
+          path: Routes.warehouseDetail,
+          builder: (_, s) => WarehouseDetailScreen(code: s.pathParameters['code']!)),
+      GoRoute(path: Routes.lockers, builder: (_, __) => const LockersScreen()),
+      GoRoute(
+          path: Routes.lockersCountry,
+          builder: (_, s) => CountryLockersScreen(code: s.pathParameters['code']!)),
       StatefulShellRoute.indexedStack(
         builder: (ctx, state, shell) => _ShellScaffold(shell: shell),
         branches: [
