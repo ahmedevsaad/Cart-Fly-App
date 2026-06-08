@@ -17,20 +17,23 @@ class CfBackground extends StatelessWidget {
         children: [
           if (solid == null)
             IgnorePointer(
-              child: LayoutBuilder(builder: (context, c) {
-                const tile = 240.0;
-                final cols = (c.maxWidth / tile).ceil();
-                final rows = (c.maxHeight / tile).ceil();
-                return Wrap(
-                  children: List.generate(
-                    cols * rows,
-                    (_) => SizedBox(
-                      width: tile, height: tile,
-                      child: SvgPicture.asset('assets/pattern/airplane_box.svg'),
+              child: Opacity(
+                opacity: 0.06,
+                child: LayoutBuilder(builder: (context, c) {
+                  const tile = 240.0;
+                  final cols = (c.maxWidth / tile).ceil();
+                  final rows = (c.maxHeight / tile).ceil();
+                  return Wrap(
+                    children: List.generate(
+                      cols * rows,
+                      (_) => SizedBox(
+                        width: tile, height: tile,
+                        child: SvgPicture.asset('assets/pattern/airplane_box.svg'),
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
           child,
         ],
