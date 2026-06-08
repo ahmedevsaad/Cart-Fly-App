@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/auth/auth_provider.dart';
+import '../../l10n/auth_error.dart';
 import '../../widgets/cf_button.dart';
 import '../../widgets/cf_input.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -61,7 +62,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       );
       context.pop();
     } else {
-      setState(() => _error = authProv.errorKey ?? 'Failed to update password.');
+      setState(() => _error = authErrorText(authProv.errorKey).isNotEmpty
+          ? authErrorText(authProv.errorKey)
+          : 'Failed to update password.');
     }
   }
 

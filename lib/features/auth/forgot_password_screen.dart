@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../l10n/auth_error.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_button.dart';
@@ -41,7 +42,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     if (!mounted) return;
     setState(() {
       _busy = false;
-      if (!ok) _error = auth.errorKey;
+      if (!ok) _error = authErrorText(auth.errorKey);
     });
     if (ok) {
       ScaffoldMessenger.of(context).showSnackBar(

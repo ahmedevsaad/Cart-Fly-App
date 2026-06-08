@@ -71,7 +71,7 @@ class CountryLockersScreen extends StatelessWidget {
                   ),
                   for (final l in city.lockers)
                     Padding(
-                      padding: const EdgeInsets.only(left: 12, bottom: 6),
+                      padding: const EdgeInsetsDirectional.only(start: 12, bottom: 6),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

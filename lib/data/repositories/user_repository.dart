@@ -21,6 +21,8 @@ class UserRepository {
         if (country != null) 'country': country,
       });
 
-  Future<void> setPlan(String plan) => _doc.update({'plan': plan});
-  Future<void> setCurrency(String currency) => _doc.update({'currency': currency});
+  Future<void> setPlan(String plan) =>
+      _doc.set({'plan': plan}, SetOptions(merge: true));
+  Future<void> setCurrency(String currency) =>
+      _doc.set({'currency': currency}, SetOptions(merge: true));
 }

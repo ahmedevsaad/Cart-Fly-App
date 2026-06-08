@@ -22,7 +22,7 @@ class CfStatusTimeline extends StatelessWidget {
           ),
           if (i < steps.length - 1)
             const Padding(
-              padding: EdgeInsets.only(left: 11),
+              padding: EdgeInsetsDirectional.only(start: 11),
               child: SizedBox(height: 20, child: VerticalDivider(width: 2)),
             ),
         ],

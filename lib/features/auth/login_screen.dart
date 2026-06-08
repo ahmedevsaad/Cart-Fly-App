@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../l10n/auth_error.dart';
 import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
     setState(() {
       _busy = false;
-      if (!ok) _error = auth.errorKey;
+      if (!ok) _error = authErrorText(auth.errorKey);
     });
     // success → router redirect navigates to /home automatically
   }

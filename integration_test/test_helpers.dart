@@ -6,6 +6,7 @@ import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:cartfly/firebase_options.dart';
 
@@ -20,6 +21,11 @@ Future<void> initTestFirebase() async {
     await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }
+  // Reset locale to English so a previous test run's Arabic setting
+  // (stored in localStorage/SharedPreferences) doesn't carry over.
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('locale', 'en');
+  await prefs.remove('currency');
 }
 
 /// Wipes all emulator accounts and Firestore documents. Call in tearDownAll.
@@ -45,15 +51,29 @@ Future<void> clearEmulatorData() async {
 }
 
 /// Creates a user in the emulator, marks their email as verified, signs out,
-/// and returns their uid.
+/// and returns their uid.  Idempotent: if the email is already registered
+/// (e.g. on a test retry), signs in with the existing account instead.
 Future<String> createVerifiedUser({
   required String email,
   required String password,
 }) async {
-  final cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-    email: email,
-    password: password,
-  );
+  late UserCredential cred;
+  try {
+    cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'email-already-in-use') {
+      cred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await FirebaseAuth.instance.signOut();
+      return cred.user!.uid;
+    }
+    rethrow;
+  }
   final uid = cred.user!.uid;
   // Use the emulator admin REST API to set emailVerified without an email link.
   await html.HttpRequest.request(
