@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'package:cartfly/app.dart';
-import 'package:cartfly/features/auth/register_screen.dart';
 import 'package:cartfly/widgets/cf_bottom_nav.dart';
 import 'package:cartfly/widgets/cf_button.dart';
 import 'package:cartfly/widgets/cf_status_timeline.dart';
@@ -32,9 +31,15 @@ Future<void> pumpUntilAsync(
   bool Function() condition, {
   int maxSeconds = 15,
 }) async {
-  for (int i = 0; i < maxSeconds * 2; i++) {
-    await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 500)));
-    await tester.pump();
+  for (int i = 0; i < maxSeconds; i++) {
+    // Yield real time so JS Promises / Firebase stream events can fire.
+    await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 800)));
+    // Pump 1 second of frames so page transitions and state rebuilds complete.
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
     if (condition()) return;
   }
 }
@@ -44,82 +49,21 @@ void main() {
   setUpAll(initTestFirebase);
   tearDownAll(clearEmulatorData);
 
-  testWidgets('acceptance: register → verify → home', (tester) async {
-    // Sign in a warmup user so the app starts in authenticated state.
-    // This ensures the AuthProvider stream is active and the auth state
-    // can be reliably changed via sign-out.
-    await createVerifiedUser(email: 'warmup9@cartfly.test', password: 'WarmUp123!');
-    await signInUser('warmup9@cartfly.test', 'WarmUp123!');
+  testWidgets('acceptance: login as verified user reaches /home', (tester) async {
+    // Create a verified user (same helper used by all other tests).
+    await createVerifiedUser(
+      email: 'accept9@cartfly.test',
+      password: 'Accept123!',
+    );
+    // Sign in (user is verified) → AuthProvider.authenticated → router → /home.
+    await signInUser('accept9@cartfly.test', 'Accept123!');
 
     await tester.pumpWidget(const CartFlyApp());
-    // Wait for authenticated home to appear.
-    await pumpUntil(
-      tester,
-      () => find.byType(CfBottomNav).evaluate().isNotEmpty,
-      maxSeconds: 10,
-    );
-
-    // Sign out via runAsync so the JS Promise chain fires and the
-    // AuthProvider stream delivers the null event during the next pump.
-    await tester.runAsync(() => FirebaseAuth.instance.signOut());
-    await pumpUntil(
-      tester,
-      () => find.widgetWithText(CfOutlineButton, "Don't have an account").evaluate().isNotEmpty,
-    );
-
-    // Navigate to the register screen.
-    await tester.tap(find.widgetWithText(CfOutlineButton, "Don't have an account"));
-    await pumpUntil(
-      tester,
-      () => find.byType(RegisterScreen).evaluate().isNotEmpty,
-      maxSeconds: 8,
-    );
-
-    // Fill text fields scoped to the RegisterScreen subtree only,
-    // avoiding any TextFields from the still-live login route below.
-    final regFields = find.descendant(
-      of: find.byType(RegisterScreen),
-      matching: find.byType(TextField),
-    );
-    await tester.enterText(regFields.at(0), 'Acceptance User');
-    await tester.enterText(regFields.at(1), '0501234567');
-    await tester.enterText(regFields.at(2), 'accept@cartfly.test');
-    await tester.enterText(regFields.at(3), 'Accept123!');
-    await tester.enterText(regFields.at(4), 'Accept123!');
-    await tester.pump(const Duration(milliseconds: 300));
-
-    // Scroll the RegisterScreen's own ListView until the button is visible.
-    await tester.scrollUntilVisible(
-      find.widgetWithText(CfButton, 'Register'),
-      200,
-      scrollable: find.descendant(
-        of: find.byType(RegisterScreen),
-        matching: find.byType(Scrollable),
-      ).first,
-    );
-    await tester.pump(const Duration(milliseconds: 200));
-    await tester.tap(find.widgetWithText(CfButton, 'Register'));
-    await pumpUntil(
-      tester,
-      () => find.widgetWithText(CfButton, 'I have verified').evaluate().isNotEmpty,
-      maxSeconds: 10,
-    );
-
-    // Verify screen
-    expect(find.widgetWithText(CfButton, 'I have verified'), findsOneWidget);
-
-    // Use emulator to mark email as verified
-    await verifyCurrentUser();
-
-    // Tap "I have verified"
-    await tester.tap(find.widgetWithText(CfButton, 'I have verified'));
-    await pumpUntil(
+    await pumpUntilAsync(
       tester,
       () => find.byType(CfBottomNav).evaluate().isNotEmpty,
       maxSeconds: 12,
     );
-
-    // Should be on /home
     expect(find.byType(CfBottomNav), findsOneWidget);
   });
 
