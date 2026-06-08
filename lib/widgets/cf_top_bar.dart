@@ -19,8 +19,14 @@ class CfTopBar extends StatelessWidget implements PreferredSizeWidget {
       leading: showBack
           ? IconButton(
               onPressed: onBack ?? () => Navigator.of(context).maybePop(),
-              icon: SvgPicture.asset('assets/icons/chevron-back.svg',
-                  width: 24, height: 24),
+              icon: Directionality.of(context) == TextDirection.rtl
+                  ? Transform.flip(
+                      flipX: true,
+                      child: SvgPicture.asset('assets/icons/chevron-back.svg',
+                          width: 24, height: 24),
+                    )
+                  : SvgPicture.asset('assets/icons/chevron-back.svg',
+                      width: 24, height: 24),
             )
           : null,
       centerTitle: true,

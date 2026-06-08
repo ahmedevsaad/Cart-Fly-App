@@ -7,6 +7,7 @@ import '../../router/routes.dart';
 import '../../widgets/cf_button.dart';
 import '../../widgets/cf_list_row.dart';
 import '../../widgets/cf_scaffold.dart';
+import '../../widgets/cf_states.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -14,6 +15,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthProvider>().state.user;
+
+    if (user == null) {
+      return const CfScaffold(body: CfLoading());
+    }
 
     return CfScaffold(
       body: ListView(
@@ -28,8 +33,8 @@ class ProfileScreen extends StatelessWidget {
                   radius: 36,
                   backgroundColor: const Color(0xFFECEEF0),
                   child: Text(
-                    user?.name.isNotEmpty == true
-                        ? user!.name[0].toUpperCase()
+                    user.name.isNotEmpty
+                        ? user.name[0].toUpperCase()
                         : '?',
                     style: const TextStyle(
                         fontSize: 28, fontWeight: FontWeight.bold),
@@ -37,13 +42,13 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  user?.name ?? '',
+                  user.name,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                if (user?.email.isNotEmpty == true)
+                if (user.email.isNotEmpty)
                   Text(
-                    user!.email,
+                    user.email,
                     style: const TextStyle(
                         fontSize: 13, color: Color(0xFF64748B)),
                   ),
@@ -52,9 +57,9 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           // Info rows
-          _InfoRow(label: 'Phone', value: user?.phone ?? '-'),
-          _InfoRow(label: 'Country', value: user?.country ?? '-'),
-          _InfoRow(label: 'Currency', value: user?.currency ?? 'USD'),
+          _InfoRow(label: 'Phone', value: user.phone.isNotEmpty ? user.phone : '-'),
+          _InfoRow(label: 'Country', value: user.country.isNotEmpty ? user.country : '-'),
+          _InfoRow(label: 'Currency', value: user.currency.isNotEmpty ? user.currency : 'USD'),
           const SizedBox(height: 16),
           // Actions
           CfListRow(

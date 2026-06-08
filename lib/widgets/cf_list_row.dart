@@ -16,8 +16,14 @@ class CfListRow extends StatelessWidget {
         child: Row(
           children: [
             Expanded(child: Text(label, style: AppText.bodyMedium)),
-            SvgPicture.asset('assets/icons/arrow-right-circle.svg',
-                width: 24, height: 24),
+            Directionality.of(context) == TextDirection.rtl
+                ? Transform.flip(
+                    flipX: true,
+                    child: SvgPicture.asset('assets/icons/arrow-right-circle.svg',
+                        width: 24, height: 24),
+                  )
+                : SvgPicture.asset('assets/icons/arrow-right-circle.svg',
+                    width: 24, height: 24),
           ],
         ),
       ),

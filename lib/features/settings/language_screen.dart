@@ -19,7 +19,7 @@ class LanguageScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 8),
             child: Text(
               'Languages',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

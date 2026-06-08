@@ -23,8 +23,8 @@ class CurrencyScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 8),
             child: Text(
               'Currency',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
