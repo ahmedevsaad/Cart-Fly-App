@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../router/routes.dart';
+import '../../widgets/cf_button.dart';
 import '../../widgets/cf_card.dart';
 import '../../widgets/cf_list_row.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -49,6 +50,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
+            CfButton(
+              label: 'Create shipment',
+              onPressed: () => context.push(Routes.createShipment),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

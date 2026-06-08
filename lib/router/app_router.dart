@@ -11,6 +11,10 @@ import '../features/lockers/lockers_screen.dart';
 import '../features/menu/menu_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/settings/settings_screen.dart';
+import '../features/shipments/create_shipment_screen.dart';
+import '../features/shipments/order_detail_screen.dart';
+import '../features/shipments/orders_screen.dart';
+import '../features/shipments/track_order_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/warehouses/warehouse_detail_screen.dart';
 import '../features/warehouses/warehouses_screen.dart';
@@ -55,7 +59,22 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(path: Routes.lockers, builder: (_, __) => const LockersScreen()),
       GoRoute(
           path: Routes.lockersCountry,
-          builder: (_, s) => CountryLockersScreen(code: s.pathParameters['code']!)),
+          builder: (_, s) =>
+              CountryLockersScreen(code: s.pathParameters['code']!)),
+      GoRoute(
+          path: Routes.createShipment,
+          builder: (_, __) => const CreateShipmentScreen()),
+      GoRoute(
+          path: Routes.orders,
+          builder: (_, __) => const OrdersScreen()),
+      GoRoute(
+          path: Routes.orderDetail,
+          builder: (_, s) =>
+              OrderDetailScreen(id: s.pathParameters['id']!)),
+      GoRoute(
+          path: Routes.trackOrder,
+          builder: (_, s) =>
+              TrackOrderScreen(id: s.pathParameters['id']!)),
       StatefulShellRoute.indexedStack(
         builder: (ctx, state, shell) => _ShellScaffold(shell: shell),
         branches: [

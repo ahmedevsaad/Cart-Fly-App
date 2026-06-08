@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'features/auth/auth_provider.dart';
+import 'state/orders_provider.dart';
 import 'state/settings_provider.dart';
 import 'l10n/app_localizations.dart';
 import 'router/app_router.dart';
@@ -45,6 +46,18 @@ class _CartFlyAppState extends State<CartFlyApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           routerConfig: buildRouter(_auth),
+          builder: (context, child) {
+            final uid = context.watch<AuthProvider>().state.user?.uid;
+            if (uid == null) return child!;
+            return MultiProvider(
+              key: ValueKey(uid),
+              providers: [
+                ChangeNotifierProvider(
+                    create: (_) => OrdersProvider(uid: uid)),
+              ],
+              child: child!,
+            );
+          },
         ),
       ),
     );
