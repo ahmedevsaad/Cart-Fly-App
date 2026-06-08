@@ -47,9 +47,16 @@ class AuthProvider extends ChangeNotifier {
       _set(AuthState.pendingOtp(email: u.email ?? ''));
       return;
     }
-    final doc = await _db.collection('users').doc(u.uid).get();
-    final profile = AppUser.fromMap(u.uid, doc.data() ?? {'email': u.email});
-    _set(AuthState.signedIn(profile));
+    try {
+      final doc = await _db.collection('users').doc(u.uid).get();
+      final profile = AppUser.fromMap(u.uid, doc.data() ?? {'email': u.email});
+      _set(AuthState.signedIn(profile));
+    } catch (_) {
+      // Firestore unavailable (e.g. emulator not running) — fall back to
+      // auth-only profile so the app still renders the authenticated shell.
+      final profile = AppUser.fromMap(u.uid, {'email': u.email ?? ''});
+      _set(AuthState.signedIn(profile));
+    }
   }
 
   void _set(AuthState s) {
@@ -126,6 +133,21 @@ class AuthProvider extends ChangeNotifier {
   Future<void> refreshProfile() async {
     final u = _auth.currentUser;
     if (u != null) await _onAuthChange(u);
+  }
+
+  Future<bool> changePassword(String currentPassword, String newPassword) async {
+    final u = _auth.currentUser;
+    if (u == null || u.email == null) return false;
+    try {
+      final cred = EmailAuthProvider.credential(
+          email: u.email!, password: currentPassword);
+      await u.reauthenticateWithCredential(cred);
+      await u.updatePassword(newPassword);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      _fail('errorAuth_${e.code}');
+      return false;
+    }
   }
 
   Future<void> logout() => _auth.signOut();

@@ -57,10 +57,13 @@ Future<String> createVerifiedUser({
   final uid = cred.user!.uid;
   // Use the emulator admin REST API to set emailVerified without an email link.
   await html.HttpRequest.request(
-    'http://localhost:9099/emulator/v1/projects/$_projectId/accounts/$uid',
-    method: 'PATCH',
-    requestHeaders: {'Content-Type': 'application/json'},
-    sendData: jsonEncode({'emailVerified': true}),
+    'http://localhost:9099/identitytoolkit.googleapis.com/v1/projects/$_projectId/accounts:update',
+    method: 'POST',
+    requestHeaders: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer owner',
+    },
+    sendData: jsonEncode({'localId': uid, 'emailVerified': true}),
   );
   await FirebaseAuth.instance.signOut();
   return uid;
@@ -79,9 +82,12 @@ Future<void> verifyCurrentUser() async {
   final uid = FirebaseAuth.instance.currentUser?.uid;
   if (uid == null) return;
   await html.HttpRequest.request(
-    'http://localhost:9099/emulator/v1/projects/$_projectId/accounts/$uid',
-    method: 'PATCH',
-    requestHeaders: {'Content-Type': 'application/json'},
-    sendData: jsonEncode({'emailVerified': true}),
+    'http://localhost:9099/identitytoolkit.googleapis.com/v1/projects/$_projectId/accounts:update',
+    method: 'POST',
+    requestHeaders: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer owner',
+    },
+    sendData: jsonEncode({'localId': uid, 'emailVerified': true}),
   );
 }

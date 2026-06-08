@@ -6,6 +6,9 @@ import '../features/auth/login_screen.dart';
 import '../features/auth/register_screen.dart';
 import '../features/auth/verify_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/info/about_screen.dart';
+import '../features/info/how_it_works_screen.dart';
+import '../features/info/policy_screen.dart';
 import '../features/lockers/country_lockers_screen.dart';
 import '../features/payment/payment_error_screen.dart';
 import '../features/payment/payment_screen.dart';
@@ -14,13 +17,18 @@ import '../features/plans/plan_detail_screen.dart';
 import '../features/plans/plans_screen.dart';
 import '../features/lockers/lockers_screen.dart';
 import '../features/menu/menu_screen.dart';
+import '../features/profile/change_password_screen.dart';
+import '../features/profile/edit_profile_screen.dart';
 import '../features/profile/profile_screen.dart';
+import '../features/settings/currency_screen.dart';
+import '../features/settings/language_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/shipments/create_shipment_screen.dart';
 import '../features/shipments/order_detail_screen.dart';
 import '../features/shipments/orders_screen.dart';
 import '../features/shipments/track_order_screen.dart';
 import '../features/splash/splash_screen.dart';
+import '../features/support/support_screen.dart';
 import '../features/warehouses/warehouse_detail_screen.dart';
 import '../features/warehouses/warehouses_screen.dart';
 import '../features/welcome/welcome_screen.dart';
@@ -51,6 +59,14 @@ GoRouter buildRouter(AuthProvider auth) {
       return null;
     },
     routes: [
+      GoRoute(path: Routes.settingsLanguage, builder: (_, __) => const LanguageScreen()),
+      GoRoute(path: Routes.settingsCurrency, builder: (_, __) => const CurrencyScreen()),
+      GoRoute(path: Routes.editProfile, builder: (_, __) => const EditProfileScreen()),
+      GoRoute(path: Routes.changePassword, builder: (_, __) => const ChangePasswordScreen()),
+      GoRoute(path: Routes.about, builder: (_, __) => const AboutScreen()),
+      GoRoute(path: Routes.policy, builder: (_, __) => const PolicyScreen()),
+      GoRoute(path: Routes.howItWorks, builder: (_, __) => const HowItWorksScreen()),
+      GoRoute(path: Routes.support, builder: (_, __) => const SupportScreen()),
       GoRoute(path: Routes.plans, builder: (_, __) => const PlansScreen()),
       GoRoute(
           path: Routes.planDetail,
