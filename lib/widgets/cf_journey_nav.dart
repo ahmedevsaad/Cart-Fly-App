@@ -11,7 +11,11 @@ Widget cfJourneyNav(BuildContext context) {
     index = 2;
   } else if (loc.startsWith('/profile')) {
     index = 1;
-  } else if (loc.startsWith('/settings')) {
+  } else if (loc.startsWith('/settings') ||
+      loc == Routes.about ||
+      loc == Routes.support ||
+      loc == Routes.policy) {
+    // About / Support / Policy are reached from Settings — highlight that tab.
     index = 3;
   } else {
     index = 0;
