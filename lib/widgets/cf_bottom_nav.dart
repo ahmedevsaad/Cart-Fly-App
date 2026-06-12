@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import 'icons/cf_icons.dart';
 
@@ -19,8 +20,6 @@ class CfBottomNav extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  static const _labels = ['Home', 'Account', 'Orders', 'Settings'];
-
   Widget _icon(int index, bool active) {
     final color = active ? Colors.white : AppColors.navIdle;
     return switch (index) {
@@ -34,6 +33,8 @@ class CfBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final labels = [l10n.navHome, l10n.navAccount, l10n.navOrders, l10n.navSettings];
     final bottomInset = MediaQuery.of(context).padding.bottom;
     return Container(
       margin: EdgeInsets.fromLTRB(16, 8, 16, 16 + bottomInset),
@@ -47,17 +48,17 @@ class CfBottomNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          for (var i = 0; i < _labels.length; i++) _buildItem(i),
+          for (var i = 0; i < labels.length; i++) _buildItem(i, labels[i]),
         ],
       ),
     );
   }
 
-  Widget _buildItem(int index) {
+  Widget _buildItem(int index, String label) {
     final active = index == currentIndex;
 
     return Semantics(
-      label: _labels[index],
+      label: label,
       selected: active,
       button: true,
       child: InkWell(
@@ -80,7 +81,7 @@ class CfBottomNav extends StatelessWidget {
               if (active) ...[
                 const SizedBox(width: 7),
                 Text(
-                  _labels[index],
+                  label,
                   style: GoogleFonts.inter(
                     fontSize: 12.5,
                     fontWeight: FontWeight.w700,

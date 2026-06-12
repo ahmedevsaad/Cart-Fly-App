@@ -63,7 +63,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
       final authProvider = context.read<AuthProvider>();
       await planProvider.subscribe(_planCode);
       await authProvider.refreshProfile();
-      if (mounted) context.go(Routes.paymentSuccess);
+      if (mounted) {
+        context.go('${Routes.paymentSuccess}?plan=$_planCode');
+      }
     } else {
       if (!_orderValid()) {
         context.go(Routes.paymentError);

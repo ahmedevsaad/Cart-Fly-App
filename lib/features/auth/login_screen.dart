@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return CfScaffold(
       topBar: CfTopBar(onBack: () => context.pop()),
+      solidBackground: AppColors.chipBlue.withValues(alpha: 0.18),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(

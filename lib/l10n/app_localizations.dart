@@ -353,196 +353,1001 @@ abstract class AppLocalizations {
   /// **'Required'**
   String get errorRequired;
 
+  /// No description provided for @welcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'welcome,'**
   String get welcomeUser;
+
+  /// No description provided for @myOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'My order:'**
   String get myOrder;
+
+  /// No description provided for @ourServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Our services:'**
   String get ourServices;
+
+  /// No description provided for @serviceWarehouses.
+  ///
+  /// In en, this message translates to:
+  /// **'Our\nwarehouses'**
   String get serviceWarehouses;
+
+  /// No description provided for @serviceLockers.
+  ///
+  /// In en, this message translates to:
+  /// **'Locker\nlocations'**
   String get serviceLockers;
+
+  /// No description provided for @servicePlans.
+  ///
+  /// In en, this message translates to:
+  /// **'subscription\nplans'**
   String get servicePlans;
+
+  /// No description provided for @serviceCalculator.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart\ncalculator'**
   String get serviceCalculator;
+
+  /// No description provided for @yourCartFlyAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your CartFly address'**
   String get yourCartFlyAddress;
+
+  /// No description provided for @copyAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
   String get copyAddress;
+
+  /// No description provided for @addressCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Address copied'**
   String get addressCopied;
+
+  /// No description provided for @recipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipient'**
   String get recipient;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
   String get address;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
   String get city;
+
+  /// No description provided for @statusOrderPlaced.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Placed'**
   String get statusOrderPlaced;
+
+  /// No description provided for @statusShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipped'**
   String get statusShipped;
+
+  /// No description provided for @statusInTransit.
+  ///
+  /// In en, this message translates to:
+  /// **'In Transit'**
   String get statusInTransit;
+
+  /// No description provided for @statusDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
   String get statusDelivered;
 
-  // Plans
+  /// No description provided for @ourPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Plans'**
   String get ourPlans;
+
+  /// No description provided for @tapPlanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a plan to see what\'s included.'**
   String get tapPlanHint;
+
+  /// No description provided for @planBasicName.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic cart'**
   String get planBasicName;
+
+  /// No description provided for @planSmartName.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart cart'**
   String get planSmartName;
+
+  /// No description provided for @planPrimeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Prime cart'**
   String get planPrimeName;
+
+  /// No description provided for @planBasicDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started with CartFly at no cost. Access warehouse addresses and basic order management features'**
   String get planBasicDesc;
+
+  /// No description provided for @planBasicPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
   String get planBasicPrice;
+
+  /// No description provided for @planSmartDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock exclusive vouchers and enjoy our built-in order calculator for fast, accurate online shopping estimates.'**
   String get planSmartDesc;
+
+  /// No description provided for @planSmartFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'• Discount vouchers\n• Instant order cost calculator\n• Easy online checkout support'**
   String get planSmartFeatures;
+
+  /// No description provided for @planSmartPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'12.33 USD/per month'**
   String get planSmartPrice;
+
+  /// No description provided for @planPrimeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Save more on every order with premium discounts, liquid offers, and instant price calculations.'**
   String get planPrimeDesc;
+
+  /// No description provided for @planPrimeFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'• Higher discount rates\n• Discounts on liquid products\n• Smart calculator service'**
   String get planPrimeFeatures;
+
+  /// No description provided for @planPrimePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'19.99 USD/per month'**
   String get planPrimePrice;
+
+  /// No description provided for @subscribeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe now'**
   String get subscribeNow;
 
-  // Calculator
+  /// No description provided for @calcTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Calculator'**
   String get calcTitle;
+
+  /// No description provided for @calcSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the details below to calculate your shipping cost.'**
   String get calcSubtitle;
+
+  /// No description provided for @calcStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
   String get calcStep1;
+
+  /// No description provided for @calcStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate'**
   String get calcStep2;
+
+  /// No description provided for @calcStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
   String get calcStep3;
+
+  /// No description provided for @calcCountryFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Country From'**
   String get calcCountryFrom;
+
+  /// No description provided for @calcCountryTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Country To'**
   String get calcCountryTo;
+
+  /// No description provided for @calcCountryChina.
+  ///
+  /// In en, this message translates to:
+  /// **'China'**
   String get calcCountryChina;
+
+  /// No description provided for @calcCountryEgypt.
+  ///
+  /// In en, this message translates to:
+  /// **'Egypt'**
   String get calcCountryEgypt;
+
+  /// No description provided for @calcWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
   String get calcWeight;
+
+  /// No description provided for @calcWeightUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'KG'**
   String get calcWeightUnit;
+
+  /// No description provided for @calcProductCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Category'**
   String get calcProductCategory;
+
+  /// No description provided for @calcCatElectronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
   String get calcCatElectronics;
+
+  /// No description provided for @calcCatFashion.
+  ///
+  /// In en, this message translates to:
+  /// **'Fashion'**
   String get calcCatFashion;
+
+  /// No description provided for @calcCatAccessories.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessories'**
   String get calcCatAccessories;
+
+  /// No description provided for @calcCalculate.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate'**
   String get calcCalculate;
+
+  /// No description provided for @calcEstimatedCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Cost'**
   String get calcEstimatedCost;
+
+  /// No description provided for @calcShippingCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Cost'**
   String get calcShippingCost;
+
+  /// No description provided for @calcCustomsFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Customs Fee'**
   String get calcCustomsFee;
+
+  /// No description provided for @calcServiceFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Service Fee'**
   String get calcServiceFee;
+
+  /// No description provided for @calcTotalEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Estimated Cost'**
   String get calcTotalEstimated;
+
+  /// No description provided for @calcShippingVal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$12.00'**
   String get calcShippingVal;
+
+  /// No description provided for @calcCustomsVal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$8.00'**
   String get calcCustomsVal;
+
+  /// No description provided for @calcServiceVal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$3.00'**
   String get calcServiceVal;
+
+  /// No description provided for @calcTotalVal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$23.00'**
   String get calcTotalVal;
+
+  /// No description provided for @calcEstimatedDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Delivery'**
   String get calcEstimatedDelivery;
+
+  /// No description provided for @calcDeliveryDays.
+  ///
+  /// In en, this message translates to:
+  /// **'7 – 10 Days'**
   String get calcDeliveryDays;
 
-  // Plan checkout
+  /// No description provided for @checkoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
   String get checkoutTitle;
+
+  /// No description provided for @checkoutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your subscription & pay securely.'**
   String get checkoutSubtitle;
+
+  /// No description provided for @checkoutPlanName.
+  ///
+  /// In en, this message translates to:
+  /// **'Prime cart'**
   String get checkoutPlanName;
+
+  /// No description provided for @checkoutBilledMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Billed monthly'**
   String get checkoutBilledMonthly;
+
+  /// No description provided for @checkoutPlanPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'\$19.99'**
   String get checkoutPlanPrice;
+
+  /// No description provided for @checkoutPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/month'**
   String get checkoutPerMonth;
+
+  /// No description provided for @paymentMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method'**
   String get paymentMethod;
+
+  /// No description provided for @payMethodCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
   String get payMethodCard;
+
+  /// No description provided for @payMethodPaypal.
+  ///
+  /// In en, this message translates to:
+  /// **'PayPal'**
   String get payMethodPaypal;
+
+  /// No description provided for @payMethodApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple'**
   String get payMethodApple;
+
+  /// No description provided for @cardHolderName.
+  ///
+  /// In en, this message translates to:
+  /// **'Card holder name'**
   String get cardHolderName;
+
+  /// No description provided for @orderConfirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
   String get orderConfirmButton;
+
+  /// No description provided for @cardNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Card number'**
   String get cardNumber;
+
+  /// No description provided for @cardNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'4242 4242 4242 4242'**
   String get cardNumberHint;
+
+  /// No description provided for @cardExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiry'**
   String get cardExpiry;
+
+  /// No description provided for @cardExpiryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'08 / 28'**
   String get cardExpiryHint;
+
+  /// No description provided for @cardCvv.
+  ///
+  /// In en, this message translates to:
+  /// **'CVV'**
   String get cardCvv;
+
+  /// No description provided for @totalToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Total today'**
   String get totalToday;
+
+  /// No description provided for @payButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay \$19.99'**
   String get payButton;
+
+  /// No description provided for @securedEncryption.
+  ///
+  /// In en, this message translates to:
+  /// **'Secured by 256-bit encryption'**
   String get securedEncryption;
 
-  // Plan confirmed
+  /// No description provided for @planConfirmedThankYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you!'**
   String get planConfirmedThankYou;
+
+  /// No description provided for @planConfirmedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment was successful and your {plan} plan is now active.'**
   String planConfirmedBody(Object plan);
+
+  /// No description provided for @planConfirmedBodyPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment was successful and your '**
   String get planConfirmedBodyPrefix;
+
+  /// No description provided for @planConfirmedBodySuffix.
+  ///
+  /// In en, this message translates to:
+  /// **' plan is now active.'**
   String get planConfirmedBodySuffix;
+
+  /// No description provided for @receiptPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan'**
   String get receiptPlan;
+
+  /// No description provided for @receiptBilling.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing'**
   String get receiptBilling;
+
+  /// No description provided for @receiptBillingMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
   String get receiptBillingMonthly;
+
+  /// No description provided for @receiptNextRenewal.
+  ///
+  /// In en, this message translates to:
+  /// **'Next renewal'**
   String get receiptNextRenewal;
+
+  /// No description provided for @receiptRenewalDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Jul 12, 2026'**
   String get receiptRenewalDate;
+
+  /// No description provided for @receiptAmountPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount paid'**
   String get receiptAmountPaid;
+
+  /// No description provided for @receiptAmountVal.
+  ///
+  /// In en, this message translates to:
+  /// **'\$19.99'**
   String get receiptAmountVal;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
   String get backToHome;
+
+  /// No description provided for @viewSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'View my subscription'**
   String get viewSubscription;
 
-  // Profile (Frame 26)
-  String get profileTitle;
-  String get profileName;
-  String get profileEmail;
-  String get profilePhone;
-  String get profileCountry;
-  String get profilePlan;
-  String get profileCurrency;
-  String get profileSignOut;
-
-  // Settings (Frame 27)
-  String get settingsTitle;
-  String get settingsAccountSection;
-  String get settingsSavedAddresses;
-  String get settingsEditProfile;
-  String get settingsChangePassword;
-  String get settingsAppPrefsSection;
-  String get settingsLanguages;
-  String get settingsCurrency;
-  String get settingsNotifications;
-  String get settingsSupportSection;
-  String get settingsHelpCenter;
-  String get settingsHaveAnIssue;
-  String get settingsReportProblem;
-  String get settingsAboutUs;
-  String get settingsPolicy;
-  String get settingsContactUs;
-  String get settingsContactEmail;
-  String get settingsSignOut;
-
-  // Currency screen (Frame 28)
-  String get currencyScreenTitle;
-  String get currencyEGP;
-  String get currencyUSD;
-  String get currencySAR;
-
-  // Language screen (Frame 29)
-  String get langScreenTitle;
-  String get langEnglish;
-  String get langArabic;
-
-  // About screen (Frame 30)
-  String get aboutTitle;
-  String get aboutBody;
-  String get aboutContactLabel;
-  String get aboutContactEmail;
-
-  // Support / Have an issue (Frame 31)
-  String get supportIssueTitle;
-  String get supportIssueBody;
-  String get supportContactLabel;
-  String get supportContactEmail;
-
-  // Orders hub / detail (Frames 13-15)
+  /// No description provided for @myOrderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My order:'**
   String get myOrderTitle;
+
+  /// No description provided for @orderDetailTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Track order'**
   String get orderDetailTrack;
+
+  /// No description provided for @hubWarehouses.
+  ///
+  /// In en, this message translates to:
+  /// **'Our warehouses'**
   String get hubWarehouses;
+
+  /// No description provided for @hubLockers.
+  ///
+  /// In en, this message translates to:
+  /// **'Locker locations'**
   String get hubLockers;
+
+  /// No description provided for @hubPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription plans'**
   String get hubPlans;
 
-  // Confirm order (Frame 23)
+  /// No description provided for @confirmOrderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your order'**
   String get confirmOrderTitle;
+
+  /// No description provided for @confirmCustomerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer name:'**
   String get confirmCustomerName;
+
+  /// No description provided for @confirmCustomerPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer phone no.:'**
   String get confirmCustomerPhone;
+
+  /// No description provided for @confirmCustomerEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer email:'**
   String get confirmCustomerEmail;
 
-  // Track order (Frame 25)
+  /// No description provided for @trackOrderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your order'**
   String get trackOrderTitle;
+
+  /// No description provided for @trackCurrentStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'current status'**
   String get trackCurrentStatus;
+
+  /// No description provided for @trackExpectedDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Delivery'**
   String get trackExpectedDelivery;
+
+  /// No description provided for @trackExpectedDate.
+  ///
+  /// In en, this message translates to:
+  /// **'15 June 2026'**
   String get trackExpectedDate;
+
+  /// No description provided for @trackHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking History'**
   String get trackHistory;
+
+  /// No description provided for @trackStepConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'order\nconfirmed'**
   String get trackStepConfirmed;
+
+  /// No description provided for @trackStepShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'order\nshipped'**
   String get trackStepShipped;
+
+  /// No description provided for @trackStepOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'out for\ndelivery'**
   String get trackStepOutForDelivery;
+
+  /// No description provided for @trackHistoryOrderConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Order confirmed'**
   String get trackHistoryOrderConfirmed;
+
+  /// No description provided for @trackHistoryPackageReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Package Received'**
   String get trackHistoryPackageReceived;
+
+  /// No description provided for @trackHistoryInTransit.
+  ///
+  /// In en, this message translates to:
+  /// **'In transit'**
   String get trackHistoryInTransit;
+
+  /// No description provided for @trackHistoryCustomClearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom clearance'**
   String get trackHistoryCustomClearance;
+
+  /// No description provided for @trackHistoryOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for Delivery'**
   String get trackHistoryOutForDelivery;
+
+  /// No description provided for @trackHistoryDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
   String get trackHistoryDelivered;
 
-  // Order status labels + messages
+  /// No description provided for @statusAtWarehouse.
+  ///
+  /// In en, this message translates to:
+  /// **'At Warehouse'**
   String get statusAtWarehouse;
+
+  /// No description provided for @statusOrderConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Confirmed'**
   String get statusOrderConfirmed;
+
+  /// No description provided for @statusOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for Delivery'**
   String get statusOutForDelivery;
+
+  /// No description provided for @statusPackagingMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package is at our warehouse and being prepared.'**
   String get statusPackagingMsg;
+
+  /// No description provided for @statusShippedMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package is on the way to the destination country.'**
   String get statusShippedMsg;
+
+  /// No description provided for @statusPlacedMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been confirmed and is awaiting pickup.'**
   String get statusPlacedMsg;
+
+  /// No description provided for @statusDeliveredMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package has been delivered successfully.'**
   String get statusDeliveredMsg;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name:'**
+  String get profileName;
+
+  /// No description provided for @profileEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address:'**
+  String get profileEmail;
+
+  /// No description provided for @profilePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number:'**
+  String get profilePhone;
+
+  /// No description provided for @profileCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country:'**
+  String get profileCountry;
+
+  /// No description provided for @profilePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Your plan:'**
+  String get profilePlan;
+
+  /// No description provided for @profileCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency:'**
+  String get profileCurrency;
+
+  /// No description provided for @profileSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOut;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsAccountSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Account settings:'**
+  String get settingsAccountSection;
+
+  /// No description provided for @settingsSavedAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved addresses'**
+  String get settingsSavedAddresses;
+
+  /// No description provided for @settingsEditProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profiles'**
+  String get settingsEditProfile;
+
+  /// No description provided for @settingsChangePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get settingsChangePassword;
+
+  /// No description provided for @settingsAppPrefsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'App Preferences:'**
+  String get settingsAppPrefsSection;
+
+  /// No description provided for @settingsLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get settingsLanguages;
+
+  /// No description provided for @settingsCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get settingsCurrency;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification settings'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsSupportSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Support & Help:'**
+  String get settingsSupportSection;
+
+  /// No description provided for @settingsHelpCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Help center'**
+  String get settingsHelpCenter;
+
+  /// No description provided for @settingsHaveAnIssue.
+  ///
+  /// In en, this message translates to:
+  /// **'Have an issue'**
+  String get settingsHaveAnIssue;
+
+  /// No description provided for @settingsReportProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a problem'**
+  String get settingsReportProblem;
+
+  /// No description provided for @settingsAboutUs.
+  ///
+  /// In en, this message translates to:
+  /// **'About us'**
+  String get settingsAboutUs;
+
+  /// No description provided for @settingsPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Policy'**
+  String get settingsPolicy;
+
+  /// No description provided for @settingsContactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'contact us:'**
+  String get settingsContactUs;
+
+  /// No description provided for @settingsContactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'cartflylog@gmail.com'**
+  String get settingsContactEmail;
+
+  /// No description provided for @settingsSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get settingsSignOut;
+
+  /// No description provided for @currencyScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get currencyScreenTitle;
+
+  /// No description provided for @currencyEGP.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get currencyEGP;
+
+  /// No description provided for @currencyUSD.
+  ///
+  /// In en, this message translates to:
+  /// **'USD'**
+  String get currencyUSD;
+
+  /// No description provided for @currencySAR.
+  ///
+  /// In en, this message translates to:
+  /// **'SAR'**
+  String get currencySAR;
+
+  /// No description provided for @langScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get langScreenTitle;
+
+  /// No description provided for @langEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get langEnglish;
+
+  /// No description provided for @langArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get langArabic;
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About us'**
+  String get aboutTitle;
+
+  /// No description provided for @aboutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We are a trusted international shipping service connecting Egypt, the USA, the UAE, China, and Saudi Arabia through one seamless platform. Our goal is to simplify cross-border delivery by providing reliable shipping solutions, transparent pricing, real-time tracking, and efficient order management to ensure every shipment reaches its destination safely and on time.'**
+  String get aboutBody;
+
+  /// No description provided for @aboutContactLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'contact us:'**
+  String get aboutContactLabel;
+
+  /// No description provided for @aboutContactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'cartflylog@gmail.com'**
+  String get aboutContactEmail;
+
+  /// No description provided for @supportIssueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Have an issue?'**
+  String get supportIssueTitle;
+
+  /// No description provided for @supportIssueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are experiencing any problem while using the application, we\'re here to help.\n\nWhether it\'s an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.'**
+  String get supportIssueBody;
+
+  /// No description provided for @supportContactLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'contact us:'**
+  String get supportContactLabel;
+
+  /// No description provided for @supportContactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'cartflylog@gmail.com'**
+  String get supportContactEmail;
+
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get navAccount;
+
+  /// No description provided for @navOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get navOrders;
+
+  /// No description provided for @navSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navSettings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

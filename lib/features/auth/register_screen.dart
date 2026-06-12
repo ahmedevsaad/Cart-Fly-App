@@ -178,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               value: _currency,
               items: _currencies,
               itemBuilder: (c) => Text(c),
-              selectedBuilder: (c) => Expanded(child: Text(c)),
+              selectedBuilder: (c) => Text(c, overflow: TextOverflow.ellipsis),
               onChanged: (v) => setState(() => _currency = v ?? _currency),
             ),
 

@@ -172,7 +172,7 @@ class _ServiceCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     icon,
-                    // arrow-circle affordance (design: 26×26 circle border + arrowRight)
+                    // arrow-circle affordance (mirrors in RTL)
                     Container(
                       width: 26,
                       height: 26,
@@ -182,8 +182,11 @@ class _ServiceCard extends StatelessWidget {
                             color: AppColors.text, width: 2),
                       ),
                       alignment: Alignment.center,
-                      child: CfIcons.arrowRight(
-                          size: 14, color: AppColors.text),
+                      child: Transform.flip(
+                        flipX: Directionality.of(context) == TextDirection.rtl,
+                        child: CfIcons.arrowRight(
+                            size: 14, color: AppColors.text),
+                      ),
                     ),
                   ],
                 ),

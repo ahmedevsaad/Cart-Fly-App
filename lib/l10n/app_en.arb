@@ -100,10 +100,10 @@
   "calcCustomsFee": "Customs Fee",
   "calcServiceFee": "Service Fee",
   "calcTotalEstimated": "Total Estimated Cost",
-  "calcShippingVal": "\$12.00",
-  "calcCustomsVal": "\$8.00",
-  "calcServiceVal": "\$3.00",
-  "calcTotalVal": "\$23.00",
+  "calcShippingVal": "$12.00",
+  "calcCustomsVal": "$8.00",
+  "calcServiceVal": "$3.00",
+  "calcTotalVal": "$23.00",
   "calcEstimatedDelivery": "Estimated Delivery",
   "calcDeliveryDays": "7 – 10 Days",
 
@@ -111,7 +111,7 @@
   "checkoutSubtitle": "Confirm your subscription & pay securely.",
   "checkoutPlanName": "Prime cart",
   "checkoutBilledMonthly": "Billed monthly",
-  "checkoutPlanPrice": "\$19.99",
+  "checkoutPlanPrice": "$19.99",
   "checkoutPerMonth": "/month",
   "paymentMethod": "Payment method",
   "payMethodCard": "Card",
@@ -125,7 +125,7 @@
   "cardExpiryHint": "08 / 28",
   "cardCvv": "CVV",
   "totalToday": "Total today",
-  "payButton": "Pay \$19.99",
+  "payButton": "Pay $19.99",
   "securedEncryption": "Secured by 256-bit encryption",
 
   "planConfirmedThankYou": "Thank you!",
@@ -139,7 +139,7 @@
   "receiptNextRenewal": "Next renewal",
   "receiptRenewalDate": "Jul 12, 2026",
   "receiptAmountPaid": "Amount paid",
-  "receiptAmountVal": "\$19.99",
+  "receiptAmountVal": "$19.99",
   "backToHome": "Back to home",
   "viewSubscription": "View my subscription",
 
@@ -222,5 +222,10 @@
   "supportIssueTitle": "Have an issue?",
   "supportIssueBody": "If you are experiencing any problem while using the application, we're here to help.\n\nWhether it's an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.",
   "supportContactLabel": "contact us:",
-  "supportContactEmail": "cartflylog@gmail.com"
+  "supportContactEmail": "cartflylog@gmail.com",
+
+  "navHome": "Home",
+  "navAccount": "Account",
+  "navOrders": "Orders",
+  "navSettings": "Settings"
 }

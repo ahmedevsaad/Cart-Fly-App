@@ -129,7 +129,16 @@ class _WarehouseCard extends StatelessWidget {
   final String name;
   final VoidCallback onTap;
 
-  String get _imagePath => 'assets/images/wh-$code.png';
+  static const _codeToFilename = <String, String>{
+    'sa': 'saudi',
+    'eg': 'egypt',
+    'ae': 'uae',
+    'us': 'usa',
+    'cn': 'china',
+  };
+
+  String get _imagePath =>
+      'assets/images/wh-${_codeToFilename[code] ?? code}.png';
   String get _isoCode => code.toUpperCase();
 
   @override

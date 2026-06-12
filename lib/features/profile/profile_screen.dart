@@ -40,7 +40,26 @@ class ProfileScreen extends StatelessWidget {
     final user = context.watch<AuthProvider>().state.user;
 
     if (user == null) {
-      return const CfScaffold(body: CfLoading());
+      // Show scaffold with centred loading rather than a bare spinner.
+      return CfScaffold(
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CfLoading(),
+              const SizedBox(height: 16),
+              Text(
+                l.profileTitle,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.mutedDisabled,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
     }
 
     return CfScaffold(

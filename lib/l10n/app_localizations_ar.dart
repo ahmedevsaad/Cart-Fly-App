@@ -192,7 +192,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get statusDelivered => 'تم التسليم';
 
-  // Plans
   @override
   String get ourPlans => 'خططنا';
 
@@ -209,30 +208,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planPrimeName => 'السلة المميزة';
 
   @override
-  String get planBasicDesc =>
-      'ابدأ مع كارت فلاي مجاناً. اوصل إلى عناوين المستودعات وميزات إدارة الطلبات الأساسية';
+  String get planBasicDesc => 'ابدأ مع كارت فلاي مجاناً. اوصل إلى عناوين المستودعات وميزات إدارة الطلبات الأساسية';
 
   @override
   String get planBasicPrice => 'مجاناً';
 
   @override
-  String get planSmartDesc =>
-      'افتح قسائم حصرية واستمتع بحاسبة الطلبات المدمجة لتقديرات تسوق دقيقة وسريعة.';
+  String get planSmartDesc => 'افتح قسائم حصرية واستمتع بحاسبة الطلبات المدمجة لتقديرات تسوق دقيقة وسريعة.';
 
   @override
-  String get planSmartFeatures =>
-      '• قسائم خصم\n• حاسبة تكلفة طلبات فورية\n• دعم سهل لإتمام الطلبات';
+  String get planSmartFeatures => '• قسائم خصم\n• حاسبة تكلفة طلبات فورية\n• دعم سهل لإتمام الطلبات';
 
   @override
   String get planSmartPrice => '12.33 دولار/شهرياً';
 
   @override
-  String get planPrimeDesc =>
-      'وفّر أكثر على كل طلب بخصومات مميزة وعروض السوائل وحسابات فورية للأسعار.';
+  String get planPrimeDesc => 'وفّر أكثر على كل طلب بخصومات مميزة وعروض السوائل وحسابات فورية للأسعار.';
 
   @override
-  String get planPrimeFeatures =>
-      '• معدلات خصم أعلى\n• خصومات على المنتجات السائلة\n• خدمة الحاسبة الذكية';
+  String get planPrimeFeatures => '• معدلات خصم أعلى\n• خصومات على المنتجات السائلة\n• خدمة الحاسبة الذكية';
 
   @override
   String get planPrimePrice => '19.99 دولار/شهرياً';
@@ -240,7 +234,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get subscribeNow => 'اشترك الآن';
 
-  // Calculator
   @override
   String get calcTitle => 'حاسبة الشحن';
 
@@ -305,16 +298,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calcTotalEstimated => 'إجمالي التكلفة التقديرية';
 
   @override
-  String get calcShippingVal => r'$12.00';
+  String get calcShippingVal => '12.00\$';
 
   @override
-  String get calcCustomsVal => r'$8.00';
+  String get calcCustomsVal => '8.00\$';
 
   @override
-  String get calcServiceVal => r'$3.00';
+  String get calcServiceVal => '3.00\$';
 
   @override
-  String get calcTotalVal => r'$23.00';
+  String get calcTotalVal => '23.00\$';
 
   @override
   String get calcEstimatedDelivery => 'التسليم المتوقع';
@@ -322,7 +315,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get calcDeliveryDays => '7 – 10 أيام';
 
-  // Plan checkout
   @override
   String get checkoutTitle => 'الدفع';
 
@@ -336,7 +328,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get checkoutBilledMonthly => 'يُحصَّل شهرياً';
 
   @override
-  String get checkoutPlanPrice => r'$19.99';
+  String get checkoutPlanPrice => '19.99\$';
 
   @override
   String get checkoutPerMonth => '/شهر';
@@ -378,18 +370,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get totalToday => 'الإجمالي اليوم';
 
   @override
-  String get payButton => r'ادفع $19.99';
+  String get payButton => 'ادفع 19.99\$';
 
   @override
   String get securedEncryption => 'مؤمَّن بتشفير 256 بت';
 
-  // Plan confirmed
   @override
   String get planConfirmedThankYou => 'شكراً لك!';
 
   @override
-  String planConfirmedBody(Object plan) =>
-      'تمّت عملية الدفع بنجاح وخطتك $plan نشطة الآن.';
+  String planConfirmedBody(Object plan) {
+    return 'تمّت عملية الدفع بنجاح وخطتك $plan نشطة الآن.';
+  }
 
   @override
   String get planConfirmedBodyPrefix => 'تمّت عملية الدفع بنجاح وخطة ';
@@ -416,7 +408,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get receiptAmountPaid => 'المبلغ المدفوع';
 
   @override
-  String get receiptAmountVal => r'$19.99';
+  String get receiptAmountVal => '19.99\$';
 
   @override
   String get backToHome => 'العودة للرئيسية';
@@ -424,167 +416,228 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get viewSubscription => 'عرض اشتراكي';
 
-  // Profile (Frame 26)
-  @override
-  String get profileTitle => 'ملفي الشخصي';
-  @override
-  String get profileName => 'الاسم:';
-  @override
-  String get profileEmail => 'البريد الإلكتروني:';
-  @override
-  String get profilePhone => 'رقم الهاتف:';
-  @override
-  String get profileCountry => 'الدولة:';
-  @override
-  String get profilePlan => 'خطتك:';
-  @override
-  String get profileCurrency => 'العملة:';
-  @override
-  String get profileSignOut => 'تسجيل الخروج';
-
-  // Settings (Frame 27)
-  @override
-  String get settingsTitle => 'الإعدادات';
-  @override
-  String get settingsAccountSection => 'إعدادات الحساب:';
-  @override
-  String get settingsSavedAddresses => 'العناوين المحفوظة';
-  @override
-  String get settingsEditProfile => 'تعديل الملفات الشخصية';
-  @override
-  String get settingsChangePassword => 'تغيير كلمة المرور';
-  @override
-  String get settingsAppPrefsSection => 'تفضيلات التطبيق:';
-  @override
-  String get settingsLanguages => 'اللغات';
-  @override
-  String get settingsCurrency => 'العملة';
-  @override
-  String get settingsNotifications => 'إعدادات الإشعارات';
-  @override
-  String get settingsSupportSection => 'الدعم والمساعدة:';
-  @override
-  String get settingsHelpCenter => 'مركز المساعدة';
-  @override
-  String get settingsHaveAnIssue => 'هل لديك مشكلة';
-  @override
-  String get settingsReportProblem => 'الإبلاغ عن مشكلة';
-  @override
-  String get settingsAboutUs => 'من نحن';
-  @override
-  String get settingsPolicy => 'السياسة';
-  @override
-  String get settingsContactUs => 'تواصل معنا:';
-  @override
-  String get settingsContactEmail => 'cartflylog@gmail.com';
-  @override
-  String get settingsSignOut => 'تسجيل الخروج';
-
-  // Currency screen (Frame 28)
-  @override
-  String get currencyScreenTitle => 'الإعدادات';
-  @override
-  String get currencyEGP => 'EGP';
-  @override
-  String get currencyUSD => 'USD';
-  @override
-  String get currencySAR => 'SAR';
-
-  // Language screen (Frame 29)
-  @override
-  String get langScreenTitle => 'الإعدادات';
-  @override
-  String get langEnglish => 'English';
-  @override
-  String get langArabic => 'العربية';
-
-  // About screen (Frame 30)
-  @override
-  String get aboutTitle => 'من نحن';
-  @override
-  String get aboutBody =>
-      'نحن خدمة شحن دولية موثوقة تربط مصر والولايات المتحدة والإمارات والصين والمملكة العربية السعودية عبر منصة واحدة متكاملة. هدفنا تبسيط التوصيل عبر الحدود من خلال توفير حلول شحن موثوقة وتسعير شفاف وتتبع فوري وإدارة فعّالة للطلبات لضمان وصول كل شحنة إلى وجهتها بأمان وفي الوقت المحدد.';
-  @override
-  String get aboutContactLabel => 'تواصل معنا:';
-  @override
-  String get aboutContactEmail => 'cartflylog@gmail.com';
-
-  // Support / Have an issue (Frame 31)
-  @override
-  String get supportIssueTitle => 'هل لديك مشكلة؟';
-  @override
-  String get supportIssueBody =>
-      'إذا كنت تواجه أي مشكلة أثناء استخدام التطبيق، نحن هنا للمساعدة.\n\nسواء كانت مشكلة في اختيار المستودعات أو تحميل البيانات أو أي شيء لا يعمل كما هو متوقع، يُرجى إعلامنا.\n\nيُرجى تقديم وصف واضح للمشكلة، وإن أمكن، أذكر المستودع الذي كنت تحاول الوصول إليه وأرفق لقطة شاشة لمساعدتنا على فهم المشكلة بشكل أفضل.\n\nسيراجع فريقنا طلبك ويعود إليك في أقرب وقت ممكن.';
-  @override
-  String get supportContactLabel => 'تواصل معنا:';
-  @override
-  String get supportContactEmail => 'cartflylog@gmail.com';
-
-  // Orders hub / detail (Frames 13-15)
   @override
   String get myOrderTitle => 'طلبي:';
+
   @override
   String get orderDetailTrack => 'تتبع الطلب';
+
   @override
   String get hubWarehouses => 'مستودعاتنا';
+
   @override
   String get hubLockers => 'مواقع الكاسات';
+
   @override
   String get hubPlans => 'خطط الاشتراك';
 
-  // Confirm order (Frame 23)
   @override
   String get confirmOrderTitle => 'تأكيد طلبك';
+
   @override
   String get confirmCustomerName => 'اسم العميل:';
+
   @override
   String get confirmCustomerPhone => 'رقم هاتف العميل:';
+
   @override
   String get confirmCustomerEmail => 'بريد العميل الإلكتروني:';
 
-  // Track order (Frame 25)
   @override
   String get trackOrderTitle => 'تتبع طلبك';
+
   @override
   String get trackCurrentStatus => 'الحالة الحالية';
+
   @override
   String get trackExpectedDelivery => 'التسليم المتوقع';
+
   @override
   String get trackExpectedDate => '15 يونيو 2026';
+
   @override
   String get trackHistory => 'سجل التتبع';
+
   @override
   String get trackStepConfirmed => 'تم\nتأكيد الطلب';
+
   @override
   String get trackStepShipped => 'تم\nشحن الطلب';
+
   @override
   String get trackStepOutForDelivery => 'خرج\nللتسليم';
+
   @override
   String get trackHistoryOrderConfirmed => 'تم تأكيد الطلب';
+
   @override
   String get trackHistoryPackageReceived => 'تم استلام الطرد';
+
   @override
   String get trackHistoryInTransit => 'في الطريق';
+
   @override
   String get trackHistoryCustomClearance => 'التخليص الجمركي';
+
   @override
   String get trackHistoryOutForDelivery => 'خرج للتسليم';
+
   @override
   String get trackHistoryDelivered => 'تم التسليم';
 
-  // Order status labels + messages
   @override
   String get statusAtWarehouse => 'في المستودع';
+
   @override
   String get statusOrderConfirmed => 'تم تأكيد الطلب';
+
   @override
   String get statusOutForDelivery => 'خرج للتسليم';
+
   @override
   String get statusPackagingMsg => 'طردك في مستودعنا ويجري تجهيزه.';
+
   @override
   String get statusShippedMsg => 'طردك في طريقه إلى الدولة المقصودة.';
+
   @override
   String get statusPlacedMsg => 'تم تأكيد طلبك وهو في انتظار الاستلام.';
+
   @override
   String get statusDeliveredMsg => 'تم تسليم طردك بنجاح.';
+
+  @override
+  String get profileTitle => 'ملفي الشخصي';
+
+  @override
+  String get profileName => 'الاسم:';
+
+  @override
+  String get profileEmail => 'البريد الإلكتروني:';
+
+  @override
+  String get profilePhone => 'رقم الهاتف:';
+
+  @override
+  String get profileCountry => 'الدولة:';
+
+  @override
+  String get profilePlan => 'خطتك:';
+
+  @override
+  String get profileCurrency => 'العملة:';
+
+  @override
+  String get profileSignOut => 'تسجيل الخروج';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get settingsAccountSection => 'إعدادات الحساب:';
+
+  @override
+  String get settingsSavedAddresses => 'العناوين المحفوظة';
+
+  @override
+  String get settingsEditProfile => 'تعديل الملفات الشخصية';
+
+  @override
+  String get settingsChangePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get settingsAppPrefsSection => 'تفضيلات التطبيق:';
+
+  @override
+  String get settingsLanguages => 'اللغات';
+
+  @override
+  String get settingsCurrency => 'العملة';
+
+  @override
+  String get settingsNotifications => 'إعدادات الإشعارات';
+
+  @override
+  String get settingsSupportSection => 'الدعم والمساعدة:';
+
+  @override
+  String get settingsHelpCenter => 'مركز المساعدة';
+
+  @override
+  String get settingsHaveAnIssue => 'هل لديك مشكلة';
+
+  @override
+  String get settingsReportProblem => 'الإبلاغ عن مشكلة';
+
+  @override
+  String get settingsAboutUs => 'من نحن';
+
+  @override
+  String get settingsPolicy => 'السياسة';
+
+  @override
+  String get settingsContactUs => 'تواصل معنا:';
+
+  @override
+  String get settingsContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get settingsSignOut => 'تسجيل الخروج';
+
+  @override
+  String get currencyScreenTitle => 'الإعدادات';
+
+  @override
+  String get currencyEGP => 'EGP';
+
+  @override
+  String get currencyUSD => 'USD';
+
+  @override
+  String get currencySAR => 'SAR';
+
+  @override
+  String get langScreenTitle => 'الإعدادات';
+
+  @override
+  String get langEnglish => 'English';
+
+  @override
+  String get langArabic => 'العربية';
+
+  @override
+  String get aboutTitle => 'من نحن';
+
+  @override
+  String get aboutBody => 'نحن خدمة شحن دولية موثوقة تربط مصر والولايات المتحدة والإمارات والصين والمملكة العربية السعودية عبر منصة واحدة متكاملة. هدفنا تبسيط التوصيل عبر الحدود من خلال توفير حلول شحن موثوقة وتسعير شفاف وتتبع فوري وإدارة فعّالة للطلبات لضمان وصول كل شحنة إلى وجهتها بأمان وفي الوقت المحدد.';
+
+  @override
+  String get aboutContactLabel => 'تواصل معنا:';
+
+  @override
+  String get aboutContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get supportIssueTitle => 'هل لديك مشكلة؟';
+
+  @override
+  String get supportIssueBody => 'إذا كنت تواجه أي مشكلة أثناء استخدام التطبيق، نحن هنا للمساعدة.\n\nسواء كانت مشكلة في اختيار المستودعات أو تحميل البيانات أو أي شيء لا يعمل كما هو متوقع، يُرجى إعلامنا.\n\nيُرجى تقديم وصف واضح للمشكلة، وإن أمكن، أذكر المستودع الذي كنت تحاول الوصول إليه وأرفق لقطة شاشة لمساعدتنا على فهم المشكلة بشكل أفضل.\n\nسيراجع فريقنا طلبك ويعود إليك في أقرب وقت ممكن.';
+
+  @override
+  String get supportContactLabel => 'تواصل معنا:';
+
+  @override
+  String get supportContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get navHome => 'الرئيسية';
+
+  @override
+  String get navAccount => 'حسابي';
+
+  @override
+  String get navOrders => 'طلباتي';
+
+  @override
+  String get navSettings => 'الإعدادات';
 }

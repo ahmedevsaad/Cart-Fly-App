@@ -86,7 +86,9 @@ GoRouter buildRouter(AuthProvider auth) {
               PaymentScreen(forItem: s.uri.queryParameters['for'] ?? '')),
       GoRoute(
           path: Routes.paymentSuccess,
-          builder: (_, __) => const PaymentSuccessScreen()),
+          builder: (_, s) => PaymentSuccessScreen(
+                planName: s.uri.queryParameters['plan'],
+              )),
       GoRoute(
           path: Routes.paymentError,
           builder: (_, __) => const PaymentErrorScreen()),

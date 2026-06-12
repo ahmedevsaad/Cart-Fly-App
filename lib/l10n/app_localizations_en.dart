@@ -192,7 +192,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get statusDelivered => 'Delivered';
 
-  // Plans
   @override
   String get ourPlans => 'Our Plans';
 
@@ -209,30 +208,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planPrimeName => 'Prime cart';
 
   @override
-  String get planBasicDesc =>
-      'Get started with CartFly at no cost. Access warehouse addresses and basic order management features';
+  String get planBasicDesc => 'Get started with CartFly at no cost. Access warehouse addresses and basic order management features';
 
   @override
   String get planBasicPrice => 'Free';
 
   @override
-  String get planSmartDesc =>
-      'Unlock exclusive vouchers and enjoy our built-in order calculator for fast, accurate online shopping estimates.';
+  String get planSmartDesc => 'Unlock exclusive vouchers and enjoy our built-in order calculator for fast, accurate online shopping estimates.';
 
   @override
-  String get planSmartFeatures =>
-      '• Discount vouchers\n• Instant order cost calculator\n• Easy online checkout support';
+  String get planSmartFeatures => '• Discount vouchers\n• Instant order cost calculator\n• Easy online checkout support';
 
   @override
   String get planSmartPrice => '12.33 USD/per month';
 
   @override
-  String get planPrimeDesc =>
-      'Save more on every order with premium discounts, liquid offers, and instant price calculations.';
+  String get planPrimeDesc => 'Save more on every order with premium discounts, liquid offers, and instant price calculations.';
 
   @override
-  String get planPrimeFeatures =>
-      '• Higher discount rates\n• Discounts on liquid products\n• Smart calculator service';
+  String get planPrimeFeatures => '• Higher discount rates\n• Discounts on liquid products\n• Smart calculator service';
 
   @override
   String get planPrimePrice => '19.99 USD/per month';
@@ -240,13 +234,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get subscribeNow => 'Subscribe now';
 
-  // Calculator
   @override
   String get calcTitle => 'Shipping Calculator';
 
   @override
-  String get calcSubtitle =>
-      'Enter the details below to calculate your shipping cost.';
+  String get calcSubtitle => 'Enter the details below to calculate your shipping cost.';
 
   @override
   String get calcStep1 => 'Details';
@@ -306,16 +298,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calcTotalEstimated => 'Total Estimated Cost';
 
   @override
-  String get calcShippingVal => r'$12.00';
+  String get calcShippingVal => '\$12.00';
 
   @override
-  String get calcCustomsVal => r'$8.00';
+  String get calcCustomsVal => '\$8.00';
 
   @override
-  String get calcServiceVal => r'$3.00';
+  String get calcServiceVal => '\$3.00';
 
   @override
-  String get calcTotalVal => r'$23.00';
+  String get calcTotalVal => '\$23.00';
 
   @override
   String get calcEstimatedDelivery => 'Estimated Delivery';
@@ -323,7 +315,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get calcDeliveryDays => '7 – 10 Days';
 
-  // Plan checkout
   @override
   String get checkoutTitle => 'Checkout';
 
@@ -337,7 +328,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checkoutBilledMonthly => 'Billed monthly';
 
   @override
-  String get checkoutPlanPrice => r'$19.99';
+  String get checkoutPlanPrice => '\$19.99';
 
   @override
   String get checkoutPerMonth => '/month';
@@ -379,22 +370,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get totalToday => 'Total today';
 
   @override
-  String get payButton => r'Pay $19.99';
+  String get payButton => 'Pay \$19.99';
 
   @override
   String get securedEncryption => 'Secured by 256-bit encryption';
 
-  // Plan confirmed
   @override
   String get planConfirmedThankYou => 'Thank you!';
 
   @override
-  String planConfirmedBody(Object plan) =>
-      'Your payment was successful and your $plan plan is now active.';
+  String planConfirmedBody(Object plan) {
+    return 'Your payment was successful and your $plan plan is now active.';
+  }
 
   @override
-  String get planConfirmedBodyPrefix =>
-      'Your payment was successful and your ';
+  String get planConfirmedBodyPrefix => 'Your payment was successful and your ';
 
   @override
   String get planConfirmedBodySuffix => ' plan is now active.';
@@ -418,7 +408,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get receiptAmountPaid => 'Amount paid';
 
   @override
-  String get receiptAmountVal => r'$19.99';
+  String get receiptAmountVal => '\$19.99';
 
   @override
   String get backToHome => 'Back to home';
@@ -426,167 +416,228 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get viewSubscription => 'View my subscription';
 
-  // Profile (Frame 26)
-  @override
-  String get profileTitle => 'My Profile';
-  @override
-  String get profileName => 'Name:';
-  @override
-  String get profileEmail => 'Email address:';
-  @override
-  String get profilePhone => 'Phone number:';
-  @override
-  String get profileCountry => 'Country:';
-  @override
-  String get profilePlan => 'Your plan:';
-  @override
-  String get profileCurrency => 'Currency:';
-  @override
-  String get profileSignOut => 'Sign out';
-
-  // Settings (Frame 27)
-  @override
-  String get settingsTitle => 'Settings';
-  @override
-  String get settingsAccountSection => 'Account settings:';
-  @override
-  String get settingsSavedAddresses => 'Saved addresses';
-  @override
-  String get settingsEditProfile => 'Edit profiles';
-  @override
-  String get settingsChangePassword => 'Change password';
-  @override
-  String get settingsAppPrefsSection => 'App Preferences:';
-  @override
-  String get settingsLanguages => 'Languages';
-  @override
-  String get settingsCurrency => 'Currency';
-  @override
-  String get settingsNotifications => 'Notification settings';
-  @override
-  String get settingsSupportSection => 'Support & Help:';
-  @override
-  String get settingsHelpCenter => 'Help center';
-  @override
-  String get settingsHaveAnIssue => 'Have an issue';
-  @override
-  String get settingsReportProblem => 'Report a problem';
-  @override
-  String get settingsAboutUs => 'About us';
-  @override
-  String get settingsPolicy => 'Policy';
-  @override
-  String get settingsContactUs => 'contact us:';
-  @override
-  String get settingsContactEmail => 'cartflylog@gmail.com';
-  @override
-  String get settingsSignOut => 'Sign out';
-
-  // Currency screen (Frame 28)
-  @override
-  String get currencyScreenTitle => 'Settings';
-  @override
-  String get currencyEGP => 'EGP';
-  @override
-  String get currencyUSD => 'USD';
-  @override
-  String get currencySAR => 'SAR';
-
-  // Language screen (Frame 29)
-  @override
-  String get langScreenTitle => 'Settings';
-  @override
-  String get langEnglish => 'English';
-  @override
-  String get langArabic => 'العربية';
-
-  // About screen (Frame 30)
-  @override
-  String get aboutTitle => 'About us';
-  @override
-  String get aboutBody =>
-      'We are a trusted international shipping service connecting Egypt, the USA, the UAE, China, and Saudi Arabia through one seamless platform. Our goal is to simplify cross-border delivery by providing reliable shipping solutions, transparent pricing, real-time tracking, and efficient order management to ensure every shipment reaches its destination safely and on time.';
-  @override
-  String get aboutContactLabel => 'contact us:';
-  @override
-  String get aboutContactEmail => 'cartflylog@gmail.com';
-
-  // Support / Have an issue (Frame 31)
-  @override
-  String get supportIssueTitle => 'Have an issue?';
-  @override
-  String get supportIssueBody =>
-      'If you are experiencing any problem while using the application, we\'re here to help.\n\nWhether it\'s an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.';
-  @override
-  String get supportContactLabel => 'contact us:';
-  @override
-  String get supportContactEmail => 'cartflylog@gmail.com';
-
-  // Orders hub / detail (Frames 13-15)
   @override
   String get myOrderTitle => 'My order:';
+
   @override
   String get orderDetailTrack => 'Track order';
+
   @override
   String get hubWarehouses => 'Our warehouses';
+
   @override
   String get hubLockers => 'Locker locations';
+
   @override
   String get hubPlans => 'Subscription plans';
 
-  // Confirm order (Frame 23)
   @override
   String get confirmOrderTitle => 'Confirm your order';
+
   @override
   String get confirmCustomerName => 'Customer name:';
+
   @override
   String get confirmCustomerPhone => 'Customer phone no.:';
+
   @override
   String get confirmCustomerEmail => 'Customer email:';
 
-  // Track order (Frame 25)
   @override
   String get trackOrderTitle => 'Track your order';
+
   @override
   String get trackCurrentStatus => 'current status';
+
   @override
   String get trackExpectedDelivery => 'Expected Delivery';
+
   @override
   String get trackExpectedDate => '15 June 2026';
+
   @override
   String get trackHistory => 'Tracking History';
+
   @override
   String get trackStepConfirmed => 'order\nconfirmed';
+
   @override
   String get trackStepShipped => 'order\nshipped';
+
   @override
   String get trackStepOutForDelivery => 'out for\ndelivery';
+
   @override
   String get trackHistoryOrderConfirmed => 'Order confirmed';
+
   @override
   String get trackHistoryPackageReceived => 'Package Received';
+
   @override
   String get trackHistoryInTransit => 'In transit';
+
   @override
   String get trackHistoryCustomClearance => 'Custom clearance';
+
   @override
   String get trackHistoryOutForDelivery => 'Out for Delivery';
+
   @override
   String get trackHistoryDelivered => 'Delivered';
 
-  // Order status labels + messages
   @override
   String get statusAtWarehouse => 'At Warehouse';
+
   @override
   String get statusOrderConfirmed => 'Order Confirmed';
+
   @override
   String get statusOutForDelivery => 'Out for Delivery';
+
   @override
   String get statusPackagingMsg => 'Your package is at our warehouse and being prepared.';
+
   @override
   String get statusShippedMsg => 'Your package is on the way to the destination country.';
+
   @override
   String get statusPlacedMsg => 'Your order has been confirmed and is awaiting pickup.';
+
   @override
   String get statusDeliveredMsg => 'Your package has been delivered successfully.';
+
+  @override
+  String get profileTitle => 'My Profile';
+
+  @override
+  String get profileName => 'Name:';
+
+  @override
+  String get profileEmail => 'Email address:';
+
+  @override
+  String get profilePhone => 'Phone number:';
+
+  @override
+  String get profileCountry => 'Country:';
+
+  @override
+  String get profilePlan => 'Your plan:';
+
+  @override
+  String get profileCurrency => 'Currency:';
+
+  @override
+  String get profileSignOut => 'Sign out';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsAccountSection => 'Account settings:';
+
+  @override
+  String get settingsSavedAddresses => 'Saved addresses';
+
+  @override
+  String get settingsEditProfile => 'Edit profiles';
+
+  @override
+  String get settingsChangePassword => 'Change password';
+
+  @override
+  String get settingsAppPrefsSection => 'App Preferences:';
+
+  @override
+  String get settingsLanguages => 'Languages';
+
+  @override
+  String get settingsCurrency => 'Currency';
+
+  @override
+  String get settingsNotifications => 'Notification settings';
+
+  @override
+  String get settingsSupportSection => 'Support & Help:';
+
+  @override
+  String get settingsHelpCenter => 'Help center';
+
+  @override
+  String get settingsHaveAnIssue => 'Have an issue';
+
+  @override
+  String get settingsReportProblem => 'Report a problem';
+
+  @override
+  String get settingsAboutUs => 'About us';
+
+  @override
+  String get settingsPolicy => 'Policy';
+
+  @override
+  String get settingsContactUs => 'contact us:';
+
+  @override
+  String get settingsContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get settingsSignOut => 'Sign out';
+
+  @override
+  String get currencyScreenTitle => 'Settings';
+
+  @override
+  String get currencyEGP => 'EGP';
+
+  @override
+  String get currencyUSD => 'USD';
+
+  @override
+  String get currencySAR => 'SAR';
+
+  @override
+  String get langScreenTitle => 'Settings';
+
+  @override
+  String get langEnglish => 'English';
+
+  @override
+  String get langArabic => 'العربية';
+
+  @override
+  String get aboutTitle => 'About us';
+
+  @override
+  String get aboutBody => 'We are a trusted international shipping service connecting Egypt, the USA, the UAE, China, and Saudi Arabia through one seamless platform. Our goal is to simplify cross-border delivery by providing reliable shipping solutions, transparent pricing, real-time tracking, and efficient order management to ensure every shipment reaches its destination safely and on time.';
+
+  @override
+  String get aboutContactLabel => 'contact us:';
+
+  @override
+  String get aboutContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get supportIssueTitle => 'Have an issue?';
+
+  @override
+  String get supportIssueBody => 'If you are experiencing any problem while using the application, we\'re here to help.\n\nWhether it\'s an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.';
+
+  @override
+  String get supportContactLabel => 'contact us:';
+
+  @override
+  String get supportContactEmail => 'cartflylog@gmail.com';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navAccount => 'Account';
+
+  @override
+  String get navOrders => 'Orders';
+
+  @override
+  String get navSettings => 'Settings';
 }

@@ -97,10 +97,10 @@
   "calcCustomsFee": "رسوم الجمارك",
   "calcServiceFee": "رسوم الخدمة",
   "calcTotalEstimated": "إجمالي التكلفة التقديرية",
-  "calcShippingVal": "12.00\$",
-  "calcCustomsVal": "8.00\$",
-  "calcServiceVal": "3.00\$",
-  "calcTotalVal": "23.00\$",
+  "calcShippingVal": "12.00$",
+  "calcCustomsVal": "8.00$",
+  "calcServiceVal": "3.00$",
+  "calcTotalVal": "23.00$",
   "calcEstimatedDelivery": "التسليم المتوقع",
   "calcDeliveryDays": "7 – 10 أيام",
 
@@ -108,7 +108,7 @@
   "checkoutSubtitle": "أكّد اشتراكك وادفع بأمان.",
   "checkoutPlanName": "السلة المميزة",
   "checkoutBilledMonthly": "يُحصَّل شهرياً",
-  "checkoutPlanPrice": "19.99\$",
+  "checkoutPlanPrice": "19.99$",
   "checkoutPerMonth": "/شهر",
   "paymentMethod": "طريقة الدفع",
   "payMethodCard": "بطاقة",
@@ -122,7 +122,7 @@
   "cardExpiryHint": "08 / 28",
   "cardCvv": "CVV",
   "totalToday": "الإجمالي اليوم",
-  "payButton": "ادفع 19.99\$",
+  "payButton": "ادفع 19.99$",
   "securedEncryption": "مؤمَّن بتشفير 256 بت",
 
   "planConfirmedThankYou": "شكراً لك!",
@@ -135,7 +135,7 @@
   "receiptNextRenewal": "التجديد القادم",
   "receiptRenewalDate": "12 يوليو 2026",
   "receiptAmountPaid": "المبلغ المدفوع",
-  "receiptAmountVal": "19.99\$",
+  "receiptAmountVal": "19.99$",
   "backToHome": "العودة للرئيسية",
   "viewSubscription": "عرض اشتراكي",
 
@@ -218,5 +218,10 @@
   "supportIssueTitle": "هل لديك مشكلة؟",
   "supportIssueBody": "إذا كنت تواجه أي مشكلة أثناء استخدام التطبيق، نحن هنا للمساعدة.\n\nسواء كانت مشكلة في اختيار المستودعات أو تحميل البيانات أو أي شيء لا يعمل كما هو متوقع، يُرجى إعلامنا.\n\nيُرجى تقديم وصف واضح للمشكلة، وإن أمكن، أذكر المستودع الذي كنت تحاول الوصول إليه وأرفق لقطة شاشة لمساعدتنا على فهم المشكلة بشكل أفضل.\n\nسيراجع فريقنا طلبك ويعود إليك في أقرب وقت ممكن.",
   "supportContactLabel": "تواصل معنا:",
-  "supportContactEmail": "cartflylog@gmail.com"
+  "supportContactEmail": "cartflylog@gmail.com",
+
+  "navHome": "الرئيسية",
+  "navAccount": "حسابي",
+  "navOrders": "طلباتي",
+  "navSettings": "الإعدادات"
 }
