@@ -352,6 +352,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Required'**
   String get errorRequired;
+
+  String get welcomeUser;
+  String get myOrder;
+  String get ourServices;
+  String get serviceWarehouses;
+  String get serviceLockers;
+  String get servicePlans;
+  String get serviceCalculator;
+  String get yourCartFlyAddress;
+  String get copyAddress;
+  String get addressCopied;
+  String get recipient;
+  String get address;
+  String get city;
+  String get statusOrderPlaced;
+  String get statusShipped;
+  String get statusInTransit;
+  String get statusDelivered;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

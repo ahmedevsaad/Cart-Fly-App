@@ -1,43 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../data/lockers.dart';
-import '../../widgets/cf_card.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
-import '../../theme/app_text.dart';
-import '../../theme/app_colors.dart';
 
+/// Locker locations list — Frame 12 of CartFly Redesign.
+/// Content is verbatim from the design: four locker spots.
 class LockersScreen extends StatelessWidget {
   const LockersScreen({super.key});
 
+  static const _lockers = [
+    _LockerItem(name: 'Cairo Festival City', sub: 'New Cairo · open 24/7'),
+    _LockerItem(name: 'Mall of Arabia', sub: '6th of October · 10am–11pm'),
+    _LockerItem(name: 'City Stars', sub: 'Nasr City · 10am–11pm'),
+    _LockerItem(
+        name: 'San Stefano Grand Plaza', sub: 'Alexandria · 10am–11pm'),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Our locker locations',
-              style: Theme.of(context).textTheme.titleLarge,
+              l10n.ourLockerLocations,
+              style: AppText.heading.copyWith(
+                  fontWeight: FontWeight.w800, fontSize: 23),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              alignment: WrapAlignment.center,
-              children: [
-                for (final country in countryLockers)
-                  _CountryButton(
-                    label: country.displayName,
-                    onTap: () => context.push('/lockers/${country.code}'),
-                  ),
-              ],
-            ),
+            const SizedBox(height: 16),
+            for (final item in _lockers) ...[
+              _LockerCard(item: item),
+              const SizedBox(height: 10),
+            ],
             const SizedBox(height: 24),
           ],
         ),
@@ -46,22 +48,66 @@ class LockersScreen extends StatelessWidget {
   }
 }
 
-class _CountryButton extends StatelessWidget {
-  const _CountryButton({required this.label, required this.onTap});
-  final String label;
-  final VoidCallback onTap;
+// ──────────────────────────────────────────────────────────────────────────────
+
+class _LockerItem {
+  const _LockerItem({required this.name, required this.sub});
+  final String name;
+  final String sub;
+}
+
+class _LockerCard extends StatelessWidget {
+  const _LockerCard({required this.item});
+  final _LockerItem item;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: CfCard(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-        child: Text(
-          label,
-          style: AppText.bodyMedium.copyWith(color: AppColors.primary),
-          textAlign: TextAlign.center,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.fieldBg,
+        borderRadius: BorderRadius.circular(13),
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0x0D0F172A),
+              blurRadius: 6,
+              offset: Offset(0, 2)),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+      child: Row(
+        children: [
+          // Pin icon in blue pill
+          Container(
+            width: 38,
+            height: 38,
+            decoration: BoxDecoration(
+              color: const Color(0xFFCFE0FB),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            alignment: Alignment.center,
+            child: const Icon(Icons.location_on_outlined,
+                size: 20, color: AppColors.navy),
+          ),
+          const SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item.name,
+                style: AppText.bodyMedium.copyWith(
+                    fontWeight: FontWeight.w700, fontSize: 14),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                item.sub,
+                style: AppText.caption.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: AppColors.muted),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

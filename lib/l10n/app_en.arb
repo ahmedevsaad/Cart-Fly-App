@@ -45,5 +45,22 @@
   "errorInvalidEmail": "Enter a valid email",
   "errorPasswordShort": "Password must be at least 6 characters",
   "errorPasswordsDontMatch": "Passwords do not match",
-  "errorRequired": "Required"
+  "errorRequired": "Required",
+  "welcomeUser": "welcome,",
+  "myOrder": "My order:",
+  "ourServices": "Our services:",
+  "serviceWarehouses": "Our\nwarehouses",
+  "serviceLockers": "Locker\nlocations",
+  "servicePlans": "subscription\nplans",
+  "serviceCalculator": "Cart\ncalculator",
+  "yourCartFlyAddress": "Your CartFly address",
+  "copyAddress": "Copy",
+  "addressCopied": "Address copied",
+  "recipient": "Recipient",
+  "address": "Address",
+  "city": "City",
+  "statusOrderPlaced": "Order Placed",
+  "statusShipped": "Shipped",
+  "statusInTransit": "In Transit",
+  "statusDelivered": "Delivered"
 }

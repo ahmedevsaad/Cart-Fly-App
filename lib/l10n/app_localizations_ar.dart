@@ -140,4 +140,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorRequired => 'مطلوب';
+
+  @override
+  String get welcomeUser => 'أهلاً،';
+
+  @override
+  String get myOrder => 'طلبي:';
+
+  @override
+  String get ourServices => 'خدماتنا:';
+
+  @override
+  String get serviceWarehouses => 'مستودعاتنا';
+
+  @override
+  String get serviceLockers => 'مواقع\nالكاسات';
+
+  @override
+  String get servicePlans => 'خطط\nالاشتراك';
+
+  @override
+  String get serviceCalculator => 'حاسبة\nالسلة';
+
+  @override
+  String get yourCartFlyAddress => 'عنوان كارت فلاي الخاص بك';
+
+  @override
+  String get copyAddress => 'نسخ';
+
+  @override
+  String get addressCopied => 'تم نسخ العنوان';
+
+  @override
+  String get recipient => 'المستلم';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get city => 'المدينة';
+
+  @override
+  String get statusOrderPlaced => 'تم الطلب';
+
+  @override
+  String get statusShipped => 'تم الشحن';
+
+  @override
+  String get statusInTransit => 'في الطريق';
+
+  @override
+  String get statusDelivered => 'تم التسليم';
 }

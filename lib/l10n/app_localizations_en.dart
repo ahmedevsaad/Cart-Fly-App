@@ -140,4 +140,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorRequired => 'Required';
+
+  @override
+  String get welcomeUser => 'welcome,';
+
+  @override
+  String get myOrder => 'My order:';
+
+  @override
+  String get ourServices => 'Our services:';
+
+  @override
+  String get serviceWarehouses => 'Our\nwarehouses';
+
+  @override
+  String get serviceLockers => 'Locker\nlocations';
+
+  @override
+  String get servicePlans => 'subscription\nplans';
+
+  @override
+  String get serviceCalculator => 'Cart\ncalculator';
+
+  @override
+  String get yourCartFlyAddress => 'Your CartFly address';
+
+  @override
+  String get copyAddress => 'Copy';
+
+  @override
+  String get addressCopied => 'Address copied';
+
+  @override
+  String get recipient => 'Recipient';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get statusOrderPlaced => 'Order Placed';
+
+  @override
+  String get statusShipped => 'Shipped';
+
+  @override
+  String get statusInTransit => 'In Transit';
+
+  @override
+  String get statusDelivered => 'Delivered';
 }

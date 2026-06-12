@@ -42,5 +42,22 @@
   "errorInvalidEmail": "أدخل بريداً صالحاً",
   "errorPasswordShort": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
   "errorPasswordsDontMatch": "كلمتا المرور غير متطابقتين",
-  "errorRequired": "مطلوب"
+  "errorRequired": "مطلوب",
+  "welcomeUser": "أهلاً،",
+  "myOrder": "طلبي:",
+  "ourServices": "خدماتنا:",
+  "serviceWarehouses": "مستودعاتنا",
+  "serviceLockers": "مواقع\nالكاسات",
+  "servicePlans": "خطط\nالاشتراك",
+  "serviceCalculator": "حاسبة\nالسلة",
+  "yourCartFlyAddress": "عنوان كارت فلاي الخاص بك",
+  "copyAddress": "نسخ",
+  "addressCopied": "تم نسخ العنوان",
+  "recipient": "المستلم",
+  "address": "العنوان",
+  "city": "المدينة",
+  "statusOrderPlaced": "تم الطلب",
+  "statusShipped": "تم الشحن",
+  "statusInTransit": "في الطريق",
+  "statusDelivered": "تم التسليم"
 }
