@@ -106,7 +106,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         width: 34,
                         height: 34,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0D9488),
+                          color: AppColors.teal,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Icon(Icons.add_rounded,
@@ -247,7 +247,7 @@ class _PackageCard extends StatelessWidget {
                 boxShadow: AppColors.shadowSoft,
               ),
               child: const Icon(Icons.inventory_2_outlined,
-                  size: 22, color: Color(0xFF0D9488)),
+                  size: 22, color: AppColors.teal),
             ),
             const SizedBox(width: 13),
 
@@ -333,13 +333,13 @@ class _StatusPill extends StatelessWidget {
   (String, Color, Color) _pillStyle(OrderStatus s) {
     switch (s) {
       case OrderStatus.placed:
-        return ('Declared', const Color(0xFF92740C), const Color(0xFFFEF3C7));
+        return ('Declared', AppColors.statusAmber, AppColors.statusAmberBg);
       case OrderStatus.atWarehouse:
         return ('At warehouse', AppColors.success, AppColors.successBg);
       case OrderStatus.packaging:
       case OrderStatus.shipped:
       case OrderStatus.ready:
-        return ('In transit', const Color(0xFF1D4ED8), const Color(0xFFDBEAFE));
+        return ('In transit', AppColors.statusBlue, AppColors.statusBlueBg);
       case OrderStatus.delivered:
         return ('Delivered', AppColors.mutedLabel, AppColors.fieldBg);
     }
@@ -358,20 +358,20 @@ class _ConsolidationHint extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: CfDashedBorderPainter(
-        color: const Color(0xFF0D9488), // teal brand — intentionally one-off
+        color: AppColors.teal,
         radius: AppColors.radius,
         strokeWidth: 1.5,
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: const Color(0xFFF0FDFA),
+          color: AppColors.tealBg,
           borderRadius: BorderRadius.circular(AppColors.radius),
         ),
         child: Row(
           children: [
             const Icon(Icons.local_shipping_outlined,
-                color: Color(0xFF0D9488), size: 20),
+                color: AppColors.teal, size: 20),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
@@ -379,7 +379,7 @@ class _ConsolidationHint extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xFF0F766E),
+                  color: AppColors.tealDark,
                   height: 1.4,
                 ),
               ),

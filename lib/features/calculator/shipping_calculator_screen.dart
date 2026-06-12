@@ -492,7 +492,7 @@ class _CategoryChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: active ? const Color(0xFFEFF4FE) : AppColors.fieldBg,
+        color: active ? AppColors.tabActiveBg : AppColors.fieldBg,
         borderRadius: BorderRadius.circular(11),
         border: Border.all(
           color: active ? AppColors.primary : Colors.transparent,

@@ -39,6 +39,21 @@ class AppColors {
   static const stepGreen = Color(0xFFACFF9C);       // done-step connector on confirm/track
   static const signOutBg = Color(0xFFFA5D5F);       // sign-out button background
 
+  // Teal "ship" accent + warning + tab tokens
+  static const teal = Color(0xFF0D9488);
+  static const tealDark = Color(0xFF0F766E);
+  static const tealBg = Color(0xFFF0FDFA);
+  static const warnBg = Color(0xFFFFFBEB);
+  static const warnBorder = Color(0xFFFCEFC7);
+  static const warnIcon = Color(0xFFE0A800);
+  static const warnText = Color(0xFF92740C);
+  static const statusAmber = Color(0xFF92740C);
+  static const statusAmberBg = Color(0xFFFEF3C7);
+  static const statusBlue = Color(0xFF1D4ED8);
+  static const statusBlueBg = Color(0xFFDBEAFE);
+  static const tabActiveBg = Color(0xFFEFF4FE);
+  static const dashedDivider = Color(0xFFD5DCE3);
+
   static const double radius = 12; // fields
   static const double radiusCard = 16; // cards
   static const double radiusPill = 999;

@@ -107,11 +107,11 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: code == _selected
-                                  ? const Color(0xFFF0FDFA)
+                                  ? AppColors.tealBg
                                   : AppColors.fieldBg,
                               border: Border.all(
                                 color: code == _selected
-                                    ? const Color(0xFF0D9488)
+                                    ? AppColors.teal
                                     : Colors.transparent,
                                 width: 1.5,
                               ),
@@ -128,7 +128,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: 13,
                                     color: code == _selected
-                                        ? const Color(0xFF0F766E)
+                                        ? AppColors.tealDark
                                         : AppColors.mutedLabel,
                                   ),
                                 ),
@@ -194,7 +194,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0D9488),
+                  color: AppColors.teal,
                   borderRadius: BorderRadius.circular(13),
                   boxShadow: const [
                     BoxShadow(
@@ -228,22 +228,22 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFFBEB),
-                border: Border.all(color: const Color(0xFFFCEFC7)),
+                color: AppColors.warnBg,
+                border: Border.all(color: AppColors.warnBorder),
                 borderRadius: BorderRadius.circular(AppColors.radius),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Icon(Icons.info_outline_rounded,
-                      color: Color(0xFFE0A800), size: 18),
+                      color: AppColors.warnIcon, size: 18),
                   const SizedBox(width: 10),
                   Expanded(
                     child: RichText(
                       text: TextSpan(
                         style: GoogleFonts.inter(
                           fontSize: 12,
-                          color: const Color(0xFF92740C),
+                          color: AppColors.warnText,
                           fontWeight: FontWeight.w500,
                           height: 1.45,
                         ),
@@ -347,7 +347,7 @@ class _AddressRow extends StatelessWidget {
           ),
         ),
         if (showDivider)
-          CfDashedDivider(color: const Color(0xFFD5DCE3)),
+          CfDashedDivider(color: AppColors.dashedDivider),
       ],
     );
   }

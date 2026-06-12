@@ -143,7 +143,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
               child: Row(
                 children: [
                   const Icon(Icons.shopping_bag_outlined,
-                      color: Color(0xFF0D9488), size: 19),
+                      color: AppColors.teal, size: 19),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
@@ -209,11 +209,11 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                           vertical: 10, horizontal: 6),
                       decoration: BoxDecoration(
                         color: selected
-                            ? const Color(0xFFF0FDFA)
+                            ? AppColors.tealBg
                             : AppColors.fieldBg,
                         border: Border.all(
                           color: selected
-                              ? const Color(0xFF0D9488)
+                              ? AppColors.teal
                               : Colors.transparent,
                           width: 1.5,
                         ),
@@ -226,7 +226,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                             cat.icon,
                             size: 20,
                             color: selected
-                                ? const Color(0xFF0D9488)
+                                ? AppColors.teal
                                 : AppColors.mutedLabel,
                           ),
                           const SizedBox(height: 5),
@@ -236,7 +236,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                               fontSize: 11,
                               fontWeight: FontWeight.w700,
                               color: selected
-                                  ? const Color(0xFF0F766E)
+                                  ? AppColors.tealDark
                                   : AppColors.mutedLabel,
                             ),
                           ),
@@ -376,7 +376,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                     button: true,
                     label: 'Add package',
                     child: Material(
-                      color: const Color(0xFF0D9488),
+                      color: AppColors.teal,
                       borderRadius: BorderRadius.circular(13),
                       child: InkWell(
                         onTap: _submit,

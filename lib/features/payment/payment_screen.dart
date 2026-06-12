@@ -454,7 +454,7 @@ class _MethodChip extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: active ? const Color(0xFFEFF4FE) : AppColors.fieldBg,
+          color: active ? AppColors.tabActiveBg : AppColors.fieldBg,
           borderRadius: BorderRadius.circular(AppColors.radius),
           border: Border.all(
             color: active ? AppColors.primary : Colors.transparent,
