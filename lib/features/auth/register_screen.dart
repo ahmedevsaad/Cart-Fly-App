@@ -1,7 +1,10 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/auth_error.dart';
+import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_button.dart';
@@ -24,26 +27,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
 
-  String _country = 'Saudi Arabia';
-  String _currency = 'SAR';
+  String _country = 'Egypt';
+  String _currency = 'EGP — Egyptian Pound';
   bool _busy = false;
   String? _error;
 
-  static const _countries = [
-    'Saudi Arabia',
-    'Egypt',
-    'UAE',
-    'USA',
-    'China',
-  ];
+  // Country name → ISO-3166-1 alpha-2 code for flag rendering
+  static const _countries = <String, String>{
+    'Saudi Arabia': 'SA',
+    'Egypt': 'EG',
+    'UAE': 'AE',
+    'USA': 'US',
+    'China': 'CN',
+  };
 
   static const _currencies = [
-    'USD',
-    'SAR',
-    'AED',
-    'EGP',
-    'CNY',
+    'USD — US Dollar',
+    'SAR — Saudi Riyal',
+    'AED — UAE Dirham',
+    'EGP — Egyptian Pound',
+    'CNY — Chinese Yuan',
   ];
+
+  // Map display currency string to short code for AuthProvider
+  String get _currencyCode => _currency.split(' — ').first;
 
   @override
   void dispose() {
@@ -79,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       phone: _phone.text.trim(),
       email: _email.text.trim(),
       country: _country,
-      currency: _currency,
+      currency: _currencyCode,
       password: _password.text,
     );
 
@@ -94,100 +101,217 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return CfScaffold(
-      solidBackground: AppColors.bgSplash,
       topBar: CfTopBar(onBack: () => context.pop()),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: ListView(
           children: [
-            const SizedBox(height: 20),
-            Center(child: Text('Register', style: AppText.title)),
-            const SizedBox(height: 24),
-
-            // TextField[0]: Full name
-            CfInput(
-              label: 'Full name:',
-              controller: _name,
+            const SizedBox(height: 14),
+            Center(
+              child: Text(
+                'Register',
+                style: AppText.title.copyWith(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
+            const SizedBox(height: 16),
 
-            // TextField[1]: Phone number
+            // Full name
+            CfInput(label: 'Full name:', controller: _name),
+
+            // Phone number
             CfInput(
               label: 'Phone number:',
               controller: _phone,
               keyboardType: TextInputType.phone,
             ),
 
-            // TextField[2]: Email
+            // Email
             CfInput(
               label: 'Email:',
               controller: _email,
               keyboardType: TextInputType.emailAddress,
             ),
 
-            // DropdownButton: Country
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Country:', style: AppText.body),
-                const SizedBox(height: 6),
-                DropdownButton<String>(
-                  value: _country,
-                  isExpanded: true,
-                  items: _countries
-                      .map((c) => DropdownMenuItem(value: c, child: Text(c)))
-                      .toList(),
-                  onChanged: (v) => setState(() => _country = v ?? _country),
-                ),
-                const SizedBox(height: 16),
-              ],
+            // Country dropdown (styled like CfInput field)
+            _LabeledDropdown<String>(
+              label: 'Country:',
+              value: _country,
+              items: _countries.keys.toList(),
+              itemBuilder: (c) => Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(3),
+                    child: CountryFlag.fromCountryCode(
+                      _countries[c]!,
+                      width: 20,
+                      height: 14,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(c),
+                ],
+              ),
+              selectedBuilder: (c) => Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(3),
+                    child: CountryFlag.fromCountryCode(
+                      _countries[c]!,
+                      width: 20,
+                      height: 14,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text(c)),
+                ],
+              ),
+              onChanged: (v) => setState(() => _country = v ?? _country),
             ),
 
-            // DropdownButton: Currency
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Currency:', style: AppText.body),
-                const SizedBox(height: 6),
-                DropdownButton<String>(
-                  value: _currency,
-                  isExpanded: true,
-                  items: _currencies
-                      .map((c) => DropdownMenuItem(value: c, child: Text(c)))
-                      .toList(),
-                  onChanged: (v) => setState(() => _currency = v ?? _currency),
-                ),
-                const SizedBox(height: 16),
-              ],
+            // Currency dropdown
+            _LabeledDropdown<String>(
+              label: 'Currency:',
+              value: _currency,
+              items: _currencies,
+              itemBuilder: (c) => Text(c),
+              selectedBuilder: (c) => Expanded(child: Text(c)),
+              onChanged: (v) => setState(() => _currency = v ?? _currency),
             ),
 
-            // TextField[3]: Password
+            // Password
             CfInput(
               label: 'Password:',
               controller: _password,
               obscure: true,
             ),
 
-            // TextField[4]: Confirm password
+            // Confirm password
             CfInput(
               label: 'Confirm password:',
               controller: _confirmPassword,
               obscure: true,
             ),
 
-            if (_error != null)
+            if (_error != null) ...[
               Text(
                 _error!,
                 style: AppText.caption.copyWith(color: AppColors.danger),
               ),
-            const SizedBox(height: 8),
+              const SizedBox(height: 8),
+            ],
+
             CfButton(
-              label: _busy ? '...' : 'Register',
+              label: _busy ? '...' : 'Create account',
               onPressed: _busy ? null : _submit,
+            ),
+            const SizedBox(height: 14),
+            Center(
+              child: GestureDetector(
+                onTap: () => context.push(Routes.login),
+                child: RichText(
+                  text: TextSpan(
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.muted,
+                    ),
+                    children: [
+                      const TextSpan(text: 'Already have an account? '),
+                      TextSpan(
+                        text: 'Sign in',
+                        style: GoogleFonts.inter(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 24),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// A labeled dropdown field that matches the CfInput visual style.
+class _LabeledDropdown<T> extends StatelessWidget {
+  const _LabeledDropdown({
+    required this.label,
+    required this.value,
+    required this.items,
+    required this.itemBuilder,
+    required this.selectedBuilder,
+    required this.onChanged,
+  });
+
+  final String label;
+  final T value;
+  final List<T> items;
+  final Widget Function(T) itemBuilder;
+  final Widget Function(T) selectedBuilder;
+  final ValueChanged<T?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.inter(
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            color: AppColors.mutedLabel,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.fieldBg,
+            borderRadius: BorderRadius.circular(AppColors.radius),
+            border: Border.all(color: AppColors.cardBorder),
+            boxShadow: AppColors.shadowSoft,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<T>(
+              value: value,
+              isExpanded: true,
+              icon: const Icon(
+                Icons.keyboard_arrow_down,
+                size: 18,
+                color: AppColors.mutedDisabled,
+              ),
+              dropdownColor: AppColors.fieldBg,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppColors.text,
+              ),
+              selectedItemBuilder: (_) =>
+                  items.map((item) => selectedBuilder(item)).toList(),
+              items: items
+                  .map(
+                    (item) => DropdownMenuItem<T>(
+                      value: item,
+                      child: itemBuilder(item),
+                    ),
+                  )
+                  .toList(),
+              onChanged: onChanged,
+            ),
+          ),
+        ),
+        const SizedBox(height: 11),
+      ],
     );
   }
 }
