@@ -1,6 +1,7 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/pricing.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
@@ -10,12 +11,125 @@ import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 import '../../widgets/icons/cf_icons.dart';
 
-class ShippingCalculatorScreen extends StatelessWidget {
+// Country options available for selection
+class _Country {
+  const _Country(this.code, this.pricingKey, this.name);
+  final String code;       // ISO country code for flag (e.g. 'CN')
+  final String pricingKey; // key used in pricing map (e.g. 'cn')
+  final String name;
+}
+
+const _kFromCountries = <_Country>[
+  _Country('CN', 'cn', 'China'),
+  _Country('US', 'us', 'USA'),
+  _Country('AE', 'ae', 'UAE'),
+  _Country('SA', 'sa', 'Saudi Arabia'),
+];
+
+const _kToCountries = <_Country>[
+  _Country('EG', 'eg', 'Egypt'),
+  _Country('SA', 'sa', 'Saudi Arabia'),
+  _Country('AE', 'ae', 'UAE'),
+];
+
+// Category options
+class _Category {
+  const _Category(this.key, this.labelKey);
+  final String key;
+  final String labelKey; // 'electronics' | 'fashion' | 'accessories' | 'other'
+}
+
+const _kCategories = [
+  _Category('electronics', 'electronics'),
+  _Category('fashion', 'fashion'),
+  _Category('accessories', 'accessories'),
+];
+
+class ShippingCalculatorScreen extends StatefulWidget {
   const ShippingCalculatorScreen({super.key});
+
+  @override
+  State<ShippingCalculatorScreen> createState() =>
+      _ShippingCalculatorScreenState();
+}
+
+class _ShippingCalculatorScreenState
+    extends State<ShippingCalculatorScreen> {
+  // Defaults: China -> Egypt, 2.5 kg, electronics
+  int _fromIdx = 0; // index into _kFromCountries
+  int _toIdx = 0;   // index into _kToCountries
+  double _weightKg = 2.5;
+  int _catIdx = 0;  // index into _kCategories
+
+  late CalcResult _result;
+
+  @override
+  void initState() {
+    super.initState();
+    _recalc();
+  }
+
+  void _recalc() {
+    _result = estimate(
+      from: _kFromCountries[_fromIdx].pricingKey,
+      to: _kToCountries[_toIdx].pricingKey,
+      weightKg: _weightKg,
+      category: _kCategories[_catIdx].key,
+    );
+  }
+
+  void _setFrom(int idx) => setState(() {
+        _fromIdx = idx;
+        _recalc();
+      });
+
+  void _setTo(int idx) => setState(() {
+        _toIdx = idx;
+        _recalc();
+      });
+
+  void _setCategory(int idx) => setState(() {
+        _catIdx = idx;
+        _recalc();
+      });
+
+  void _showWeightPicker() async {
+    final picked = await showDialog<double>(
+      context: context,
+      builder: (_) => _WeightDialog(initial: _weightKg),
+    );
+    if (picked != null) {
+      setState(() {
+        _weightKg = picked;
+        _recalc();
+      });
+    }
+  }
+
+  void _showCountryPicker<T extends _Country>({
+    required List<T> options,
+    required int selectedIdx,
+    required void Function(int) onSelected,
+  }) async {
+    final picked = await showModalBottomSheet<int>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => _CountryPicker(
+        countries: options,
+        selectedIdx: selectedIdx,
+      ),
+    );
+    if (picked != null) onSelected(picked);
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final from = _kFromCountries[_fromIdx];
+    final to = _kToCountries[_toIdx];
+    final r = _result;
 
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
@@ -58,16 +172,26 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 Expanded(
                   child: _CountryField(
                     label: l10n.calcCountryFrom,
-                    countryCode: 'CN',
-                    countryName: l10n.calcCountryChina,
+                    countryCode: from.code,
+                    countryName: from.name,
+                    onTap: () => _showCountryPicker(
+                      options: _kFromCountries,
+                      selectedIdx: _fromIdx,
+                      onSelected: _setFrom,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 11),
                 Expanded(
                   child: _CountryField(
                     label: l10n.calcCountryTo,
-                    countryCode: 'EG',
-                    countryName: l10n.calcCountryEgypt,
+                    countryCode: to.code,
+                    countryName: to.name,
+                    onTap: () => _showCountryPicker(
+                      options: _kToCountries,
+                      selectedIdx: _toIdx,
+                      onSelected: _setTo,
+                    ),
                   ),
                 ),
               ],
@@ -84,46 +208,50 @@ class ShippingCalculatorScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.fieldBg,
-                borderRadius: BorderRadius.circular(AppColors.radius),
-                boxShadow: AppColors.shadowSoft,
-              ),
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 12, vertical: 11),
-              child: Row(
-                children: [
-                  CfIcons.cartCalculator(
-                      size: 20, color: AppColors.navy),
-                  const SizedBox(width: 11),
-                  Expanded(
-                    child: Text(
-                      '2.5',
-                      style: AppText.body.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                        color: AppColors.text,
+            GestureDetector(
+              onTap: _showWeightPicker,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.fieldBg,
+                  borderRadius: BorderRadius.circular(AppColors.radius),
+                  boxShadow: AppColors.shadowSoft,
+                ),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 11),
+                child: Row(
+                  children: [
+                    CfIcons.cartCalculator(
+                        size: 20, color: AppColors.navy),
+                    const SizedBox(width: 11),
+                    Expanded(
+                      child: Text(
+                        _weightKg.toStringAsFixed(
+                            _weightKg == _weightKg.roundToDouble() ? 1 : 2),
+                        style: AppText.body.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                          color: AppColors.text,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.tagBg,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
-                    child: Text(
-                      l10n.calcWeightUnit,
-                      style: AppText.caption.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12,
-                        color: AppColors.mutedLabel,
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.tagBg,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Text(
+                        l10n.calcWeightUnit,
+                        style: AppText.caption.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: AppColors.mutedLabel,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 14),
@@ -141,29 +269,47 @@ class ShippingCalculatorScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _CategoryChip(
-                    label: l10n.calcCatElectronics,
-                    iconWidget: CfIcons.card(
-                        size: 20, color: AppColors.primary),
-                    active: true,
+                  child: GestureDetector(
+                    onTap: () => _setCategory(0),
+                    child: _CategoryChip(
+                      label: l10n.calcCatElectronics,
+                      iconWidget: CfIcons.card(
+                          size: 20,
+                          color: _catIdx == 0
+                              ? AppColors.primary
+                              : AppColors.mutedLabel),
+                      active: _catIdx == 0,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: _CategoryChip(
-                    label: l10n.calcCatFashion,
-                    iconWidget: CfIcons.stepBag(
-                        size: 20, color: AppColors.mutedLabel),
-                    active: false,
+                  child: GestureDetector(
+                    onTap: () => _setCategory(1),
+                    child: _CategoryChip(
+                      label: l10n.calcCatFashion,
+                      iconWidget: CfIcons.stepBag(
+                          size: 20,
+                          color: _catIdx == 1
+                              ? AppColors.primary
+                              : AppColors.mutedLabel),
+                      active: _catIdx == 1,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: _CategoryChip(
-                    label: l10n.calcCatAccessories,
-                    iconWidget: CfIcons.stepBox(
-                        size: 20, color: AppColors.mutedLabel),
-                    active: false,
+                  child: GestureDetector(
+                    onTap: () => _setCategory(2),
+                    child: _CategoryChip(
+                      label: l10n.calcCatAccessories,
+                      iconWidget: CfIcons.stepBox(
+                          size: 20,
+                          color: _catIdx == 2
+                              ? AppColors.primary
+                              : AppColors.mutedLabel),
+                      active: _catIdx == 2,
+                    ),
                   ),
                 ),
               ],
@@ -178,7 +324,11 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Inputs are already live — button triggers a visual
+                    // recalc confirmation (state already up-to-date).
+                    setState(_recalc);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
@@ -236,17 +386,17 @@ class ShippingCalculatorScreen extends StatelessWidget {
                   const SizedBox(height: 13),
                   _CostRow(
                     label: l10n.calcShippingCost,
-                    value: l10n.calcShippingVal,
+                    value: '\$${r.shipping.toStringAsFixed(2)}',
                     borderBottom: true,
                   ),
                   _CostRow(
                     label: l10n.calcCustomsFee,
-                    value: l10n.calcCustomsVal,
+                    value: '\$${r.customs.toStringAsFixed(2)}',
                     borderBottom: true,
                   ),
                   _CostRow(
                     label: l10n.calcServiceFee,
-                    value: l10n.calcServiceVal,
+                    value: '\$${r.service.toStringAsFixed(2)}',
                     borderBottom: false,
                   ),
                   Container(
@@ -266,7 +416,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        l10n.calcTotalVal,
+                        '\$${r.total.toStringAsFixed(2)}',
                         style: AppText.heading.copyWith(
                           fontWeight: FontWeight.w800,
                           fontSize: 24,
@@ -319,7 +469,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 1),
                         Text(
-                          l10n.calcDeliveryDays,
+                          '${r.minDays} – ${r.maxDays} Days',
                           style: AppText.heading.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: 19,
@@ -335,6 +485,99 @@ class ShippingCalculatorScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// ── Weight Dialog ─────────────────────────────────────────────────────────────
+
+class _WeightDialog extends StatefulWidget {
+  const _WeightDialog({required this.initial});
+  final double initial;
+
+  @override
+  State<_WeightDialog> createState() => _WeightDialogState();
+}
+
+class _WeightDialogState extends State<_WeightDialog> {
+  late final TextEditingController _ctrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = TextEditingController(text: widget.initial.toString());
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Enter Weight (kg)'),
+      content: TextField(
+        controller: _ctrl,
+        keyboardType:
+            const TextInputType.numberWithOptions(decimal: true),
+        autofocus: true,
+        decoration: const InputDecoration(suffixText: 'kg'),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            final v = double.tryParse(_ctrl.text);
+            if (v != null && v > 0) Navigator.pop(context, v);
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+}
+
+// ── Country Picker Bottom Sheet ───────────────────────────────────────────────
+
+class _CountryPicker extends StatelessWidget {
+  const _CountryPicker({
+    required this.countries,
+    required this.selectedIdx,
+  });
+
+  final List<_Country> countries;
+  final int selectedIdx;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 12),
+          for (int i = 0; i < countries.length; i++)
+            ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(3),
+                child: CountryFlag.fromCountryCode(
+                  countries[i].code,
+                  width: 32,
+                  height: 22,
+                ),
+              ),
+              title: Text(countries[i].name),
+              trailing:
+                  i == selectedIdx ? const Icon(Icons.check) : null,
+              onTap: () => Navigator.pop(context, i),
+            ),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }
@@ -434,11 +677,13 @@ class _CountryField extends StatelessWidget {
     required this.label,
     required this.countryCode,
     required this.countryName,
+    required this.onTap,
   });
 
   final String label;
   final String countryCode;
   final String countryName;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -454,37 +699,40 @@ class _CountryField extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.fieldBg,
-            borderRadius: BorderRadius.circular(AppColors.radius),
-            boxShadow: AppColors.shadowSoft,
-          ),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: CountryFlag.fromCountryCode(
-                  countryCode,
-                  width: 24,
-                  height: 16,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  countryName,
-                  style: AppText.body.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                    color: AppColors.text,
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.fieldBg,
+              borderRadius: BorderRadius.circular(AppColors.radius),
+              boxShadow: AppColors.shadowSoft,
+            ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(3),
+                  child: CountryFlag.fromCountryCode(
+                    countryCode,
+                    width: 24,
+                    height: 16,
                   ),
                 ),
-              ),
-              CfIcons.chevronDown(size: 16, color: AppColors.muted),
-            ],
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    countryName,
+                    style: AppText.body.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: AppColors.text,
+                    ),
+                  ),
+                ),
+                CfIcons.chevronDown(size: 16, color: AppColors.muted),
+              ],
+            ),
           ),
         ),
       ],
