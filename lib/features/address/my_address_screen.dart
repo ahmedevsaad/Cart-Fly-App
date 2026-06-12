@@ -1,3 +1,4 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -359,7 +360,7 @@ class _AddressRow extends StatelessWidget {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Tiny flag widget (paint-drawn, no package dependency needed)
+// Tiny flag widget — uses country_flags package for both active + inactive states
 // ──────────────────────────────────────────────────────────────────────────────
 
 class _WarehouseFlag extends StatelessWidget {
@@ -368,38 +369,12 @@ class _WarehouseFlag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (code == 'cn') {
-      return Container(
-        width: 22,
-        height: 15,
-        decoration: BoxDecoration(
-          color: const Color(0xFFDE2910),
-          borderRadius: BorderRadius.circular(3),
-        ),
-        alignment: Alignment.center,
-        child: const Text(
-          '★',
-          style: TextStyle(
-            color: Color(0xFFFFDE00),
-            fontSize: 10,
-            height: 1,
-          ),
-        ),
-      );
-    }
-    // Egypt flag: red / white / black stripes
     return ClipRRect(
       borderRadius: BorderRadius.circular(3),
-      child: SizedBox(
+      child: CountryFlag.fromCountryCode(
+        code.toUpperCase(),
         width: 22,
         height: 15,
-        child: Column(
-          children: const [
-            Expanded(child: ColoredBox(color: Color(0xFFCE1126))),
-            Expanded(child: ColoredBox(color: Colors.white)),
-            Expanded(child: ColoredBox(color: Colors.black)),
-          ],
-        ),
       ),
     );
   }
