@@ -46,8 +46,8 @@ class CfOutlineButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          foregroundColor: AppColors.primary,
           side: const BorderSide(color: AppColors.primary),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppColors.radius)),
@@ -58,7 +58,7 @@ class CfOutlineButton extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color: AppColors.primary,
           ),
         ),
       ),

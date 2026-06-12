@@ -41,8 +41,9 @@ class CfBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).padding.bottom;
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      margin: EdgeInsets.fromLTRB(16, 8, 16, 16 + bottomInset),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
@@ -54,43 +55,51 @@ class CfBottomNav extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           for (var i = 0; i < _items.length; i++)
-            _buildItem(i, _items[i]),
+            _buildItem(context, i, _items[i]),
         ],
       ),
     );
   }
 
-  Widget _buildItem(int index, _NavItem item) {
+  Widget _buildItem(BuildContext context, int index, _NavItem item) {
     final active = index == currentIndex;
     final color = active ? Colors.white : AppColors.navIdle;
     final colorHex = active ? '#FFFFFF' : '#7E8AA0';
     final svg = item.svgBody.replaceAll('{{color}}', colorHex);
 
-    return GestureDetector(
-      onTap: () => onTap(index),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        decoration: BoxDecoration(
-          color: active ? AppColors.primary : Colors.transparent,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.string(svg, width: 21, height: 21),
-            if (active) ...[
-              const SizedBox(width: 7),
-              Text(
-                item.label,
-                style: GoogleFonts.inter(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w700,
-                  color: color,
+    return Semantics(
+      label: item.label,
+      selected: active,
+      button: true,
+      child: InkWell(
+        onTap: () => onTap(index),
+        borderRadius: BorderRadius.circular(15),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          // vertical padding 11.5 each side → 21 + 2×11.5 = 44 px minimum touch target
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11.5),
+          decoration: BoxDecoration(
+            color: active ? AppColors.primary : Colors.transparent,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.string(svg, width: 21, height: 21),
+              if (active) ...[
+                const SizedBox(width: 7),
+                Text(
+                  item.label,
+                  style: GoogleFonts.inter(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    color: color,
+                  ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

@@ -10,31 +10,35 @@ class CfBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Short-circuit: solid color needs no Stack or watermark overlay.
+    if (solid != null) {
+      return ColoredBox(color: solid!, child: child);
+    }
+
     return Container(
-      color: solid ?? AppColors.bgPage,
+      color: AppColors.bgPage,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          if (solid == null)
-            IgnorePointer(
-              child: Opacity(
-                opacity: 0.05,
-                child: LayoutBuilder(builder: (context, c) {
-                  const tile = 240.0;
-                  final cols = (c.maxWidth / tile).ceil();
-                  final rows = (c.maxHeight / tile).ceil();
-                  return Wrap(
-                    children: List.generate(
-                      cols * rows,
-                      (_) => SizedBox(
-                        width: tile, height: tile,
-                        child: SvgPicture.asset('assets/pattern/airplane_box.svg'),
-                      ),
+          IgnorePointer(
+            child: Opacity(
+              opacity: 0.05,
+              child: LayoutBuilder(builder: (context, c) {
+                const tile = 240.0;
+                final cols = (c.maxWidth / tile).ceil();
+                final rows = (c.maxHeight / tile).ceil();
+                return Wrap(
+                  children: List.generate(
+                    cols * rows,
+                    (_) => SizedBox(
+                      width: tile, height: tile,
+                      child: SvgPicture.asset('assets/pattern/airplane_box.svg'),
                     ),
-                  );
-                }),
-              ),
+                  ),
+                );
+              }),
             ),
+          ),
           child,
         ],
       ),

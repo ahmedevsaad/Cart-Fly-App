@@ -86,13 +86,13 @@ class CfStatusTimeline extends StatelessWidget {
                 Text(
                   steps[i],
                   style: GoogleFonts.inter(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: i <= activeIndex
                         ? FontWeight.w600
                         : FontWeight.w400,
                     color: i <= activeIndex
                         ? AppColors.text
-                        : AppColors.mutedDisabled,
+                        : AppColors.muted,
                   ),
                   textAlign: TextAlign.center,
                   softWrap: true,
