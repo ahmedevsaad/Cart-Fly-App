@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
@@ -9,6 +8,7 @@ import '../../theme/app_text.dart';
 import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 /// Payment success — dual-mode:
 ///
@@ -68,10 +68,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Icon(
-                      Icons.check_rounded,
-                      size: 40,
-                      color: Colors.white,
+                    child: Center(
+                      child: CfIcons.stepCheck(
+                          size: 40, color: Colors.white),
                     ),
                   ),
                 ),
@@ -82,7 +81,7 @@ class PaymentSuccessScreen extends StatelessWidget {
             // Thank you heading
             Text(
               l10n.planConfirmedThankYou,
-              style: GoogleFonts.inter(
+              style: AppText.heading.copyWith(
                 fontWeight: FontWeight.w800,
                 fontSize: 27,
                 letterSpacing: -0.54,
@@ -91,15 +90,38 @@ class PaymentSuccessScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            Text(
-              l10n.planConfirmedBody(plan),
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w500,
-                fontSize: 15,
-                height: 1.55,
-                color: AppColors.muted,
+
+            // Body with bold plan name via RichText
+            Center(
+              child: SizedBox(
+                width: 248,
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: AppText.body.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      height: 1.55,
+                      color: AppColors.muted,
+                    ),
+                    children: [
+                      TextSpan(
+                          text: l10n.planConfirmedBodyPrefix),
+                      TextSpan(
+                        text: plan,
+                        style: AppText.body.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                          height: 1.55,
+                          color: AppColors.text,
+                        ),
+                      ),
+                      TextSpan(
+                          text: l10n.planConfirmedBodySuffix),
+                    ],
+                  ),
+                ),
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 26),
 
@@ -139,7 +161,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                       children: [
                         Text(
                           l10n.receiptAmountPaid,
-                          style: GoogleFonts.inter(
+                          style: AppText.body.copyWith(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
                             color: AppColors.text,
@@ -147,7 +169,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                         ),
                         Text(
                           l10n.receiptAmountVal,
-                          style: GoogleFonts.inter(
+                          style: AppText.heading.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: 18,
                             color: AppColors.planFree,
@@ -161,28 +183,42 @@ class PaymentSuccessScreen extends StatelessWidget {
             ),
             const SizedBox(height: 18),
 
-            // Back to home button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () => context.go(Routes.home),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(13),
+            // Back to home button — CfIcons.home + blue shadow
+            Semantics(
+              button: true,
+              label: l10n.backToHome,
+              child: SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: () => context.go(Routes.home),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    elevation: 0,
+                    shadowColor:
+                        AppColors.primary.withValues(alpha: 0.28),
+                  ).copyWith(
+                    elevation: WidgetStateProperty.all(8),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  elevation: 0,
-                ),
-                icon: const Icon(Icons.home_outlined,
-                    size: 19, color: Colors.white),
-                label: Text(
-                  l10n.backToHome,
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CfIcons.home(size: 19, color: Colors.white),
+                      const SizedBox(width: 10),
+                      Text(
+                        l10n.backToHome,
+                        style: AppText.body.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -194,7 +230,7 @@ class PaymentSuccessScreen extends StatelessWidget {
               onPressed: () => context.go(Routes.plans),
               child: Text(
                 l10n.viewSubscription,
-                style: GoogleFonts.inter(
+                style: AppText.body.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
                   color: AppColors.planPrime,
@@ -220,8 +256,10 @@ class PaymentSuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(Icons.check_circle_outline,
-                size: 80, color: AppColors.success),
+            Center(
+              child: CfIcons.stepCheck(
+                  size: 80, color: AppColors.success),
+            ),
             const SizedBox(height: 24),
             Text(
               l10n.planConfirmedThankYou,
@@ -247,7 +285,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 ),
                 child: Text(
                   l10n.backToHome,
-                  style: GoogleFonts.inter(
+                  style: AppText.body.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -282,13 +320,14 @@ class _ReceiptRow extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: paddingTop, bottom: dashedBottom ? 11 : 0),
+          padding: EdgeInsets.only(
+              top: paddingTop, bottom: dashedBottom ? 11 : 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 label,
-                style: GoogleFonts.inter(
+                style: AppText.caption.copyWith(
                   fontWeight: FontWeight.w600,
                   fontSize: 13.5,
                   color: AppColors.muted,
@@ -296,7 +335,7 @@ class _ReceiptRow extends StatelessWidget {
               ),
               Text(
                 value,
-                style: GoogleFonts.inter(
+                style: AppText.body.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
                   color: AppColors.text,

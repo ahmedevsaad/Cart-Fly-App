@@ -355,6 +355,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get payMethodApple => 'Apple';
 
   @override
+  String get cardHolderName => 'Card holder name';
+
+  @override
+  String get orderConfirmButton => 'Confirm';
+
+  @override
   String get cardNumber => 'Card number';
 
   @override
@@ -385,6 +391,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String planConfirmedBody(Object plan) =>
       'Your payment was successful and your $plan plan is now active.';
+
+  @override
+  String get planConfirmedBodyPrefix =>
+      'Your payment was successful and your ';
+
+  @override
+  String get planConfirmedBodySuffix => ' plan is now active.';
 
   @override
   String get receiptPlan => 'Plan';

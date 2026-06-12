@@ -354,6 +354,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get payMethodApple => 'آبل';
 
   @override
+  String get cardHolderName => 'اسم صاحب البطاقة';
+
+  @override
+  String get orderConfirmButton => 'تأكيد';
+
+  @override
   String get cardNumber => 'رقم البطاقة';
 
   @override
@@ -384,6 +390,12 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String planConfirmedBody(Object plan) =>
       'تمّت عملية الدفع بنجاح وخطتك $plan نشطة الآن.';
+
+  @override
+  String get planConfirmedBodyPrefix => 'تمّت عملية الدفع بنجاح وخطة ';
+
+  @override
+  String get planConfirmedBodySuffix => ' نشطة الآن.';
 
   @override
   String get receiptPlan => 'الخطة';

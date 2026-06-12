@@ -114,6 +114,8 @@
   "payMethodCard": "بطاقة",
   "payMethodPaypal": "باي بال",
   "payMethodApple": "آبل",
+  "cardHolderName": "اسم صاحب البطاقة",
+  "orderConfirmButton": "تأكيد",
   "cardNumber": "رقم البطاقة",
   "cardNumberHint": "4242 4242 4242 4242",
   "cardExpiry": "تاريخ الانتهاء",
@@ -125,6 +127,8 @@
 
   "planConfirmedThankYou": "شكراً لك!",
   "planConfirmedBody": "تمّت عملية الدفع بنجاح وخطتك {plan} نشطة الآن.",
+  "planConfirmedBodyPrefix": "تمّت عملية الدفع بنجاح وخطة ",
+  "planConfirmedBodySuffix": " نشطة الآن.",
   "receiptPlan": "الخطة",
   "receiptBilling": "الفوترة",
   "receiptBillingMonthly": "شهري",

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/auth/auth_provider.dart';
@@ -12,6 +11,7 @@ import '../../theme/app_text.dart';
 import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 /// Payment screen — dual-mode:
 ///
@@ -129,8 +129,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       color: AppColors.planPrime,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.shopping_bag_outlined,
-                        size: 24, color: Colors.white),
+                    child: Center(
+                      child: CfIcons.stepBag(
+                          size: 24, color: Colors.white),
+                    ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -139,7 +141,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       children: [
                         Text(
                           l10n.checkoutPlanName,
-                          style: GoogleFonts.inter(
+                          style: AppText.heading.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: 16,
                             color: AppColors.text,
@@ -148,7 +150,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         const SizedBox(height: 1),
                         Text(
                           l10n.checkoutBilledMonthly,
-                          style: GoogleFonts.inter(
+                          style: AppText.caption.copyWith(
                             fontWeight: FontWeight.w700,
                             fontSize: 12.5,
                             color: AppColors.planPrime,
@@ -162,7 +164,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     children: [
                       Text(
                         l10n.checkoutPlanPrice,
-                        style: GoogleFonts.inter(
+                        style: AppText.heading.copyWith(
                           fontWeight: FontWeight.w800,
                           fontSize: 18,
                           color: AppColors.text,
@@ -170,7 +172,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ),
                       Text(
                         l10n.checkoutPerMonth,
-                        style: GoogleFonts.inter(
+                        style: AppText.caption.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 11,
                           color: AppColors.mutedDisabled,
@@ -186,7 +188,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             // Payment method label
             Text(
               l10n.paymentMethod,
-              style: GoogleFonts.inter(
+              style: AppText.caption.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 13,
                 color: AppColors.mutedLabel,
@@ -200,7 +202,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 Expanded(
                   child: _MethodChip(
                     label: l10n.payMethodCard,
-                    icon: Icons.credit_card_outlined,
+                    iconWidget: CfIcons.card(
+                      size: 24,
+                      color: _selectedMethod == 0
+                          ? AppColors.primary
+                          : AppColors.mutedLabel,
+                    ),
                     active: _selectedMethod == 0,
                     onTap: () => setState(() => _selectedMethod = 0),
                   ),
@@ -209,7 +216,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 Expanded(
                   child: _MethodChip(
                     label: l10n.payMethodPaypal,
-                    icon: Icons.email_outlined,
+                    iconWidget: CfIcons.paypal(
+                      size: 24,
+                      color: _selectedMethod == 1
+                          ? AppColors.primary
+                          : AppColors.mutedLabel,
+                    ),
                     active: _selectedMethod == 1,
                     onTap: () => setState(() => _selectedMethod = 1),
                   ),
@@ -218,7 +230,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 Expanded(
                   child: _MethodChip(
                     label: l10n.payMethodApple,
-                    icon: Icons.phone_iphone_outlined,
+                    iconWidget: CfIcons.apple(
+                      size: 24,
+                      color: _selectedMethod == 2
+                          ? AppColors.primary
+                          : AppColors.mutedLabel,
+                    ),
                     active: _selectedMethod == 2,
                     onTap: () => setState(() => _selectedMethod = 2),
                   ),
@@ -230,7 +247,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             // Card number field
             Text(
               l10n.cardNumber,
-              style: GoogleFonts.inter(
+              style: AppText.caption.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
                 color: AppColors.mutedLabel,
@@ -248,13 +265,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   horizontal: 13, vertical: 12),
               child: Row(
                 children: [
-                  const Icon(Icons.credit_card_outlined,
+                  CfIcons.cardSimple(
                       size: 20, color: AppColors.navy),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       l10n.cardNumberHint,
-                      style: GoogleFonts.inter(
+                      style: AppText.body.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                         letterSpacing: 0.06 * 14,
@@ -296,7 +313,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               children: [
                 Text(
                   l10n.totalToday,
-                  style: GoogleFonts.inter(
+                  style: AppText.body.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 15,
                     color: AppColors.text,
@@ -304,7 +321,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
                 Text(
                   l10n.checkoutPlanPrice,
-                  style: GoogleFonts.inter(
+                  style: AppText.heading.copyWith(
                     fontWeight: FontWeight.w800,
                     fontSize: 22,
                     color: AppColors.planPrime,
@@ -316,25 +333,42 @@ class _PaymentScreenState extends State<PaymentScreen> {
             const SizedBox(height: 14),
 
             // Pay button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _confirm,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(13),
+            Semantics(
+              button: true,
+              label: l10n.payButton,
+              child: SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: _confirm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    elevation: 0,
+                    shadowColor:
+                        AppColors.primary.withValues(alpha: 0.28),
+                  ).copyWith(
+                    elevation: WidgetStateProperty.all(8),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  elevation: 0,
-                ),
-                child: Text(
-                  l10n.payButton,
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CfIcons.stepCheck(
+                          size: 19, color: Colors.white),
+                      const SizedBox(width: 10),
+                      Text(
+                        l10n.payButton,
+                        style: AppText.body.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -345,12 +379,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.lock_outline_rounded,
-                    size: 14, color: AppColors.mutedDisabled),
+                CfIcons.lock(size: 14, color: AppColors.mutedDisabled),
                 const SizedBox(width: 6),
                 Text(
                   l10n.securedEncryption,
-                  style: GoogleFonts.inter(
+                  style: AppText.caption.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 11.5,
                     color: AppColors.mutedDisabled,
@@ -386,18 +419,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             const SizedBox(height: 24),
             _SimpleField(
-              label: 'Card holder name',
+              label: l10n.cardHolderName,
               controller: _holderCtrl,
             ),
             const SizedBox(height: 12),
             _SimpleField(
-              label: 'Card number',
+              label: l10n.cardNumber,
               controller: _cardCtrl,
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 12),
             _SimpleField(
-              label: 'CVV',
+              label: l10n.cardCvv,
               controller: _cvvCtrl,
               keyboardType: TextInputType.number,
               obscureText: true,
@@ -416,8 +449,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(
-                  'Confirm',
-                  style: GoogleFonts.inter(
+                  l10n.orderConfirmButton,
+                  style: AppText.body.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -438,48 +471,49 @@ class _PaymentScreenState extends State<PaymentScreen> {
 class _MethodChip extends StatelessWidget {
   const _MethodChip({
     required this.label,
-    required this.icon,
+    required this.iconWidget,
     required this.active,
     required this.onTap,
   });
 
   final String label;
-  final IconData icon;
+  final Widget iconWidget;
   final bool active;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: active ? AppColors.tabActiveBg : AppColors.fieldBg,
-          borderRadius: BorderRadius.circular(AppColors.radius),
-          border: Border.all(
-            color: active ? AppColors.primary : Colors.transparent,
-            width: 1.5,
+    return Semantics(
+      button: true,
+      selected: active,
+      label: label,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: active ? AppColors.tabActiveBg : AppColors.fieldBg,
+            borderRadius: BorderRadius.circular(AppColors.radius),
+            border: Border.all(
+              color: active ? AppColors.primary : Colors.transparent,
+              width: 1.5,
+            ),
           ),
-        ),
-        padding:
-            const EdgeInsets.symmetric(vertical: 11, horizontal: 8),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              color: active ? AppColors.primary : AppColors.mutedLabel,
-            ),
-            const SizedBox(height: 6),
-            Text(
-              label,
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w700,
-                fontSize: 11,
-                color: active ? AppColors.primary : AppColors.mutedLabel,
+          padding:
+              const EdgeInsets.symmetric(vertical: 11, horizontal: 8),
+          child: Column(
+            children: [
+              iconWidget,
+              const SizedBox(height: 6),
+              Text(
+                label,
+                style: AppText.caption.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                  color: active ? AppColors.primary : AppColors.mutedLabel,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -506,7 +540,7 @@ class _CardSubField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
+          style: AppText.caption.copyWith(
             fontWeight: FontWeight.w700,
             fontSize: 12,
             color: AppColors.mutedLabel,
@@ -524,7 +558,7 @@ class _CardSubField extends StatelessWidget {
               horizontal: 13, vertical: 12),
           child: Text(
             value,
-            style: GoogleFonts.inter(
+            style: AppText.body.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 14,
               color: AppColors.text,
@@ -559,7 +593,7 @@ class _SimpleField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
+          style: AppText.caption.copyWith(
             fontWeight: FontWeight.w700,
             fontSize: 12,
             color: AppColors.mutedLabel,

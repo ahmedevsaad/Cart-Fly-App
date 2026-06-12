@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/plans.dart';
@@ -11,6 +10,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 class PlanDetailScreen extends StatelessWidget {
   const PlanDetailScreen({super.key, required this.code});
@@ -84,7 +84,7 @@ class PlanDetailScreen extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
               child: Text(
                 planName(l10n, code),
-                style: GoogleFonts.inter(
+                style: AppText.heading.copyWith(
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
                   color: AppColors.text,
@@ -109,7 +109,7 @@ class PlanDetailScreen extends StatelessWidget {
                   // Description
                   Text(
                     planDesc(l10n, code),
-                    style: GoogleFonts.inter(
+                    style: AppText.body.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: 15.5,
                       height: 1.5,
@@ -122,7 +122,7 @@ class PlanDetailScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       planFeatures(l10n, code)!,
-                      style: GoogleFonts.inter(
+                      style: AppText.body.copyWith(
                         fontWeight: FontWeight.w500,
                         fontSize: 14.5,
                         height: 1.9,
@@ -134,7 +134,7 @@ class PlanDetailScreen extends StatelessWidget {
                   // Subscribe button
                   const SizedBox(height: 16),
                   if (!isFree(code))
-                    OutlinedButton.icon(
+                    OutlinedButton(
                       onPressed: () => context
                           .push('${Routes.payment}?for=plan_$code'),
                       style: OutlinedButton.styleFrom(
@@ -146,15 +146,23 @@ class PlanDetailScreen extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         foregroundColor: AppColors.text,
                       ),
-                      icon: const Icon(Icons.arrow_forward,
-                          size: 18, color: AppColors.text),
-                      label: Text(
-                        l10n.subscribeNow,
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: AppColors.text,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            l10n.subscribeNow,
+                            style: AppText.body.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: AppColors.text,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          CfIcons.arrowRight(
+                            size: 22,
+                            color: AppColors.text,
+                          ),
+                        ],
                       ),
                     )
                   else
@@ -178,7 +186,7 @@ class PlanDetailScreen extends StatelessWidget {
                       ),
                       child: Text(
                         l10n.subscribeNow,
-                        style: GoogleFonts.inter(
+                        style: AppText.body.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: AppColors.text,
@@ -190,7 +198,7 @@ class PlanDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 16),
                     child: Text(
                       planPrice(l10n, code),
-                      style: GoogleFonts.inter(
+                      style: AppText.heading.copyWith(
                         fontWeight: FontWeight.w800,
                         fontSize: 18,
                         color: priceColor(code),
@@ -233,7 +241,7 @@ class PlanDetailScreen extends StatelessWidget {
                               horizontal: 22, vertical: 18),
                           child: Text(
                             planName(l10n, collapsedCodes[i]),
-                            style: GoogleFonts.inter(
+                            style: AppText.heading.copyWith(
                               fontWeight: FontWeight.w700,
                               fontSize: 18,
                               color: AppColors.text,

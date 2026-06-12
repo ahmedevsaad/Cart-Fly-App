@@ -427,6 +427,8 @@ abstract class AppLocalizations {
   String get payMethodCard;
   String get payMethodPaypal;
   String get payMethodApple;
+  String get cardHolderName;
+  String get orderConfirmButton;
   String get cardNumber;
   String get cardNumberHint;
   String get cardExpiry;
@@ -439,6 +441,8 @@ abstract class AppLocalizations {
   // Plan confirmed
   String get planConfirmedThankYou;
   String planConfirmedBody(Object plan);
+  String get planConfirmedBodyPrefix;
+  String get planConfirmedBodySuffix;
   String get receiptPlan;
   String get receiptBilling;
   String get receiptBillingMonthly;

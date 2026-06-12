@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/plans.dart';
 import '../../l10n/app_localizations.dart';
@@ -86,7 +85,7 @@ class _PlanRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 22),
         child: Text(
           plan.name,
-          style: GoogleFonts.inter(
+          style: AppText.heading.copyWith(
             fontWeight: FontWeight.w700,
             fontSize: 18,
             color: AppColors.text,

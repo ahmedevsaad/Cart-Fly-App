@@ -1,12 +1,13 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 class ShippingCalculatorScreen extends StatelessWidget {
   const ShippingCalculatorScreen({super.key});
@@ -74,7 +75,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
             // ── Weight ────────────────────────────────────────────────
             Text(
               l10n.calcWeight,
-              style: GoogleFonts.inter(
+              style: AppText.caption.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
                 color: AppColors.mutedLabel,
@@ -91,13 +92,13 @@ class ShippingCalculatorScreen extends StatelessWidget {
                   horizontal: 12, vertical: 11),
               child: Row(
                 children: [
-                  const Icon(Icons.monitor_weight_outlined,
+                  CfIcons.cartCalculator(
                       size: 20, color: AppColors.navy),
                   const SizedBox(width: 11),
                   Expanded(
                     child: Text(
                       '2.5',
-                      style: GoogleFonts.inter(
+                      style: AppText.body.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: 15,
                         color: AppColors.text,
@@ -113,7 +114,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                         horizontal: 10, vertical: 5),
                     child: Text(
                       l10n.calcWeightUnit,
-                      style: GoogleFonts.inter(
+                      style: AppText.caption.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
                         color: AppColors.mutedLabel,
@@ -128,7 +129,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
             // ── Product Category ──────────────────────────────────────
             Text(
               l10n.calcProductCategory,
-              style: GoogleFonts.inter(
+              style: AppText.caption.copyWith(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
                 color: AppColors.mutedLabel,
@@ -140,7 +141,8 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 Expanded(
                   child: _CategoryChip(
                     label: l10n.calcCatElectronics,
-                    icon: Icons.desktop_windows_outlined,
+                    iconWidget: CfIcons.card(
+                        size: 20, color: AppColors.primary),
                     active: true,
                   ),
                 ),
@@ -148,7 +150,8 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 Expanded(
                   child: _CategoryChip(
                     label: l10n.calcCatFashion,
-                    icon: Icons.checkroom_outlined,
+                    iconWidget: CfIcons.stepBag(
+                        size: 20, color: AppColors.mutedLabel),
                     active: false,
                   ),
                 ),
@@ -156,7 +159,8 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 Expanded(
                   child: _CategoryChip(
                     label: l10n.calcCatAccessories,
-                    icon: Icons.shopping_bag_outlined,
+                    iconWidget: CfIcons.stepBox(
+                        size: 20, color: AppColors.mutedLabel),
                     active: false,
                   ),
                 ),
@@ -165,32 +169,43 @@ class ShippingCalculatorScreen extends StatelessWidget {
             const SizedBox(height: 18),
 
             // ── Calculate button ──────────────────────────────────────
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(13),
+            Semantics(
+              button: true,
+              label: l10n.calcCalculate,
+              child: SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
+                  ).copyWith(
+                    elevation: WidgetStateProperty.all(0),
+                    overlayColor: WidgetStateProperty.all(
+                        Colors.white.withValues(alpha: 0.1)),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  elevation: 0,
-                  shadowColor: Colors.transparent,
-                ).copyWith(
-                  elevation: WidgetStateProperty.all(0),
-                  overlayColor: WidgetStateProperty.all(
-                      Colors.white.withValues(alpha: 0.1)),
-                ),
-                icon: const Icon(Icons.calculate_outlined,
-                    size: 20, color: Colors.white),
-                label: Text(
-                  l10n.calcCalculate,
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CfIcons.cartCalculator(
+                          size: 20, color: Colors.white),
+                      const SizedBox(width: 10),
+                      Text(
+                        l10n.calcCalculate,
+                        style: AppText.body.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -210,7 +225,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                 children: [
                   Text(
                     l10n.calcEstimatedCost,
-                    style: GoogleFonts.inter(
+                    style: AppText.body.copyWith(
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                       color: AppColors.primary,
@@ -242,7 +257,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                     children: [
                       Text(
                         l10n.calcTotalEstimated,
-                        style: GoogleFonts.inter(
+                        style: AppText.body.copyWith(
                           fontWeight: FontWeight.w700,
                           fontSize: 15,
                           color: AppColors.primary,
@@ -250,7 +265,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                       ),
                       Text(
                         l10n.calcTotalVal,
-                        style: GoogleFonts.inter(
+                        style: AppText.heading.copyWith(
                           fontWeight: FontWeight.w800,
                           fontSize: 24,
                           color: AppColors.primary,
@@ -282,8 +297,10 @@ class ShippingCalculatorScreen extends StatelessWidget {
                       color: AppColors.deliveryIconBg,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.local_shipping_outlined,
-                        size: 22, color: AppColors.success),
+                    child: Center(
+                      child: CfIcons.stepTruck(
+                          size: 22, color: AppColors.success),
+                    ),
                   ),
                   const SizedBox(width: 13),
                   Expanded(
@@ -292,7 +309,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                       children: [
                         Text(
                           l10n.calcEstimatedDelivery,
-                          style: GoogleFonts.inter(
+                          style: AppText.caption.copyWith(
                             fontWeight: FontWeight.w700,
                             fontSize: 12.5,
                             color: AppColors.success,
@@ -301,7 +318,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                         const SizedBox(height: 1),
                         Text(
                           l10n.calcDeliveryDays,
-                          style: GoogleFonts.inter(
+                          style: AppText.heading.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: 19,
                             color: AppColors.text,
@@ -310,8 +327,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Icon(Icons.calendar_month_outlined,
-                      size: 22, color: AppColors.success),
+                  CfIcons.plans(size: 22, color: AppColors.success),
                 ],
               ),
             ),
@@ -384,7 +400,7 @@ class _StepCircle extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '$number',
-              style: GoogleFonts.inter(
+              style: AppText.heading.copyWith(
                 fontWeight: FontWeight.w800,
                 fontSize: 14,
                 color: active
@@ -396,7 +412,7 @@ class _StepCircle extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: AppText.caption.copyWith(
               fontWeight: active ? FontWeight.w700 : FontWeight.w600,
               fontSize: 11,
               color: active ? AppColors.primary : AppColors.mutedDisabled,
@@ -429,7 +445,7 @@ class _CountryField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
+          style: AppText.caption.copyWith(
             fontWeight: FontWeight.w700,
             fontSize: 12,
             color: AppColors.mutedLabel,
@@ -458,15 +474,14 @@ class _CountryField extends StatelessWidget {
               Expanded(
                 child: Text(
                   countryName,
-                  style: GoogleFonts.inter(
+                  style: AppText.body.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
                     color: AppColors.text,
                   ),
                 ),
               ),
-              const Icon(Icons.keyboard_arrow_down_rounded,
-                  size: 18, color: AppColors.muted),
+              CfIcons.chevronDown(size: 16, color: AppColors.muted),
             ],
           ),
         ),
@@ -480,12 +495,12 @@ class _CountryField extends StatelessWidget {
 class _CategoryChip extends StatelessWidget {
   const _CategoryChip({
     required this.label,
-    required this.icon,
+    required this.iconWidget,
     required this.active,
   });
 
   final String label;
-  final IconData icon;
+  final Widget iconWidget;
   final bool active;
 
   @override
@@ -502,15 +517,11 @@ class _CategoryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
       child: Column(
         children: [
-          Icon(
-            icon,
-            size: 20,
-            color: active ? AppColors.primary : AppColors.mutedLabel,
-          ),
+          iconWidget,
           const SizedBox(height: 5),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: AppText.caption.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 11.5,
               color: active ? AppColors.primary : AppColors.mutedLabel,
@@ -538,42 +549,38 @@ class _CostRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-        top: borderBottom ? 0 : 9,
-        bottom: borderBottom ? 9 : 0,
-      ),
-      decoration: borderBottom
-          ? const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.calcDivider,
-                  style: BorderStyle.solid,
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            top: borderBottom ? 0 : 9,
+            bottom: borderBottom ? 9 : 0,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                label,
+                style: AppText.body.copyWith(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  color: AppColors.text,
                 ),
               ),
-            )
-          : null,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: GoogleFonts.inter(
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: AppColors.text,
-            ),
+              Text(
+                value,
+                style: AppText.body.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: AppColors.text,
+                ),
+              ),
+            ],
           ),
-          Text(
-            value,
-            style: GoogleFonts.inter(
-              fontWeight: FontWeight.w700,
-              fontSize: 14,
-              color: AppColors.text,
-            ),
-          ),
-        ],
-      ),
+        ),
+        if (borderBottom)
+          CfDashedDivider(color: AppColors.calcDivider),
+      ],
     );
   }
 }
