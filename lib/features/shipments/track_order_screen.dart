@@ -95,7 +95,7 @@ class _TrackStepper extends StatelessWidget {
         return 1;
       case OrderStatus.shipped:
       case OrderStatus.ready:
-        return 1;
+        return 2;
       case OrderStatus.delivered:
         return 2;
     }
@@ -160,8 +160,7 @@ class _StepNode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 74,
+    return Expanded(
       child: Column(
         children: [
           Container(

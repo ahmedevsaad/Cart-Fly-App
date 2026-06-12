@@ -71,40 +71,48 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       // Frosted-glass CTA button
-                      GestureDetector(
-                        onTap: () => context.go(Routes.home),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.66),
+                      Semantics(
+                        button: true,
+                        label: 'Tap to create shipment',
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => context.go(Routes.home),
                             borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.4),
-                              width: 1,
-                            ),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 15),
-                          child: Row(
-                            children: [
-                              // Box/shipment icon
-                              const _ShipmentIcon(),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  'Tap to create shipment',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.66),
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color: Colors.white.withValues(alpha: 0.4),
+                                  width: 1,
                                 ),
                               ),
-                              const SizedBox(width: 12),
-                              // Double chevron right
-                              const _DoubleChevronIcon(),
-                            ],
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 15),
+                              child: Row(
+                                children: [
+                                  // Box/shipment icon
+                                  const _ShipmentIcon(),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text(
+                                      'Tap to create shipment',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // Double chevron right
+                                  const _DoubleChevronIcon(),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),

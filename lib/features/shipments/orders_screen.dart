@@ -92,17 +92,27 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         fontWeight: FontWeight.w800, fontSize: 22),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => context.push(Routes.createShipment),
-                  child: Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0D9488),
-                      borderRadius: BorderRadius.circular(10),
+                Semantics(
+                  button: true,
+                  label: 'Add new package',
+                  child: InkWell(
+                    onTap: () => context.push(Routes.createShipment),
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      // 44px hit area, 34px visual
+                      constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF0D9488),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.add_rounded,
+                            color: Colors.white, size: 18),
+                      ),
                     ),
-                    child: const Icon(Icons.add_rounded,
-                        color: Colors.white, size: 18),
                   ),
                 ),
               ],

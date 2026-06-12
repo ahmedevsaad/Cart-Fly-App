@@ -50,7 +50,10 @@ class ConfirmOrderScreen extends StatelessWidget {
             const SizedBox(height: 18),
 
             // ── 1-2-3 step indicator ──────────────────────────────────
-            _StepIndicator(activeStep: 0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: _StepIndicator(activeStep: 0),
+            ),
             const SizedBox(height: 20),
 
             // ── Info card ─────────────────────────────────────────────

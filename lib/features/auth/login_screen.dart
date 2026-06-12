@@ -137,29 +137,33 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             // "Don't have an account? Register" pinned at bottom
-            Padding(
-              padding: const EdgeInsets.only(top: 18, bottom: 18),
-              child: Center(
-                child: GestureDetector(
-                  onTap: () => context.push(Routes.register),
-                  child: RichText(
-                    text: TextSpan(
-                      style: GoogleFonts.inter(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.muted,
-                      ),
-                      children: [
-                        const TextSpan(text: "Don't have an account? "),
-                        TextSpan(
-                          text: 'Register',
-                          style: GoogleFonts.inter(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primary,
-                          ),
+            Semantics(
+              button: true,
+              label: 'Register — create a new account',
+              child: InkWell(
+                onTap: () => context.push(Routes.register),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        style: GoogleFonts.inter(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.muted,
                         ),
-                      ],
+                        children: [
+                          const TextSpan(text: "Don't have an account? "),
+                          TextSpan(
+                            text: 'Register',
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

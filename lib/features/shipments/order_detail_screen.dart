@@ -180,36 +180,22 @@ class _OrderStepper extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                // Circle + connector row
+                // Circle + connector row — fully responsive, no fixed px
                 SizedBox(
                   height: 38,
-                  child: Stack(
-                    alignment: Alignment.center,
+                  child: Row(
                     children: [
-                      // Left connector
-                      if (i > 0)
-                        Positioned(
-                          left: 0,
-                          right: 19,
-                          child: Container(
-                            height: 3,
-                            color: i <= activeStep
-                                ? _connectorActive
-                                : _connectorPending,
-                          ),
-                        ),
-                      // Right connector
-                      if (i < _steps.length - 1)
-                        Positioned(
-                          left: 19,
-                          right: 0,
-                          child: Container(
-                            height: 3,
-                            color: i < activeStep
-                                ? _connectorActive
-                                : _connectorPending,
-                          ),
-                        ),
+                      // Left half-connector (hidden for first step)
+                      Expanded(
+                        child: i > 0
+                            ? Container(
+                                height: 3,
+                                color: i <= activeStep
+                                    ? _connectorActive
+                                    : _connectorPending,
+                              )
+                            : const SizedBox.shrink(),
+                      ),
                       // Circle
                       _StepCircle(
                         stepDef: _steps[i],
@@ -218,6 +204,17 @@ class _OrderStepper extends StatelessWidget {
                         activeIcon: _activeIcon,
                         pendingBg: _pendingBg,
                         pendingBorder: _pendingBorder,
+                      ),
+                      // Right half-connector (hidden for last step)
+                      Expanded(
+                        child: i < _steps.length - 1
+                            ? Container(
+                                height: 3,
+                                color: i < activeStep
+                                    ? _connectorActive
+                                    : _connectorPending,
+                              )
+                            : const SizedBox.shrink(),
                       ),
                     ],
                   ),

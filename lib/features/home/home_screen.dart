@@ -49,8 +49,12 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Icon(Icons.notifications_none_rounded,
-                    color: AppColors.primary, size: 26),
+                Semantics(
+                  button: true,
+                  label: 'Notifications',
+                  child: Icon(Icons.notifications_none_rounded,
+                      color: AppColors.primary, size: 26),
+                ),
               ],
             ),
             const SizedBox(height: 18),
@@ -123,40 +127,48 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // ── My address row ────────────────────────────────────────
-            GestureDetector(
-              onTap: () => context.push(Routes.myAddress),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.fieldBg,
+            Semantics(
+              button: true,
+              label: 'My address',
+              child: Material(
+                color: AppColors.fieldBg,
+                borderRadius: BorderRadius.circular(14),
+                child: InkWell(
+                  onTap: () => context.push(Routes.myAddress),
                   borderRadius: BorderRadius.circular(14),
-                  boxShadow: AppColors.shadowSoft,
-                ),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 14),
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on_outlined,
-                        size: 24, color: AppColors.text),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'My address',
-                        style: AppText.bodyMedium.copyWith(
-                            fontWeight: FontWeight.w700, fontSize: 15),
-                      ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: AppColors.shadowSoft,
                     ),
-                    Container(
-                      width: 26,
-                      height: 26,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border:
-                            Border.all(color: AppColors.text, width: 2),
-                      ),
-                      child: const Icon(Icons.arrow_forward,
-                          size: 14, color: AppColors.text),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.location_on_outlined,
+                            size: 24, color: AppColors.text),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'My address',
+                            style: AppText.bodyMedium.copyWith(
+                                fontWeight: FontWeight.w700, fontSize: 15),
+                          ),
+                        ),
+                        Container(
+                          width: 26,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border:
+                                Border.all(color: AppColors.text, width: 2),
+                          ),
+                          child: const Icon(Icons.arrow_forward,
+                              size: 14, color: AppColors.text),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -185,42 +197,51 @@ class _ServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.fieldBg,
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        color: AppColors.fieldBg,
+        borderRadius: BorderRadius.circular(14),
+        child: InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: AppColors.shadowSoft,
-        ),
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: AppColors.shadowSoft,
+            ),
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                icon,
-                Container(
-                  width: 26,
-                  height: 26,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.text, width: 2),
-                  ),
-                  child: const Icon(Icons.arrow_forward,
-                      size: 14, color: AppColors.text),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    icon,
+                    Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.text, width: 2),
+                      ),
+                      child: const Icon(Icons.arrow_forward,
+                          size: 14, color: AppColors.text),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Text(
+                  label,
+                  style: AppText.bodyMedium.copyWith(
+                      fontWeight: FontWeight.w700, fontSize: 15, height: 1.2),
                 ),
               ],
             ),
-            const Spacer(),
-            Text(
-              label,
-              style: AppText.bodyMedium.copyWith(
-                  fontWeight: FontWeight.w700, fontSize: 15, height: 1.2),
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -74,16 +74,24 @@ class _WarehouseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.fieldBg,
+    return Semantics(
+      button: true,
+      label: name,
+      child: Material(
+        color: AppColors.fieldBg,
+        borderRadius: BorderRadius.circular(14),
+        child: InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: AppColors.shadowSoft,
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: AppColors.shadowSoft,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Thumbnail
@@ -129,8 +137,11 @@ class _WarehouseCard extends StatelessWidget {
               ),
             ),
           ],
+            ),
+          ),
         ),
       ),
-    );
+    ),
+  );
   }
 }

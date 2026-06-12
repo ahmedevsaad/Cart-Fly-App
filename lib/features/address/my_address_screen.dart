@@ -102,8 +102,8 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                           onTap: () => setState(() => _selected = code),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 150),
-                            margin: EdgeInsets.only(
-                                right: code == 'cn' ? 9 : 0),
+                            margin: EdgeInsetsDirectional.only(
+                                end: code == 'cn' ? 9 : 0),
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: code == _selected
@@ -319,19 +319,27 @@ class _AddressRow extends StatelessWidget {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: onCopy,
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: AppColors.tagBg,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Icon(
-                    Icons.copy_rounded,
-                    size: 15,
-                    color: AppColors.mutedLabel,
+              Semantics(
+                button: true,
+                label: 'Copy $label',
+                child: InkWell(
+                  onTap: onCopy,
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    // visual 30×30, hit area extended to ≥44px via padding
+                    constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.tagBg,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    width: 30,
+                    height: 30,
+                    child: const Icon(
+                      Icons.copy_rounded,
+                      size: 15,
+                      color: AppColors.mutedLabel,
+                    ),
                   ),
                 ),
               ),

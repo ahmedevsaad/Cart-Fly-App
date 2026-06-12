@@ -203,8 +203,8 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                     onTap: () => setState(() => _category = cat),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 150),
-                      margin: EdgeInsets.only(
-                          right: cat != _Category.other ? 8 : 0),
+                      margin: EdgeInsetsDirectional.only(
+                          end: cat != _Category.other ? 8 : 0),
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 6),
                       decoration: BoxDecoration(
@@ -372,36 +372,44 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             // ── Add package / submit ──────────────────────────────────
             _loading
                 ? const Center(child: CircularProgressIndicator())
-                : GestureDetector(
-                    onTap: _submit,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0D9488),
+                : Semantics(
+                    button: true,
+                    label: 'Add package',
+                    child: Material(
+                      color: const Color(0xFF0D9488),
+                      borderRadius: BorderRadius.circular(13),
+                      child: InkWell(
+                        onTap: _submit,
                         borderRadius: BorderRadius.circular(13),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x470D9488),
-                            blurRadius: 18,
-                            offset: Offset(0, 8),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x470D9488),
+                                blurRadius: 18,
+                                offset: Offset(0, 8),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.add_rounded,
-                              color: Colors.white, size: 20),
-                          const SizedBox(width: 10),
-                          Text(
-                            'Add package',
-                            style: GoogleFonts.inter(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.add_rounded,
+                                  color: Colors.white, size: 20),
+                              const SizedBox(width: 10),
+                              Text(
+                                'Add package',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

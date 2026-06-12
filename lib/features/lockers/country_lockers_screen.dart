@@ -144,36 +144,43 @@ class _CopyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Clipboard.setData(ClipboardData(text: addr.fullText));
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.addressCopied),
-            duration: const Duration(seconds: 2),
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: AppColors.chipBlue,
+    return Semantics(
+      button: true,
+      label: l10n.copyAddress,
+      child: Material(
+        color: AppColors.chipBlue,
+        borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          onTap: () {
+            Clipboard.setData(ClipboardData(text: addr.fullText));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(l10n.addressCopied),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
           borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.copy_rounded,
-                size: 13, color: AppColors.primary),
-            const SizedBox(width: 5),
-            Text(
-              l10n.copyAddress,
-              style: AppText.caption.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 12,
-                  color: AppColors.primary),
+          child: Container(
+            // min 44px tap target via padding
+            constraints: const BoxConstraints(minHeight: 44),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.copy_rounded,
+                    size: 13, color: AppColors.primary),
+                const SizedBox(width: 5),
+                Text(
+                  l10n.copyAddress,
+                  style: AppText.caption.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                      color: AppColors.primary),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
