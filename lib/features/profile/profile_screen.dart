@@ -8,6 +8,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 /// Maps ISO currency code → display label shown in the profile field.
 const _kCurrencyLabels = <String, String>{
@@ -132,7 +133,7 @@ class ProfileScreen extends StatelessWidget {
           Center(
             child: ElevatedButton.icon(
               onPressed: () => context.read<AuthProvider>().logout(),
-              icon: const Icon(Icons.logout, size: 18, color: Colors.white),
+              icon: CfIcons.signOut(size: 18, color: Colors.white),
               label: Text(
                 l.profileSignOut,
                 style: GoogleFonts.inter(

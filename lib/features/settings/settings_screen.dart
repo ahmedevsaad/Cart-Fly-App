@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/icons/cf_icons.dart';
+
 import '../../features/auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
@@ -143,7 +145,7 @@ class SettingsScreen extends StatelessWidget {
           Center(
             child: ElevatedButton.icon(
               onPressed: () => context.read<AuthProvider>().logout(),
-              icon: const Icon(Icons.logout, size: 18, color: Colors.white),
+              icon: CfIcons.signOut(size: 18, color: Colors.white),
               label: Text(
                 l.settingsSignOut,
                 style: GoogleFonts.inter(
@@ -263,10 +265,10 @@ class _ChevronCircle extends StatelessWidget {
         shape: BoxShape.circle,
         border: Border.all(color: AppColors.primary, width: 1.7),
       ),
-      child: Icon(
-        isRtl ? Icons.chevron_left : Icons.chevron_right,
-        size: 14,
-        color: AppColors.primary,
+      child: Center(
+        child: isRtl
+            ? CfIcons.chevronLeft(size: 14, color: AppColors.primary)
+            : CfIcons.chevronRight(size: 14, color: AppColors.primary),
       ),
     );
   }
@@ -318,10 +320,10 @@ class _InfoCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: iconColor, width: 1.7),
               ),
-              child: Icon(
-                isRtl ? Icons.chevron_left : Icons.chevron_right,
-                size: 13,
-                color: iconColor,
+              child: Center(
+                child: isRtl
+                    ? CfIcons.chevronLeft(size: 13, color: iconColor)
+                    : CfIcons.chevronRight(size: 13, color: iconColor),
               ),
             ),
           ],

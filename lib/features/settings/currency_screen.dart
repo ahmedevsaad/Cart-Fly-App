@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/icons/cf_icons.dart';
+
 import '../../data/repositories/user_repository.dart';
 import '../../features/auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
@@ -165,10 +167,10 @@ class _PrefsRow extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: AppColors.primary, width: 1.7),
               ),
-              child: Icon(
-                isRtl ? Icons.chevron_left : Icons.chevron_right,
-                size: 14,
-                color: AppColors.primary,
+              child: Center(
+                child: isRtl
+                    ? CfIcons.chevronLeft(size: 14, color: AppColors.primary)
+                    : CfIcons.chevronRight(size: 14, color: AppColors.primary),
               ),
             ),
           ],
@@ -207,10 +209,8 @@ class _ActiveHeader extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.primary, width: 1.7),
             ),
-            child: const Icon(
-              Icons.keyboard_arrow_up,
-              size: 14,
-              color: AppColors.primary,
+            child: Center(
+              child: CfIcons.chevronUp(size: 14, color: AppColors.primary),
             ),
           ),
         ],
@@ -256,10 +256,8 @@ class _RadioRow extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: AppColors.primary,
                     ),
-                    child: const Icon(
-                      Icons.check,
-                      size: 12,
-                      color: Colors.white,
+                    child: Center(
+                      child: CfIcons.stepCheck(size: 12, color: Colors.white),
                     ),
                   )
                 : Container(
