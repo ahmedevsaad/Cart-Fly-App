@@ -16,7 +16,6 @@ import '../features/payment/payment_success_screen.dart';
 import '../features/plans/plan_detail_screen.dart';
 import '../features/plans/plans_screen.dart';
 import '../features/lockers/lockers_screen.dart';
-import '../features/menu/menu_screen.dart';
 import '../features/profile/change_password_screen.dart';
 import '../features/profile/edit_profile_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -32,7 +31,6 @@ import '../features/shipments/track_order_screen.dart';
 import '../features/calculator/shipping_calculator_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/support/support_screen.dart';
-import '../features/warehouses/warehouse_detail_screen.dart';
 import '../features/warehouses/warehouses_screen.dart';
 import '../features/welcome/welcome_screen.dart';
 import '../widgets/cf_bottom_nav.dart';
@@ -54,12 +52,12 @@ GoRouter buildRouter(AuthProvider auth) {
       }
 
       final s = auth.state.status;
-      const public = {Routes.splash, Routes.login, Routes.register, Routes.forgot};
+      const public = {Routes.splash, Routes.login, Routes.register, Routes.forgot, Routes.welcome};
       if (s == AuthStatus.loading) return loc == Routes.splash ? null : Routes.splash;
       if (s == AuthStatus.pendingOtp) return loc == Routes.verify ? null : Routes.verify;
       if (s == AuthStatus.unauthenticated) {
-        // Once auth is determined, leave splash screen and go to login.
-        if (loc == Routes.splash) return Routes.login;
+        // Once auth is determined, leave splash and go to welcome.
+        if (loc == Routes.splash) return Routes.welcome;
         return public.contains(loc) ? null : Routes.login;
       }
       if (public.contains(loc) || loc == Routes.verify) return Routes.home;
@@ -99,9 +97,6 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(path: Routes.forgot, builder: (_, __) => const ForgotPasswordScreen()),
       GoRoute(path: Routes.welcome, builder: (_, __) => const WelcomeScreen()),
       GoRoute(path: Routes.warehouses, builder: (_, __) => const WarehousesScreen()),
-      GoRoute(
-          path: Routes.warehouseDetail,
-          builder: (_, s) => WarehouseDetailScreen(code: s.pathParameters['code']!)),
       GoRoute(path: Routes.lockers, builder: (_, __) => const LockersScreen()),
       GoRoute(
           path: Routes.lockersCountry,
@@ -110,7 +105,6 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(
           path: Routes.createShipment,
           builder: (_, __) => const CreateShipmentScreen()),
-      GoRoute(path: Routes.menu, builder: (_, __) => const MenuScreen()),
       GoRoute(
           path: Routes.orderDetail,
           builder: (_, s) =>

@@ -55,7 +55,7 @@ class WarehousesScreen extends StatelessWidget {
                   _WarehouseCard(
                     code: code,
                     name: warehouseByCode(code).displayName,
-                    onTap: () => context.push('/warehouses/$code'),
+                    onTap: () => context.push('/lockers/$code'),
                   ),
               ],
             ),
@@ -69,7 +69,7 @@ class WarehousesScreen extends StatelessWidget {
                 child: _WarehouseCard(
                   code: _extraCode,
                   name: warehouseByCode(_extraCode).displayName,
-                  onTap: () => context.push('/warehouses/$_extraCode'),
+                  onTap: () => context.push('/lockers/$_extraCode'),
                 ),
               ),
             ),

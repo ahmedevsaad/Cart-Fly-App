@@ -238,5 +238,10 @@
 
   "advanceStatus": "تقدم الحالة (تجريبي)",
 
-  "paymentDemoHint": "وضع تجريبي — لا يوجد خصم حقيقي"
+  "paymentDemoHint": "وضع تجريبي — لا يوجد خصم حقيقي",
+  "paymentDeclineHint": "استخدم 4000… لمحاكاة الرفض",
+  "proceedToCheckout": "المتابعة للدفع",
+  "paymentErrorTitle": "فشل الدفع",
+  "paymentErrorBody": "تعذّر معالجة دفعتك. يرجى التحقق من بيانات البطاقة والمحاولة مجدداً.",
+  "tryAgain": "حاول مجدداً"
 }

@@ -242,5 +242,10 @@
 
   "advanceStatus": "Advance status (demo)",
 
-  "paymentDemoHint": "Demo mode — no real charge"
+  "paymentDemoHint": "Demo mode — no real charge",
+  "paymentDeclineHint": "Use 4000… to simulate a decline",
+  "proceedToCheckout": "Proceed to checkout",
+  "paymentErrorTitle": "Payment failed",
+  "paymentErrorBody": "Your payment could not be processed. Please check your card details and try again.",
+  "tryAgain": "Try again"
 }

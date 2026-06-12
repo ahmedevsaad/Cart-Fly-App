@@ -70,14 +70,14 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      // Frosted-glass CTA button
+                      // Frosted-glass CTA button — navigates to Register
                       Semantics(
                         button: true,
-                        label: 'Tap to create shipment',
+                        label: 'Get started — create an account',
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () => context.go(Routes.home),
+                            onTap: () => context.go(Routes.register),
                             borderRadius: BorderRadius.circular(14),
                             child: Container(
                               decoration: BoxDecoration(
@@ -97,7 +97,7 @@ class WelcomeScreen extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Text(
-                                      'Tap to create shipment',
+                                      'Get started',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.inter(
                                         fontSize: 16,
@@ -109,6 +109,52 @@ class WelcomeScreen extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   // Double chevron right
                                   const _DoubleChevronIcon(),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      // Secondary link — existing users
+                      Semantics(
+                        button: true,
+                        label: 'Log in to existing account',
+                        child: GestureDetector(
+                          onTap: () => context.go(Routes.login),
+                          child: Center(
+                            child: RichText(
+                              text: TextSpan(
+                                style: GoogleFonts.inter(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                  shadows: const [
+                                    Shadow(
+                                      color: Color(0x99000000),
+                                      blurRadius: 8,
+                                    ),
+                                  ],
+                                ),
+                                children: [
+                                  const TextSpan(
+                                      text: 'I already have an account — '),
+                                  TextSpan(
+                                    text: 'Log in',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Colors.white,
+                                      shadows: const [
+                                        Shadow(
+                                          color: Color(0x99000000),
+                                          blurRadius: 8,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

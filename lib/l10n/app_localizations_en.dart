@@ -675,4 +675,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentDemoHint => 'Demo mode — no real charge';
+
+  @override
+  String get paymentDeclineHint => 'Use 4000… to simulate a decline';
+
+  @override
+  String get proceedToCheckout => 'Proceed to checkout';
+
+  @override
+  String get paymentErrorTitle => 'Payment failed';
+
+  @override
+  String get paymentErrorBody => 'Your payment could not be processed. Please check your card details and try again.';
+
+  @override
+  String get tryAgain => 'Try again';
 }

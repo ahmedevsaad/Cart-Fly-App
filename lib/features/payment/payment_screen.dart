@@ -65,7 +65,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String get _orderId =>
       _isOrderMode ? widget.forItem.substring('order_'.length) : '';
 
+  bool get _isDeclined => _cardCtrl.text.startsWith('4000');
+
   Future<void> _confirm() async {
+    // Simulate decline for cards starting with 4000.
+    if (_isDeclined) {
+      if (mounted) context.push(Routes.paymentError);
+      return;
+    }
     if (_isPlanMode) {
       final planProvider = context.read<PlanProvider>();
       final authProvider = context.read<AuthProvider>();
@@ -396,6 +403,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 2),
+            Center(
+              child: Text(
+                l10n.paymentDeclineHint,
+                style: AppText.caption.copyWith(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.mutedDisabled,
+                ),
+              ),
+            ),
             const SizedBox(height: 6),
 
             // Security note
@@ -489,6 +507,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: AppColors.planPrime,
+                ),
+              ),
+            ),
+            const SizedBox(height: 2),
+            Center(
+              child: Text(
+                l10n.paymentDeclineHint,
+                style: AppText.caption.copyWith(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.mutedDisabled,
                 ),
               ),
             ),

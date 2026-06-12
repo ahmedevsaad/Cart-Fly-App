@@ -146,6 +146,37 @@ class OrderDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
+            // ── Proceed to checkout button ────────────────────────────
+            GestureDetector(
+              onTap: () => context.push(
+                  Routes.confirmOrder.replaceFirst(':id', order.id)),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  color: AppColors.teal,
+                  borderRadius:
+                      BorderRadius.circular(AppColors.radius),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x470D9488),
+                      blurRadius: 14,
+                      offset: Offset(0, 6),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  'Proceed to checkout',
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+
             // ── Advance status (demo) ────────────────────────────────
             if (order.status != OrderStatus.delivered)
               _AdvanceButton(orderId: order.id),

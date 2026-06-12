@@ -675,4 +675,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get paymentDemoHint => 'وضع تجريبي — لا يوجد خصم حقيقي';
+
+  @override
+  String get paymentDeclineHint => 'استخدم 4000… لمحاكاة الرفض';
+
+  @override
+  String get proceedToCheckout => 'المتابعة للدفع';
+
+  @override
+  String get paymentErrorTitle => 'فشل الدفع';
+
+  @override
+  String get paymentErrorBody => 'تعذّر معالجة دفعتك. يرجى التحقق من بيانات البطاقة والمحاولة مجدداً.';
+
+  @override
+  String get tryAgain => 'حاول مجدداً';
 }

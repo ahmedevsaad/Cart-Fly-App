@@ -10,11 +10,9 @@ class Routes {
   // shell tabs
   static const home = '/home';
   static const profile = '/profile';
-  static const menu = '/menu';
   static const settings = '/settings';
   // pushed flows
   static const warehouses = '/warehouses';
-  static const warehouseDetail = '/warehouses/:code';
   static const lockers = '/lockers';
   static const lockersCountry = '/lockers/:code';
   static const createShipment = '/shipments/new';

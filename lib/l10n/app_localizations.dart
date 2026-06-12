@@ -1414,6 +1414,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Demo mode — no real charge'**
   String get paymentDemoHint;
+
+  /// No description provided for @paymentDeclineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 4000… to simulate a decline'**
+  String get paymentDeclineHint;
+
+  /// No description provided for @proceedToCheckout.
+  ///
+  /// In en, this message translates to:
+  /// **'Proceed to checkout'**
+  String get proceedToCheckout;
+
+  /// No description provided for @paymentErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed'**
+  String get paymentErrorTitle;
+
+  /// No description provided for @paymentErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment could not be processed. Please check your card details and try again.'**
+  String get paymentErrorBody;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
