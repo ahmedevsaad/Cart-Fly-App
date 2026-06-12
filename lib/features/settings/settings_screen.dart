@@ -75,7 +75,10 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 8),
           _SettingsGroup(
             rows: [
-              _SettingsRow(label: l.settingsHelpCenter),
+              _SettingsRow(
+                label: l.settingsHelpCenter,
+                onTap: () => context.push(Routes.howItWorks),
+              ),
               _SettingsRow(
                 label: l.settingsHaveAnIssue,
                 onTap: () => context.push(Routes.support),
