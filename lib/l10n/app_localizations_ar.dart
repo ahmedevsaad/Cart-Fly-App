@@ -191,4 +191,224 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get statusDelivered => 'تم التسليم';
+
+  // Plans
+  @override
+  String get ourPlans => 'خططنا';
+
+  @override
+  String get tapPlanHint => 'اضغط على خطة لمعرفة ما تتضمنه.';
+
+  @override
+  String get planBasicName => 'السلة الأساسية';
+
+  @override
+  String get planSmartName => 'السلة الذكية';
+
+  @override
+  String get planPrimeName => 'السلة المميزة';
+
+  @override
+  String get planBasicDesc =>
+      'ابدأ مع كارت فلاي مجاناً. اوصل إلى عناوين المستودعات وميزات إدارة الطلبات الأساسية';
+
+  @override
+  String get planBasicPrice => 'مجاناً';
+
+  @override
+  String get planSmartDesc =>
+      'افتح قسائم حصرية واستمتع بحاسبة الطلبات المدمجة لتقديرات تسوق دقيقة وسريعة.';
+
+  @override
+  String get planSmartFeatures =>
+      '• قسائم خصم\n• حاسبة تكلفة طلبات فورية\n• دعم سهل لإتمام الطلبات';
+
+  @override
+  String get planSmartPrice => '12.33 دولار/شهرياً';
+
+  @override
+  String get planPrimeDesc =>
+      'وفّر أكثر على كل طلب بخصومات مميزة وعروض السوائل وحسابات فورية للأسعار.';
+
+  @override
+  String get planPrimeFeatures =>
+      '• معدلات خصم أعلى\n• خصومات على المنتجات السائلة\n• خدمة الحاسبة الذكية';
+
+  @override
+  String get planPrimePrice => '19.99 دولار/شهرياً';
+
+  @override
+  String get subscribeNow => 'اشترك الآن';
+
+  // Calculator
+  @override
+  String get calcTitle => 'حاسبة الشحن';
+
+  @override
+  String get calcSubtitle => 'أدخل التفاصيل أدناه لحساب تكلفة الشحن.';
+
+  @override
+  String get calcStep1 => 'التفاصيل';
+
+  @override
+  String get calcStep2 => 'الحساب';
+
+  @override
+  String get calcStep3 => 'النتيجة';
+
+  @override
+  String get calcCountryFrom => 'من دولة';
+
+  @override
+  String get calcCountryTo => 'إلى دولة';
+
+  @override
+  String get calcCountryChina => 'الصين';
+
+  @override
+  String get calcCountryEgypt => 'مصر';
+
+  @override
+  String get calcWeight => 'الوزن';
+
+  @override
+  String get calcWeightUnit => 'كجم';
+
+  @override
+  String get calcProductCategory => 'فئة المنتج';
+
+  @override
+  String get calcCatElectronics => 'إلكترونيات';
+
+  @override
+  String get calcCatFashion => 'موضة';
+
+  @override
+  String get calcCatAccessories => 'إكسسوارات';
+
+  @override
+  String get calcCalculate => 'احسب';
+
+  @override
+  String get calcEstimatedCost => 'التكلفة التقديرية';
+
+  @override
+  String get calcShippingCost => 'تكلفة الشحن';
+
+  @override
+  String get calcCustomsFee => 'رسوم الجمارك';
+
+  @override
+  String get calcServiceFee => 'رسوم الخدمة';
+
+  @override
+  String get calcTotalEstimated => 'إجمالي التكلفة التقديرية';
+
+  @override
+  String get calcShippingVal => r'$12.00';
+
+  @override
+  String get calcCustomsVal => r'$8.00';
+
+  @override
+  String get calcServiceVal => r'$3.00';
+
+  @override
+  String get calcTotalVal => r'$23.00';
+
+  @override
+  String get calcEstimatedDelivery => 'التسليم المتوقع';
+
+  @override
+  String get calcDeliveryDays => '7 – 10 أيام';
+
+  // Plan checkout
+  @override
+  String get checkoutTitle => 'الدفع';
+
+  @override
+  String get checkoutSubtitle => 'أكّد اشتراكك وادفع بأمان.';
+
+  @override
+  String get checkoutPlanName => 'السلة المميزة';
+
+  @override
+  String get checkoutBilledMonthly => 'يُحصَّل شهرياً';
+
+  @override
+  String get checkoutPlanPrice => r'$19.99';
+
+  @override
+  String get checkoutPerMonth => '/شهر';
+
+  @override
+  String get paymentMethod => 'طريقة الدفع';
+
+  @override
+  String get payMethodCard => 'بطاقة';
+
+  @override
+  String get payMethodPaypal => 'باي بال';
+
+  @override
+  String get payMethodApple => 'آبل';
+
+  @override
+  String get cardNumber => 'رقم البطاقة';
+
+  @override
+  String get cardNumberHint => '4242 4242 4242 4242';
+
+  @override
+  String get cardExpiry => 'تاريخ الانتهاء';
+
+  @override
+  String get cardExpiryHint => '08 / 28';
+
+  @override
+  String get cardCvv => 'CVV';
+
+  @override
+  String get totalToday => 'الإجمالي اليوم';
+
+  @override
+  String get payButton => r'ادفع $19.99';
+
+  @override
+  String get securedEncryption => 'مؤمَّن بتشفير 256 بت';
+
+  // Plan confirmed
+  @override
+  String get planConfirmedThankYou => 'شكراً لك!';
+
+  @override
+  String planConfirmedBody(Object plan) =>
+      'تمّت عملية الدفع بنجاح وخطتك $plan نشطة الآن.';
+
+  @override
+  String get receiptPlan => 'الخطة';
+
+  @override
+  String get receiptBilling => 'الفوترة';
+
+  @override
+  String get receiptBillingMonthly => 'شهري';
+
+  @override
+  String get receiptNextRenewal => 'التجديد القادم';
+
+  @override
+  String get receiptRenewalDate => '12 يوليو 2026';
+
+  @override
+  String get receiptAmountPaid => 'المبلغ المدفوع';
+
+  @override
+  String get receiptAmountVal => r'$19.99';
+
+  @override
+  String get backToHome => 'العودة للرئيسية';
+
+  @override
+  String get viewSubscription => 'عرض اشتراكي';
 }

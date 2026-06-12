@@ -27,6 +27,7 @@ import '../features/shipments/create_shipment_screen.dart';
 import '../features/shipments/order_detail_screen.dart';
 import '../features/shipments/orders_screen.dart';
 import '../features/shipments/track_order_screen.dart';
+import '../features/calculator/shipping_calculator_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/support/support_screen.dart';
 import '../features/warehouses/warehouse_detail_screen.dart';
@@ -71,6 +72,7 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(path: Routes.policy, builder: (_, __) => const PolicyScreen()),
       GoRoute(path: Routes.howItWorks, builder: (_, __) => const HowItWorksScreen()),
       GoRoute(path: Routes.support, builder: (_, __) => const SupportScreen()),
+      GoRoute(path: Routes.calculator, builder: (_, __) => const ShippingCalculatorScreen()),
       GoRoute(path: Routes.plans, builder: (_, __) => const PlansScreen()),
       GoRoute(
           path: Routes.planDetail,

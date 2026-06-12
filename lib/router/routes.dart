@@ -34,4 +34,5 @@ class Routes {
   static const changePassword = '/profile/password';
   static const settingsLanguage = '/settings/language';
   static const settingsCurrency = '/settings/currency';
+  static const calculator = '/calculator';
 }

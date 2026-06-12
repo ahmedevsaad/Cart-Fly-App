@@ -116,8 +116,7 @@ class HomeScreen extends StatelessWidget {
                 _ServiceCard(
                   label: l10n.serviceCalculator,
                   icon: const _CalculatorIcon(),
-                  // Calculator route doesn't exist yet — placeholder.
-                  onTap: () => context.go(Routes.home),
+                  onTap: () => context.push(Routes.calculator),
                 ),
               ],
             ),

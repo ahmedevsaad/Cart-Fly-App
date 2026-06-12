@@ -370,6 +370,84 @@ abstract class AppLocalizations {
   String get statusShipped;
   String get statusInTransit;
   String get statusDelivered;
+
+  // Plans
+  String get ourPlans;
+  String get tapPlanHint;
+  String get planBasicName;
+  String get planSmartName;
+  String get planPrimeName;
+  String get planBasicDesc;
+  String get planBasicPrice;
+  String get planSmartDesc;
+  String get planSmartFeatures;
+  String get planSmartPrice;
+  String get planPrimeDesc;
+  String get planPrimeFeatures;
+  String get planPrimePrice;
+  String get subscribeNow;
+
+  // Calculator
+  String get calcTitle;
+  String get calcSubtitle;
+  String get calcStep1;
+  String get calcStep2;
+  String get calcStep3;
+  String get calcCountryFrom;
+  String get calcCountryTo;
+  String get calcCountryChina;
+  String get calcCountryEgypt;
+  String get calcWeight;
+  String get calcWeightUnit;
+  String get calcProductCategory;
+  String get calcCatElectronics;
+  String get calcCatFashion;
+  String get calcCatAccessories;
+  String get calcCalculate;
+  String get calcEstimatedCost;
+  String get calcShippingCost;
+  String get calcCustomsFee;
+  String get calcServiceFee;
+  String get calcTotalEstimated;
+  String get calcShippingVal;
+  String get calcCustomsVal;
+  String get calcServiceVal;
+  String get calcTotalVal;
+  String get calcEstimatedDelivery;
+  String get calcDeliveryDays;
+
+  // Plan checkout
+  String get checkoutTitle;
+  String get checkoutSubtitle;
+  String get checkoutPlanName;
+  String get checkoutBilledMonthly;
+  String get checkoutPlanPrice;
+  String get checkoutPerMonth;
+  String get paymentMethod;
+  String get payMethodCard;
+  String get payMethodPaypal;
+  String get payMethodApple;
+  String get cardNumber;
+  String get cardNumberHint;
+  String get cardExpiry;
+  String get cardExpiryHint;
+  String get cardCvv;
+  String get totalToday;
+  String get payButton;
+  String get securedEncryption;
+
+  // Plan confirmed
+  String get planConfirmedThankYou;
+  String planConfirmedBody(Object plan);
+  String get receiptPlan;
+  String get receiptBilling;
+  String get receiptBillingMonthly;
+  String get receiptNextRenewal;
+  String get receiptRenewalDate;
+  String get receiptAmountPaid;
+  String get receiptAmountVal;
+  String get backToHome;
+  String get viewSubscription;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

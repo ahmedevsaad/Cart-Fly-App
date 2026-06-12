@@ -191,4 +191,225 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statusDelivered => 'Delivered';
+
+  // Plans
+  @override
+  String get ourPlans => 'Our Plans';
+
+  @override
+  String get tapPlanHint => 'Tap a plan to see what\'s included.';
+
+  @override
+  String get planBasicName => 'Basic cart';
+
+  @override
+  String get planSmartName => 'Smart cart';
+
+  @override
+  String get planPrimeName => 'Prime cart';
+
+  @override
+  String get planBasicDesc =>
+      'Get started with CartFly at no cost. Access warehouse addresses and basic order management features';
+
+  @override
+  String get planBasicPrice => 'Free';
+
+  @override
+  String get planSmartDesc =>
+      'Unlock exclusive vouchers and enjoy our built-in order calculator for fast, accurate online shopping estimates.';
+
+  @override
+  String get planSmartFeatures =>
+      '• Discount vouchers\n• Instant order cost calculator\n• Easy online checkout support';
+
+  @override
+  String get planSmartPrice => '12.33 USD/per month';
+
+  @override
+  String get planPrimeDesc =>
+      'Save more on every order with premium discounts, liquid offers, and instant price calculations.';
+
+  @override
+  String get planPrimeFeatures =>
+      '• Higher discount rates\n• Discounts on liquid products\n• Smart calculator service';
+
+  @override
+  String get planPrimePrice => '19.99 USD/per month';
+
+  @override
+  String get subscribeNow => 'Subscribe now';
+
+  // Calculator
+  @override
+  String get calcTitle => 'Shipping Calculator';
+
+  @override
+  String get calcSubtitle =>
+      'Enter the details below to calculate your shipping cost.';
+
+  @override
+  String get calcStep1 => 'Details';
+
+  @override
+  String get calcStep2 => 'Calculate';
+
+  @override
+  String get calcStep3 => 'Result';
+
+  @override
+  String get calcCountryFrom => 'Country From';
+
+  @override
+  String get calcCountryTo => 'Country To';
+
+  @override
+  String get calcCountryChina => 'China';
+
+  @override
+  String get calcCountryEgypt => 'Egypt';
+
+  @override
+  String get calcWeight => 'Weight';
+
+  @override
+  String get calcWeightUnit => 'KG';
+
+  @override
+  String get calcProductCategory => 'Product Category';
+
+  @override
+  String get calcCatElectronics => 'Electronics';
+
+  @override
+  String get calcCatFashion => 'Fashion';
+
+  @override
+  String get calcCatAccessories => 'Accessories';
+
+  @override
+  String get calcCalculate => 'Calculate';
+
+  @override
+  String get calcEstimatedCost => 'Estimated Cost';
+
+  @override
+  String get calcShippingCost => 'Shipping Cost';
+
+  @override
+  String get calcCustomsFee => 'Customs Fee';
+
+  @override
+  String get calcServiceFee => 'Service Fee';
+
+  @override
+  String get calcTotalEstimated => 'Total Estimated Cost';
+
+  @override
+  String get calcShippingVal => r'$12.00';
+
+  @override
+  String get calcCustomsVal => r'$8.00';
+
+  @override
+  String get calcServiceVal => r'$3.00';
+
+  @override
+  String get calcTotalVal => r'$23.00';
+
+  @override
+  String get calcEstimatedDelivery => 'Estimated Delivery';
+
+  @override
+  String get calcDeliveryDays => '7 – 10 Days';
+
+  // Plan checkout
+  @override
+  String get checkoutTitle => 'Checkout';
+
+  @override
+  String get checkoutSubtitle => 'Confirm your subscription & pay securely.';
+
+  @override
+  String get checkoutPlanName => 'Prime cart';
+
+  @override
+  String get checkoutBilledMonthly => 'Billed monthly';
+
+  @override
+  String get checkoutPlanPrice => r'$19.99';
+
+  @override
+  String get checkoutPerMonth => '/month';
+
+  @override
+  String get paymentMethod => 'Payment method';
+
+  @override
+  String get payMethodCard => 'Card';
+
+  @override
+  String get payMethodPaypal => 'PayPal';
+
+  @override
+  String get payMethodApple => 'Apple';
+
+  @override
+  String get cardNumber => 'Card number';
+
+  @override
+  String get cardNumberHint => '4242 4242 4242 4242';
+
+  @override
+  String get cardExpiry => 'Expiry';
+
+  @override
+  String get cardExpiryHint => '08 / 28';
+
+  @override
+  String get cardCvv => 'CVV';
+
+  @override
+  String get totalToday => 'Total today';
+
+  @override
+  String get payButton => r'Pay $19.99';
+
+  @override
+  String get securedEncryption => 'Secured by 256-bit encryption';
+
+  // Plan confirmed
+  @override
+  String get planConfirmedThankYou => 'Thank you!';
+
+  @override
+  String planConfirmedBody(Object plan) =>
+      'Your payment was successful and your $plan plan is now active.';
+
+  @override
+  String get receiptPlan => 'Plan';
+
+  @override
+  String get receiptBilling => 'Billing';
+
+  @override
+  String get receiptBillingMonthly => 'Monthly';
+
+  @override
+  String get receiptNextRenewal => 'Next renewal';
+
+  @override
+  String get receiptRenewalDate => 'Jul 12, 2026';
+
+  @override
+  String get receiptAmountPaid => 'Amount paid';
+
+  @override
+  String get receiptAmountVal => r'$19.99';
+
+  @override
+  String get backToHome => 'Back to home';
+
+  @override
+  String get viewSubscription => 'View my subscription';
 }
