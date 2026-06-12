@@ -519,4 +519,72 @@ class AppLocalizationsAr extends AppLocalizations {
   String get supportContactLabel => 'تواصل معنا:';
   @override
   String get supportContactEmail => 'cartflylog@gmail.com';
+
+  // Orders hub / detail (Frames 13-15)
+  @override
+  String get myOrderTitle => 'طلبي:';
+  @override
+  String get orderDetailTrack => 'تتبع الطلب';
+  @override
+  String get hubWarehouses => 'مستودعاتنا';
+  @override
+  String get hubLockers => 'مواقع الكاسات';
+  @override
+  String get hubPlans => 'خطط الاشتراك';
+
+  // Confirm order (Frame 23)
+  @override
+  String get confirmOrderTitle => 'تأكيد طلبك';
+  @override
+  String get confirmCustomerName => 'اسم العميل:';
+  @override
+  String get confirmCustomerPhone => 'رقم هاتف العميل:';
+  @override
+  String get confirmCustomerEmail => 'بريد العميل الإلكتروني:';
+
+  // Track order (Frame 25)
+  @override
+  String get trackOrderTitle => 'تتبع طلبك';
+  @override
+  String get trackCurrentStatus => 'الحالة الحالية';
+  @override
+  String get trackExpectedDelivery => 'التسليم المتوقع';
+  @override
+  String get trackExpectedDate => '15 يونيو 2026';
+  @override
+  String get trackHistory => 'سجل التتبع';
+  @override
+  String get trackStepConfirmed => 'تم\nتأكيد الطلب';
+  @override
+  String get trackStepShipped => 'تم\nشحن الطلب';
+  @override
+  String get trackStepOutForDelivery => 'خرج\nللتسليم';
+  @override
+  String get trackHistoryOrderConfirmed => 'تم تأكيد الطلب';
+  @override
+  String get trackHistoryPackageReceived => 'تم استلام الطرد';
+  @override
+  String get trackHistoryInTransit => 'في الطريق';
+  @override
+  String get trackHistoryCustomClearance => 'التخليص الجمركي';
+  @override
+  String get trackHistoryOutForDelivery => 'خرج للتسليم';
+  @override
+  String get trackHistoryDelivered => 'تم التسليم';
+
+  // Order status labels + messages
+  @override
+  String get statusAtWarehouse => 'في المستودع';
+  @override
+  String get statusOrderConfirmed => 'تم تأكيد الطلب';
+  @override
+  String get statusOutForDelivery => 'خرج للتسليم';
+  @override
+  String get statusPackagingMsg => 'طردك في مستودعنا ويجري تجهيزه.';
+  @override
+  String get statusShippedMsg => 'طردك في طريقه إلى الدولة المقصودة.';
+  @override
+  String get statusPlacedMsg => 'تم تأكيد طلبك وهو في انتظار الاستلام.';
+  @override
+  String get statusDeliveredMsg => 'تم تسليم طردك بنجاح.';
 }

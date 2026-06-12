@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/auth/auth_provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
+import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
@@ -23,6 +24,7 @@ class ConfirmOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final authState = context.watch<AuthProvider>().state;
     final user = authState.user;
 
@@ -33,17 +35,16 @@ class ConfirmOrderScreen extends StatelessWidget {
     return CfScaffold(
       topBar: const CfTopBar(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+        padding: const EdgeInsetsDirectional.symmetric(horizontal: 22, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // ── Title ─────────────────────────────────────────────────
             Text(
-              'Confirm your order',
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w800,
+              l.confirmOrderTitle,
+              style: AppText.title.copyWith(
                 fontSize: 23,
-                color: AppColors.text,
+                fontWeight: FontWeight.w800,
               ),
               textAlign: TextAlign.center,
             ),
@@ -51,14 +52,14 @@ class ConfirmOrderScreen extends StatelessWidget {
 
             // ── 1-2-3 step indicator ──────────────────────────────────
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 6),
               child: _StepIndicator(activeStep: 0),
             ),
             const SizedBox(height: 20),
 
             // ── Info card ─────────────────────────────────────────────
             Container(
-              padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
+              padding: const EdgeInsetsDirectional.fromSTEB(18, 20, 18, 20),
               decoration: BoxDecoration(
                 color: AppColors.fieldBg,
                 borderRadius: BorderRadius.circular(AppColors.radiusCard),
@@ -74,17 +75,17 @@ class ConfirmOrderScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   _InfoField(
-                    label: 'Customer name:',
+                    label: l.confirmCustomerName,
                     value: name.isNotEmpty ? name : '—',
                   ),
                   const SizedBox(height: 16),
                   _InfoField(
-                    label: 'Customer phone no.:',
+                    label: l.confirmCustomerPhone,
                     value: phone.isNotEmpty ? phone : '—',
                   ),
                   const SizedBox(height: 16),
                   _InfoField(
-                    label: 'Customer email:',
+                    label: l.confirmCustomerEmail,
                     value: email.isNotEmpty ? email : '—',
                   ),
                 ],
@@ -93,21 +94,25 @@ class ConfirmOrderScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // ── Next button ───────────────────────────────────────────
-            GestureDetector(
-              onTap: () => context.push(Routes.payment),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                decoration: BoxDecoration(
-                  color: AppColors.navyTile,
-                  borderRadius: BorderRadius.circular(AppColors.radius),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'Next',
-                  style: GoogleFonts.inter(
-                    color: AppColors.navy,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
+            Semantics(
+              button: true,
+              label: l.next,
+              child: GestureDetector(
+                onTap: () => context.push(Routes.payment),
+                child: Container(
+                  padding: const EdgeInsetsDirectional.symmetric(vertical: 14),
+                  decoration: BoxDecoration(
+                    color: AppColors.navyTile,
+                    borderRadius: BorderRadius.circular(AppColors.radius),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    l.next,
+                    style: AppText.body.copyWith(
+                      color: AppColors.navy,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -122,6 +127,7 @@ class ConfirmOrderScreen extends StatelessWidget {
 
 // ──────────────────────────────────────────────────────────────────────────────
 // 1-2-3 step indicator  (green = done/active, grey = pending)
+// Connectors use Expanded so they fill remaining space responsively.
 // ──────────────────────────────────────────────────────────────────────────────
 
 class _StepIndicator extends StatelessWidget {
@@ -161,20 +167,23 @@ class _Circle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 42,
-      height: 42,
-      decoration: BoxDecoration(
-        color: done ? greenBg : greyBg,
-        shape: BoxShape.circle,
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        '$number',
-        style: GoogleFonts.inter(
-          fontWeight: FontWeight.w800,
-          fontSize: 17,
-          color: done ? AppColors.text : Colors.white,
+    return Semantics(
+      label: 'Step $number',
+      child: Container(
+        width: 42,
+        height: 42,
+        decoration: BoxDecoration(
+          color: done ? greenBg : greyBg,
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          '$number',
+          style: AppText.body.copyWith(
+            fontWeight: FontWeight.w800,
+            fontSize: 17,
+            color: done ? AppColors.text : Colors.white,
+          ),
         ),
       ),
     );
@@ -215,7 +224,7 @@ class _InfoField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
+          style: AppText.body.copyWith(
             fontWeight: FontWeight.w700,
             fontSize: 15,
             color: AppColors.text,
@@ -223,19 +232,22 @@ class _InfoField extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: AppColors.text),
-            borderRadius: BorderRadius.circular(AppColors.radius),
-          ),
-          child: Text(
-            value,
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: AppColors.text,
+        Semantics(
+          label: '$label $value',
+          child: Container(
+            padding: const EdgeInsetsDirectional.fromSTEB(14, 11, 14, 11),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: AppColors.text),
+              borderRadius: BorderRadius.circular(AppColors.radius),
+            ),
+            child: Text(
+              value,
+              style: AppText.body.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppColors.text,
+              ),
             ),
           ),
         ),

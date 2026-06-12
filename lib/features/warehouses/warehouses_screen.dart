@@ -4,6 +4,7 @@ import 'package:country_flags/country_flags.dart';
 
 import '../../data/warehouses.dart';
 import '../../l10n/app_localizations.dart';
+import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -67,6 +68,45 @@ class WarehousesScreen extends StatelessWidget {
                   code: _extraCode,
                   name: warehouseByCode(_extraCode).displayName,
                   onTap: () => context.push('/warehouses/$_extraCode'),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // ── My forwarding address entry ───────────────────────────
+            Semantics(
+              button: true,
+              label: 'My forwarding address',
+              child: InkWell(
+                onTap: () => context.push(Routes.myAddress),
+                borderRadius: BorderRadius.circular(AppColors.radius),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14, vertical: 13),
+                  decoration: BoxDecoration(
+                    color: AppColors.tealBg,
+                    border: Border.all(
+                        color: AppColors.teal.withValues(alpha: 0.35), width: 1),
+                    borderRadius: BorderRadius.circular(AppColors.radius),
+                  ),
+                  child: Row(
+                    children: [
+                      CfIcons.pin(size: 20, color: AppColors.teal),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          'My forwarding address',
+                          style: AppText.label.copyWith(
+                            color: AppColors.tealDark,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13.5,
+                          ),
+                        ),
+                      ),
+                      CfIcons.chevronRight(
+                          size: 16, color: AppColors.teal),
+                    ],
+                  ),
                 ),
               ),
             ),

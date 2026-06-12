@@ -505,6 +505,44 @@ abstract class AppLocalizations {
   String get supportIssueBody;
   String get supportContactLabel;
   String get supportContactEmail;
+
+  // Orders hub / detail (Frames 13-15)
+  String get myOrderTitle;
+  String get orderDetailTrack;
+  String get hubWarehouses;
+  String get hubLockers;
+  String get hubPlans;
+
+  // Confirm order (Frame 23)
+  String get confirmOrderTitle;
+  String get confirmCustomerName;
+  String get confirmCustomerPhone;
+  String get confirmCustomerEmail;
+
+  // Track order (Frame 25)
+  String get trackOrderTitle;
+  String get trackCurrentStatus;
+  String get trackExpectedDelivery;
+  String get trackExpectedDate;
+  String get trackHistory;
+  String get trackStepConfirmed;
+  String get trackStepShipped;
+  String get trackStepOutForDelivery;
+  String get trackHistoryOrderConfirmed;
+  String get trackHistoryPackageReceived;
+  String get trackHistoryInTransit;
+  String get trackHistoryCustomClearance;
+  String get trackHistoryOutForDelivery;
+  String get trackHistoryDelivered;
+
+  // Order status labels + messages
+  String get statusAtWarehouse;
+  String get statusOrderConfirmed;
+  String get statusOutForDelivery;
+  String get statusPackagingMsg;
+  String get statusShippedMsg;
+  String get statusPlacedMsg;
+  String get statusDeliveredMsg;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

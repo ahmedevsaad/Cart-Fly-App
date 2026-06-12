@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/icons/cf_icons.dart';
+
 import '../../data/lockers.dart';
 import '../../data/models/order.dart';
 import '../../data/warehouses.dart';
@@ -29,14 +31,15 @@ extension _CategoryLabel on _Category {
     }
   }
 
-  IconData get icon {
+  Widget icon({required bool selected}) {
+    final color = selected ? AppColors.teal : AppColors.mutedLabel;
     switch (this) {
       case _Category.electronics:
-        return Icons.desktop_windows_outlined;
+        return CfIcons.card(size: 20, color: color);
       case _Category.fashion:
-        return Icons.checkroom_outlined;
+        return CfIcons.stepBag(size: 20, color: color);
       case _Category.other:
-        return Icons.shopping_bag_outlined;
+        return CfIcons.stepBox(size: 20, color: color);
     }
   }
 }
@@ -142,8 +145,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             _FieldContainer(
               child: Row(
                 children: [
-                  const Icon(Icons.shopping_bag_outlined,
-                      color: AppColors.teal, size: 19),
+                  CfIcons.stepBag(size: 19, color: AppColors.teal),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
@@ -169,8 +171,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             _FieldContainer(
               child: Row(
                 children: [
-                  const Icon(Icons.barcode_reader,
-                      color: AppColors.navy, size: 19),
+                  CfIcons.barcode(size: 19, color: AppColors.navy),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
@@ -222,13 +223,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                       ),
                       child: Column(
                         children: [
-                          Icon(
-                            cat.icon,
-                            size: 20,
-                            color: selected
-                                ? AppColors.teal
-                                : AppColors.mutedLabel,
-                          ),
+                          cat.icon(selected: selected),
                           const SizedBox(height: 5),
                           Text(
                             cat.label,
@@ -396,8 +391,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.add_rounded,
-                                  color: Colors.white, size: 20),
+                              CfIcons.plus(size: 20, color: Colors.white),
                               const SizedBox(width: 10),
                               Text(
                                 'Add package',

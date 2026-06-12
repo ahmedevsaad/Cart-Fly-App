@@ -10,6 +10,7 @@ import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Frame 22 — "Order hub"
@@ -152,15 +153,16 @@ class OrderDetailScreen extends StatelessWidget {
 // Steps: Order Placed | Shipped | In Transit | Delivered
 // ──────────────────────────────────────────────────────────────────────────────
 
+
 class _OrderStepper extends StatelessWidget {
   const _OrderStepper({required this.activeStep});
   final int activeStep; // 0-3
 
-  static const _steps = [
-    _StepDef(label: 'Order\nPlaced', icon: Icons.shopping_bag_outlined),
-    _StepDef(label: 'Shipped', icon: Icons.inventory_2_outlined),
-    _StepDef(label: 'In Transit', icon: Icons.local_shipping_outlined),
-    _StepDef(label: 'Delivered', icon: Icons.check_rounded),
+  static final _steps = <_StepDef>[
+    _StepDef(label: 'Order\nPlaced', iconBuilder: (s, c) => CfIcons.stepBag(size: s, color: c)),
+    _StepDef(label: 'Shipped',       iconBuilder: (s, c) => CfIcons.stepBox(size: s, color: c)),
+    _StepDef(label: 'In Transit',    iconBuilder: (s, c) => CfIcons.stepTruck(size: s, color: c)),
+    _StepDef(label: 'Delivered',     iconBuilder: (s, c) => CfIcons.stepCheck(size: s, color: c)),
   ];
 
   // Navy-ish active bg matching design (#CFE0FB / #16447B)
@@ -242,9 +244,9 @@ class _OrderStepper extends StatelessWidget {
 }
 
 class _StepDef {
-  const _StepDef({required this.label, required this.icon});
+  const _StepDef({required this.label, required this.iconBuilder});
   final String label;
-  final IconData icon;
+  final Widget Function(double size, Color color) iconBuilder;
 }
 
 class _StepCircle extends StatelessWidget {
@@ -276,11 +278,7 @@ class _StepCircle extends StatelessWidget {
             : Border.all(color: pendingBorder, width: 2),
       ),
       alignment: Alignment.center,
-      child: Icon(
-        stepDef.icon,
-        size: 18,
-        color: isDone ? activeIcon : AppColors.mutedDisabled,
-      ),
+      child: stepDef.iconBuilder(18, isDone ? activeIcon : AppColors.mutedDisabled),
     );
   }
 }

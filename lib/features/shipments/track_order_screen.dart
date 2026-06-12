@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/models/order.dart';
+import '../../l10n/app_localizations.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
+import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Frame 25 — "Track your order"
@@ -21,6 +23,7 @@ class TrackOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final orders = context.watch<OrdersProvider>().orders;
     final order = orders.where((o) => o.id == id).firstOrNull;
 
@@ -34,17 +37,16 @@ class TrackOrderScreen extends StatelessWidget {
     return CfScaffold(
       topBar: const CfTopBar(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+        padding: const EdgeInsetsDirectional.symmetric(horizontal: 22, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // ── Title ─────────────────────────────────────────────────
             Text(
-              'Track your order',
-              style: GoogleFonts.inter(
+              l.trackOrderTitle,
+              style: AppText.title.copyWith(
                 fontWeight: FontWeight.w800,
                 fontSize: 22,
-                color: AppColors.text,
               ),
             ),
             const SizedBox(height: 14),
@@ -59,11 +61,10 @@ class TrackOrderScreen extends StatelessWidget {
 
             // ── Tracking history ──────────────────────────────────────
             Text(
-              'Tracking History',
-              style: GoogleFonts.inter(
+              l.trackHistory,
+              style: AppText.body.copyWith(
                 fontWeight: FontWeight.w800,
                 fontSize: 17,
-                color: AppColors.text,
               ),
             ),
             const SizedBox(height: 11),
@@ -79,13 +80,16 @@ class TrackOrderScreen extends StatelessWidget {
 
 // ──────────────────────────────────────────────────────────────────────────────
 // 3-step stepper: confirmed / shipped / out for delivery
+// Nodes are Expanded; connectors are also Expanded — no fixed SizedBox widths.
 // ──────────────────────────────────────────────────────────────────────────────
 
 class _TrackStepper extends StatelessWidget {
   const _TrackStepper({required this.status});
   final OrderStatus status;
 
-  // Design: step 1 = confirmed (#ACFF9C), step 2 = shipped, step 3 = out for delivery (#E2E8F0 pending)
+  // Design: step 1 = confirmed (#ACFF9C), step 2 = shipped, step 3 = out for delivery
+  // OrderStatus: placed=0, atWarehouse=1, packaging=2, shipped=3, ready=4, delivered=5
+  // shipped(3) + ready(4) → step index 2 (connector 2 done)
   static int _activeStep(OrderStatus s) {
     switch (s) {
       case OrderStatus.placed:
@@ -102,18 +106,19 @@ class _TrackStepper extends StatelessWidget {
   }
 
   static const Color _greenBg = AppColors.stepGreen;
-  static const Color _greyBg = AppColors.cardBorder;  // 0xFFE2E8F0
+  static const Color _greyBg = AppColors.cardBorder;    // 0xFFE2E8F0
   static const Color _greyText = AppColors.mutedDisabled;
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final step = _activeStep(status);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _StepNode(
           number: 1,
-          label: 'order\nconfirmed',
+          label: l.trackStepConfirmed,
           done: step >= 0,
           greenBg: _greenBg,
           greyBg: _greyBg,
@@ -122,7 +127,7 @@ class _TrackStepper extends StatelessWidget {
         _StepConnector(done: step >= 1),
         _StepNode(
           number: 2,
-          label: 'order\nshipped',
+          label: l.trackStepShipped,
           done: step >= 1,
           greenBg: _greenBg,
           greyBg: _greyBg,
@@ -131,7 +136,7 @@ class _TrackStepper extends StatelessWidget {
         _StepConnector(done: step >= 2),
         _StepNode(
           number: 3,
-          label: 'out for\ndelivery',
+          label: l.trackStepOutForDelivery,
           done: step >= 2,
           greenBg: _greenBg,
           greyBg: _greyBg,
@@ -161,37 +166,40 @@ class _StepNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: done ? greenBg : greyBg,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              '$number',
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w800,
-                fontSize: 17,
-                color: done ? AppColors.text : greyText,
+      child: Semantics(
+        label: 'Step $number: $label',
+        child: Column(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: done ? greenBg : greyBg,
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                '$number',
+                style: AppText.body.copyWith(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 17,
+                  color: done ? AppColors.text : greyText,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            label,
-            style: GoogleFonts.inter(
-              fontWeight: FontWeight.w700,
-              fontSize: 10.5,
-              color: done ? AppColors.text : greyText,
-              height: 1.2,
+            const SizedBox(height: 6),
+            Text(
+              label,
+              style: AppText.caption.copyWith(
+                fontWeight: FontWeight.w700,
+                fontSize: 10.5,
+                color: done ? AppColors.text : greyText,
+                height: 1.2,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -202,14 +210,14 @@ class _StepConnector extends StatelessWidget {
   final bool done;
 
   static const Color _greenBg = AppColors.stepGreen;
-  static const Color _greyBg = AppColors.radioIdle;
+  static const Color _greyBg = AppColors.radioIdle;    // 0xFFCBD5E1
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         height: 3,
-        margin: const EdgeInsets.only(top: 19),
+        margin: const EdgeInsetsDirectional.only(top: 19),
         color: done ? _greenBg : _greyBg,
       ),
     );
@@ -226,40 +234,41 @@ class _CurrentStatusCard extends StatelessWidget {
 
   static const Color _navy = AppColors.navyLabel;
 
-  String _statusLabel(OrderStatus s) {
+  String _statusLabel(OrderStatus s, AppLocalizations l) {
     switch (s) {
       case OrderStatus.placed:
-        return 'Order Confirmed';
+        return l.statusOrderConfirmed;
       case OrderStatus.atWarehouse:
       case OrderStatus.packaging:
-        return 'At Warehouse';
+        return l.statusAtWarehouse;
       case OrderStatus.shipped:
       case OrderStatus.ready:
-        return 'In Transit';
+        return l.statusInTransit;
       case OrderStatus.delivered:
-        return 'Delivered';
+        return l.statusDelivered;
     }
   }
 
-  String _statusMessage(OrderStatus s) {
+  String _statusMessage(OrderStatus s, AppLocalizations l) {
     switch (s) {
       case OrderStatus.placed:
-        return 'Your order has been confirmed and is awaiting pickup.';
+        return l.statusPlacedMsg;
       case OrderStatus.atWarehouse:
       case OrderStatus.packaging:
-        return 'Your package is at our warehouse and being prepared.';
+        return l.statusPackagingMsg;
       case OrderStatus.shipped:
       case OrderStatus.ready:
-        return 'Your package is on the way to the destination country.';
+        return l.statusShippedMsg;
       case OrderStatus.delivered:
-        return 'Your package has been delivered successfully.';
+        return l.statusDeliveredMsg;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsetsDirectional.all(16),
       decoration: BoxDecoration(
         color: AppColors.fieldBg,
         borderRadius: BorderRadius.circular(AppColors.radiusCard),
@@ -275,8 +284,8 @@ class _CurrentStatusCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'current status',
-            style: GoogleFonts.inter(
+            l.trackCurrentStatus,
+            style: AppText.caption.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.w700,
               color: _navy,
@@ -285,56 +294,55 @@ class _CurrentStatusCard extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              // Status icon bubble
-              Container(
-                width: 38,
-                height: 38,
-                decoration: const BoxDecoration(
-                  color: _navy,
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.local_shipping_outlined,
-                  color: Colors.white,
-                  size: 20,
+              // Status icon bubble — uses CfIcons.stepTruck per design
+              Semantics(
+                label: _statusLabel(status, l),
+                child: Container(
+                  width: 38,
+                  height: 38,
+                  decoration: const BoxDecoration(
+                    color: _navy,
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
+                  child: CfIcons.stepTruck(size: 20, color: Colors.white),
                 ),
               ),
               const SizedBox(width: 11),
               Text(
-                _statusLabel(status),
-                style: GoogleFonts.inter(
+                _statusLabel(status, l),
+                style: AppText.body.copyWith(
                   fontWeight: FontWeight.w800,
                   fontSize: 17,
                   color: _navy,
                 ),
               ),
               const Spacer(),
-              // Globe icon
-              const Icon(Icons.public_rounded, color: _navy, size: 36),
+              // Globe icon — uses CfIcons.globe per design
+              CfIcons.globe(size: 40, color: _navy),
             ],
           ),
           const SizedBox(height: 8),
           Text(
-            _statusMessage(status),
-            style: GoogleFonts.inter(
+            _statusMessage(status, l),
+            style: AppText.caption.copyWith(
               fontSize: 12.5,
               fontWeight: FontWeight.w500,
               color: AppColors.mutedLabel,
             ),
           ),
           const SizedBox(height: 13),
-          const Divider(
+          // Divider at 25% opacity as per design spec
+          Container(
             height: 1,
-            thickness: 1,
-            color: AppColors.navyLabel,
+            color: AppColors.navyLabel.withValues(alpha: 0.25),
           ),
           const SizedBox(height: 13),
           Row(
             children: [
               Text(
-                'Expected Delivery',
-                style: GoogleFonts.inter(
+                l.trackExpectedDelivery,
+                style: AppText.caption.copyWith(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: _navy,
@@ -342,11 +350,10 @@ class _CurrentStatusCard extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '15 June 2026',
-                style: GoogleFonts.inter(
+                l.trackExpectedDate,
+                style: AppText.body.copyWith(
                   fontWeight: FontWeight.w800,
                   fontSize: 15,
-                  color: AppColors.text,
                 ),
               ),
             ],
@@ -377,37 +384,38 @@ class _TrackingHistory extends StatelessWidget {
   const _TrackingHistory({required this.status});
   final OrderStatus status;
 
-  List<_HistoryEntry> _entries(OrderStatus s) {
+  List<_HistoryEntry> _entries(OrderStatus s, AppLocalizations l) {
     final idx = s.index; // 0=placed,1=atWarehouse,2=packaging,3=shipped,4=ready,5=delivered
     return [
       _HistoryEntry(
-          label: 'Order confirmed',
+          label: l.trackHistoryOrderConfirmed,
           state: idx >= 0 ? 'done' : 'pending'),
       _HistoryEntry(
-          label: 'Package Received',
+          label: l.trackHistoryPackageReceived,
           state: idx >= 1 ? 'done' : 'pending'),
       _HistoryEntry(
-          label: 'In transit',
+          label: l.trackHistoryInTransit,
           state: idx >= 3
               ? 'done'
               : idx >= 2
                   ? 'active'
                   : 'pending'),
       _HistoryEntry(
-          label: 'Custom clearance',
+          label: l.trackHistoryCustomClearance,
           state: idx >= 4 ? 'done' : 'pending'),
       _HistoryEntry(
-          label: 'Out for Delivery',
+          label: l.trackHistoryOutForDelivery,
           state: idx >= 4 ? 'done' : 'pending'),
       _HistoryEntry(
-          label: 'Delivered',
+          label: l.trackHistoryDelivered,
           state: idx >= 5 ? 'done' : 'pending'),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    final entries = _entries(status);
+    final l = AppLocalizations.of(context)!;
+    final entries = _entries(status, l);
     return Column(
       children: [
         for (var i = 0; i < entries.length; i++) ...[
@@ -435,6 +443,7 @@ class _HistoryRow extends StatelessWidget {
 
     Widget dot;
     if (isDone) {
+      // done = green circle with CfIcons.stepCheck
       dot = Container(
         width: 24,
         height: 24,
@@ -443,9 +452,10 @@ class _HistoryRow extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         alignment: Alignment.center,
-        child: const Icon(Icons.check_rounded, color: Colors.white, size: 13),
+        child: CfIcons.stepCheck(size: 13, color: Colors.white),
       );
     } else if (isActive) {
+      // active = navy-bg circle with CfIcons.stepTruck
       dot = Container(
         width: 24,
         height: 24,
@@ -454,10 +464,10 @@ class _HistoryRow extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         alignment: Alignment.center,
-        child: const Icon(Icons.local_shipping_outlined,
-            color: _navy, size: 13),
+        child: CfIcons.stepTruck(size: 13, color: _navy),
       );
     } else {
+      // pending = plain grey circle
       dot = Container(
         width: 24,
         height: 24,
@@ -468,32 +478,35 @@ class _HistoryRow extends StatelessWidget {
       );
     }
 
-    return Row(
-      children: [
-        dot,
-        const SizedBox(width: 11),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: isActive ? _navyBg : AppColors.fieldBg,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              entry.label,
-              style: GoogleFonts.inter(
-                fontSize: 13.5,
-                fontWeight: isActive ? FontWeight.w700 : FontWeight.w600,
-                color: isActive
-                    ? _navy
-                    : isDone
-                        ? AppColors.text
-                        : AppColors.mutedDisabled,
+    return Semantics(
+      label: '${entry.label}: ${entry.state}',
+      child: Row(
+        children: [
+          dot,
+          const SizedBox(width: 11),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+              decoration: BoxDecoration(
+                color: isActive ? _navyBg : AppColors.fieldBg,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                entry.label,
+                style: AppText.body.copyWith(
+                  fontSize: 13.5,
+                  fontWeight: isActive ? FontWeight.w700 : FontWeight.w600,
+                  color: isActive
+                      ? _navy
+                      : isDone
+                          ? AppColors.text
+                          : AppColors.mutedDisabled,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

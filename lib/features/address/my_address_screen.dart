@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/warehouse_addresses.dart';
@@ -8,6 +9,7 @@ import '../../theme/app_text.dart';
 import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 class MyAddressScreen extends StatefulWidget {
   const MyAddressScreen({super.key});
@@ -39,7 +41,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Copied', style: GoogleFonts.inter()),
+          content: Text('Copied', style: AppText.body),
           duration: const Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.text,
@@ -61,7 +63,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Full address copied',
-              style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+              style: AppText.body.copyWith(fontWeight: FontWeight.w600)),
           duration: const Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.text,
@@ -207,12 +209,11 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.copy_rounded,
-                        color: Colors.white, size: 18),
+                    CfIcons.copy(size: 18, color: Colors.white),
                     const SizedBox(width: 10),
                     Text(
                       'Copy full address',
-                      style: GoogleFonts.inter(
+                      style: AppText.body.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
@@ -235,8 +236,14 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.info_outline_rounded,
-                      color: AppColors.warnIcon, size: 18),
+                  SvgPicture.string(
+                    '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                    '<circle cx="12" cy="12" r="9" stroke="#E0A800" stroke-width="1.7"/>'
+                    '<path d="M12 8h.01M11 12h1v4h1" stroke="#E0A800" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+                    '</svg>',
+                    width: 18,
+                    height: 18,
+                  ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: RichText(
@@ -335,11 +342,7 @@ class _AddressRow extends StatelessWidget {
                     ),
                     width: 30,
                     height: 30,
-                    child: const Icon(
-                      Icons.copy_rounded,
-                      size: 15,
-                      color: AppColors.mutedLabel,
-                    ),
+                    child: CfIcons.copy(size: 15, color: AppColors.mutedLabel),
                   ),
                 ),
               ),

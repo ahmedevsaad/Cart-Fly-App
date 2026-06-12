@@ -521,4 +521,72 @@ class AppLocalizationsEn extends AppLocalizations {
   String get supportContactLabel => 'contact us:';
   @override
   String get supportContactEmail => 'cartflylog@gmail.com';
+
+  // Orders hub / detail (Frames 13-15)
+  @override
+  String get myOrderTitle => 'My order:';
+  @override
+  String get orderDetailTrack => 'Track order';
+  @override
+  String get hubWarehouses => 'Our warehouses';
+  @override
+  String get hubLockers => 'Locker locations';
+  @override
+  String get hubPlans => 'Subscription plans';
+
+  // Confirm order (Frame 23)
+  @override
+  String get confirmOrderTitle => 'Confirm your order';
+  @override
+  String get confirmCustomerName => 'Customer name:';
+  @override
+  String get confirmCustomerPhone => 'Customer phone no.:';
+  @override
+  String get confirmCustomerEmail => 'Customer email:';
+
+  // Track order (Frame 25)
+  @override
+  String get trackOrderTitle => 'Track your order';
+  @override
+  String get trackCurrentStatus => 'current status';
+  @override
+  String get trackExpectedDelivery => 'Expected Delivery';
+  @override
+  String get trackExpectedDate => '15 June 2026';
+  @override
+  String get trackHistory => 'Tracking History';
+  @override
+  String get trackStepConfirmed => 'order\nconfirmed';
+  @override
+  String get trackStepShipped => 'order\nshipped';
+  @override
+  String get trackStepOutForDelivery => 'out for\ndelivery';
+  @override
+  String get trackHistoryOrderConfirmed => 'Order confirmed';
+  @override
+  String get trackHistoryPackageReceived => 'Package Received';
+  @override
+  String get trackHistoryInTransit => 'In transit';
+  @override
+  String get trackHistoryCustomClearance => 'Custom clearance';
+  @override
+  String get trackHistoryOutForDelivery => 'Out for Delivery';
+  @override
+  String get trackHistoryDelivered => 'Delivered';
+
+  // Order status labels + messages
+  @override
+  String get statusAtWarehouse => 'At Warehouse';
+  @override
+  String get statusOrderConfirmed => 'Order Confirmed';
+  @override
+  String get statusOutForDelivery => 'Out for Delivery';
+  @override
+  String get statusPackagingMsg => 'Your package is at our warehouse and being prepared.';
+  @override
+  String get statusShippedMsg => 'Your package is on the way to the destination country.';
+  @override
+  String get statusPlacedMsg => 'Your order has been confirmed and is awaiting pickup.';
+  @override
+  String get statusDeliveredMsg => 'Your package has been delivered successfully.';
 }

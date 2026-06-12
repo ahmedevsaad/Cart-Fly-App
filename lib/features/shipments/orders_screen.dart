@@ -12,6 +12,7 @@ import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Tab definitions
@@ -109,8 +110,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           color: AppColors.teal,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.add_rounded,
-                            color: Colors.white, size: 18),
+                        alignment: Alignment.center,
+                        child: CfIcons.plus(size: 18, color: Colors.white),
                       ),
                     ),
                   ),
@@ -246,8 +247,8 @@ class _PackageCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: AppColors.shadowSoft,
               ),
-              child: const Icon(Icons.inventory_2_outlined,
-                  size: 22, color: AppColors.teal),
+              alignment: Alignment.center,
+              child: CfIcons.stepBox(size: 22, color: AppColors.teal),
             ),
             const SizedBox(width: 13),
 
@@ -293,8 +294,7 @@ class _PackageCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded,
-                color: AppColors.mutedDisabled, size: 18),
+            CfIcons.chevronRight(size: 18, color: AppColors.mutedDisabled),
           ],
         ),
       ),
@@ -370,8 +370,7 @@ class _ConsolidationHint extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Icon(Icons.local_shipping_outlined,
-                color: AppColors.teal, size: 20),
+            CfIcons.stepTruck(size: 20, color: AppColors.teal),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
