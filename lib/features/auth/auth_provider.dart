@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import '../../data/models/app_user.dart';
 
 const kOtpBypass = String.fromEnvironment('OTP_BYPASS', defaultValue: '000000');
+const kBypassAuth = bool.fromEnvironment('DEBUG_BYPASS_AUTH');
 
 enum AuthStatus { loading, authenticated, unauthenticated, pendingOtp }
 
@@ -29,6 +30,18 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider({FirebaseAuth? auth, FirebaseFirestore? db})
       : _auth = auth ?? FirebaseAuth.instance,
         _db = db ?? FirebaseFirestore.instance {
+    if (kBypassAuth) {
+      _state = AuthState.signedIn(AppUser(
+        uid: 'demo-user',
+        name: 'Sara Mahmoud',
+        email: 'sara@demo.cartfly.app',
+        phone: '+20 100 000 0000',
+        country: 'eg',
+        currency: 'EGP',
+        plan: 'prime',
+      ));
+      return; // stable demo session; do not subscribe to authStateChanges
+    }
     // Synchronously resolve "no user" to avoid waiting for the first stream event.
     // authStateChanges() only fires on CHANGES; on a new subscription after a
     // prior sign-out it may not re-emit null, leaving auth stuck at "loading".
@@ -40,7 +53,7 @@ class AuthProvider extends ChangeNotifier {
 
   final FirebaseAuth _auth;
   final FirebaseFirestore _db;
-  late final StreamSubscription<User?> _sub;
+  StreamSubscription<User?>? _sub;
 
   AuthState _state = AuthState.initial();
   String? _pendingCode;
@@ -182,7 +195,7 @@ class AuthProvider extends ChangeNotifier {
 
   @override
   void dispose() {
-    _sub.cancel();
+    _sub?.cancel();
     super.dispose();
   }
 }

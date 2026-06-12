@@ -3,12 +3,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'features/auth/auth_provider.dart';
+import 'l10n/app_localizations.dart';
+import 'router/app_router.dart';
 import 'state/orders_provider.dart';
 import 'state/plan_provider.dart';
 import 'state/settings_provider.dart';
-import 'l10n/app_localizations.dart';
-import 'router/app_router.dart';
 import 'theme/app_theme.dart';
+
+const _bypassAuth = bool.fromEnvironment('DEBUG_BYPASS_AUTH');
 
 class CartFlyApp extends StatefulWidget {
   const CartFlyApp({super.key});
@@ -54,7 +56,8 @@ class _CartFlyAppState extends State<CartFlyApp> {
               key: ValueKey(uid),
               providers: [
                 ChangeNotifierProvider(
-                    create: (_) => OrdersProvider(uid: uid)),
+                    create: (_) =>
+                        OrdersProvider(uid: uid, demo: _bypassAuth)),
                 ChangeNotifierProvider(
                     create: (_) => PlanProvider(uid: uid)),
               ],
