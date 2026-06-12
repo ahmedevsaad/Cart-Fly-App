@@ -14,6 +14,8 @@ String authErrorText(String? key) {
       return 'Password is too weak (min 6 chars).';
     case 'errorAuth_requires-recent-login':
       return 'Please sign in again to change your password.';
+    case 'errorAuthInvalidOtp':
+      return 'Invalid verification code.';
     case null:
       return '';
     default:

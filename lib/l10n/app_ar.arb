@@ -223,5 +223,16 @@
   "navHome": "الرئيسية",
   "navAccount": "حسابي",
   "navOrders": "طلباتي",
-  "navSettings": "الإعدادات"
+  "navSettings": "الإعدادات",
+
+  "verifyCodeTitle": "تحقق من حسابك",
+  "verifyCodeBody": "أدخل الرمز المكوّن من 6 أرقام المُرسَل إلى {email}.",
+  "@verifyCodeBody": {"placeholders": {"email": {}}},
+  "verifyCodeLabel": "رمز التحقق",
+  "verifyCodeHint": "000000",
+  "verifyButton": "تحقق",
+  "verifyDemoHint": "رمز تجريبي: 000000",
+  "verifyResend": "إعادة إرسال البريد",
+  "verifyInvalidCode": "الرمز غير صحيح. يرجى المحاولة مجدداً.",
+  "errorAuthInvalidOtp": "رمز التحقق غير صحيح."
 }

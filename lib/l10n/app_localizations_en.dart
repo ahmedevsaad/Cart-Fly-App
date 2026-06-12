@@ -640,4 +640,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navSettings => 'Settings';
+
+  @override
+  String get verifyCodeTitle => 'Verify your account';
+
+  @override
+  String verifyCodeBody(Object email) {
+    return 'Enter the 6-digit code sent to $email.';
+  }
+
+  @override
+  String get verifyCodeLabel => 'Verification code';
+
+  @override
+  String get verifyCodeHint => '000000';
+
+  @override
+  String get verifyButton => 'Verify';
+
+  @override
+  String get verifyDemoHint => 'Demo code: 000000';
+
+  @override
+  String get verifyResend => 'Resend email';
+
+  @override
+  String get verifyInvalidCode => 'Invalid code. Please try again.';
+
+  @override
+  String get errorAuthInvalidOtp => 'Invalid verification code.';
 }

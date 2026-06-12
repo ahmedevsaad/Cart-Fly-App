@@ -12,6 +12,7 @@ class OrdersProvider extends ChangeNotifier {
       _orders = list;
       notifyListeners();
     });
+    _repo.seedSampleIfEmpty().catchError((_) {});
   }
   final OrderRepository _repo;
   late final StreamSubscription<List<Order>> _sub;

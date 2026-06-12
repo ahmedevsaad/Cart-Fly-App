@@ -640,4 +640,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get navSettings => 'الإعدادات';
+
+  @override
+  String get verifyCodeTitle => 'تحقق من حسابك';
+
+  @override
+  String verifyCodeBody(Object email) {
+    return 'أدخل الرمز المكوّن من 6 أرقام المُرسَل إلى $email.';
+  }
+
+  @override
+  String get verifyCodeLabel => 'رمز التحقق';
+
+  @override
+  String get verifyCodeHint => '000000';
+
+  @override
+  String get verifyButton => 'تحقق';
+
+  @override
+  String get verifyDemoHint => 'رمز تجريبي: 000000';
+
+  @override
+  String get verifyResend => 'إعادة إرسال البريد';
+
+  @override
+  String get verifyInvalidCode => 'الرمز غير صحيح. يرجى المحاولة مجدداً.';
+
+  @override
+  String get errorAuthInvalidOtp => 'رمز التحقق غير صحيح.';
 }

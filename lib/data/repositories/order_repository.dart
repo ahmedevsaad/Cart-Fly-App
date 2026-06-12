@@ -30,4 +30,16 @@ class OrderRepository {
     final doc = await _col.doc(id).get();
     return Order.fromMap(id, doc.data()!);
   }
+
+  Future<void> seedSampleIfEmpty() async {
+    final snap = await _col.limit(1).get();
+    if (snap.docs.isNotEmpty) return;
+    final now = DateTime.now();
+    final samples = [
+      Order(id: '', title: 'SHEIN dress', sourceCountry: 'cn', deliveryMethod: DeliveryMethod.home, status: OrderStatus.atWarehouse, createdAt: now.subtract(const Duration(days: 2))),
+      Order(id: '', title: 'Anker charger', sourceCountry: 'us', deliveryMethod: DeliveryMethod.locker, status: OrderStatus.shipped, createdAt: now.subtract(const Duration(days: 5))),
+      Order(id: '', title: 'Noon order', sourceCountry: 'ae', deliveryMethod: DeliveryMethod.home, status: OrderStatus.placed, createdAt: now.subtract(const Duration(days: 1))),
+    ];
+    for (final o in samples) { await _col.add(o.toMap()); }
+  }
 }

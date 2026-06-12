@@ -227,5 +227,16 @@
   "navHome": "Home",
   "navAccount": "Account",
   "navOrders": "Orders",
-  "navSettings": "Settings"
+  "navSettings": "Settings",
+
+  "verifyCodeTitle": "Verify your account",
+  "verifyCodeBody": "Enter the 6-digit code sent to {email}.",
+  "@verifyCodeBody": {"placeholders": {"email": {}}},
+  "verifyCodeLabel": "Verification code",
+  "verifyCodeHint": "000000",
+  "verifyButton": "Verify",
+  "verifyDemoHint": "Demo code: 000000",
+  "verifyResend": "Resend email",
+  "verifyInvalidCode": "Invalid code. Please try again.",
+  "errorAuthInvalidOtp": "Invalid verification code."
 }

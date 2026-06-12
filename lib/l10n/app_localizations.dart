@@ -1348,6 +1348,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get navSettings;
+
+  /// No description provided for @verifyCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify your account'**
+  String get verifyCodeTitle;
+
+  /// No description provided for @verifyCodeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code sent to {email}.'**
+  String verifyCodeBody(Object email);
+
+  /// No description provided for @verifyCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code'**
+  String get verifyCodeLabel;
+
+  /// No description provided for @verifyCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'000000'**
+  String get verifyCodeHint;
+
+  /// No description provided for @verifyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get verifyButton;
+
+  /// No description provided for @verifyDemoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo code: 000000'**
+  String get verifyDemoHint;
+
+  /// No description provided for @verifyResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend email'**
+  String get verifyResend;
+
+  /// No description provided for @verifyInvalidCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid code. Please try again.'**
+  String get verifyInvalidCode;
+
+  /// No description provided for @errorAuthInvalidOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid verification code.'**
+  String get errorAuthInvalidOtp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
