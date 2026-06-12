@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
@@ -15,6 +16,7 @@ class SupportScreen extends StatelessWidget {
 
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
+      bottomNav: cfJourneyNav(context),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(22, 18, 22, 24),
         children: [

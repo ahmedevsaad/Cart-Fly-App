@@ -12,6 +12,7 @@ import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
 import '../../state/settings_provider.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 
 class CurrencyScreen extends StatelessWidget {
@@ -42,6 +43,7 @@ class CurrencyScreen extends StatelessWidget {
     }
 
     return CfScaffold(
+      bottomNav: cfJourneyNav(context),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(22, 18, 22, 24),
         children: [

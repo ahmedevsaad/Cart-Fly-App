@@ -7,6 +7,7 @@ import '../../widgets/icons/cf_icons.dart';
 import '../../l10n/app_localizations.dart';
 import '../../state/settings_provider.dart';
 import '../../theme/app_colors.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 
 class LanguageScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class LanguageScreen extends StatelessWidget {
     final currentCode = settings.locale.languageCode;
 
     return CfScaffold(
+      bottomNav: cfJourneyNav(context),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(22, 18, 22, 24),
         children: [

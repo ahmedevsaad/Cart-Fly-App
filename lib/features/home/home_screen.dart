@@ -7,7 +7,6 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_status_timeline.dart';
-import '../../widgets/cf_top_bar.dart';
 import '../../widgets/icons/cf_icons.dart';
 import '../auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
@@ -22,7 +21,6 @@ class HomeScreen extends StatelessWidget {
         context.watch<AuthProvider>().state.user?.name ?? 'User';
 
     return CfScaffold(
-      topBar: const CfTopBar(showBack: false),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
         child: Column(

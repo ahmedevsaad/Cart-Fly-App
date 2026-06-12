@@ -93,13 +93,13 @@ class CfIcons {
         color,
       );
 
-  /// Lockers — grid of vertical bars (barcode-locker)
+  /// Lockers — two vertical locker columns with keyholes (design frame 05)
   static Widget lockers({double size = 22, Color color = const Color(0xFF7E8AA0)}) =>
       _svg(
         '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
-        '<rect x="3" y="6" width="18" height="12" rx="2" stroke="{c}" stroke-width="1.6"/>'
-        '<path d="M7 9v6M10 9v6M13 9v6M17 9v6"'
-        ' stroke="{c}" stroke-width="1.6" stroke-linecap="round"/>'
+        '<rect x="5" y="3" width="6" height="18" rx="1" stroke="{c}" stroke-width="1.6"/>'
+        '<rect x="13" y="3" width="6" height="18" rx="1" stroke="{c}" stroke-width="1.6"/>'
+        '<path d="M8 8v2M16 8v2" stroke="{c}" stroke-width="1.6" stroke-linecap="round"/>'
         '</svg>',
         size,
         color,
@@ -116,14 +116,14 @@ class CfIcons {
         color,
       );
 
-  /// Cart Calculator — shopping cart with circle (camera-bag style)
+  /// Cart Calculator — shopping cart with wheels (design frame 05)
   static Widget cartCalculator({double size = 22, Color color = const Color(0xFF7E8AA0)}) =>
       _svg(
         '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
-        '<path d="M12 3a2 2 0 0 0-2 2H6a2 2 0 0 0-2 2l-1.5 11a2 2 0 0 0 2 2h15'
-        'a2 2 0 0 0 2-2L20 7a2 2 0 0 0-2-2h-4a2 2 0 0 0-2-2Z"'
-        ' stroke="{c}" stroke-width="1.6" stroke-linejoin="round"/>'
-        '<circle cx="12" cy="12" r="3.2" stroke="{c}" stroke-width="1.6"/>'
+        '<path d="M3 5h2l2 11h11l2-8H6"'
+        ' stroke="{c}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
+        '<circle cx="9" cy="20" r="1.4" stroke="{c}" stroke-width="1.6"/>'
+        '<circle cx="17" cy="20" r="1.4" stroke="{c}" stroke-width="1.6"/>'
         '</svg>',
         size,
         color,
