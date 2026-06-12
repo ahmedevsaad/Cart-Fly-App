@@ -4,6 +4,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 /// Locker locations list — Frame 12 of CartFly Redesign.
 /// Content is verbatim from the design: four locker spots.
@@ -80,8 +81,7 @@ class _LockerCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             alignment: Alignment.center,
-            child: const Icon(Icons.location_on_outlined,
-                size: 20, color: AppColors.navy),
+            child: CfIcons.pin(size: 20, color: AppColors.navy),
           ),
           const SizedBox(width: 12),
           Column(

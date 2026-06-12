@@ -8,6 +8,7 @@ import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_status_timeline.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 import '../auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     return CfScaffold(
       topBar: const CfTopBar(showBack: false),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                     Text(l10n.welcomeUser,
                         style: AppText.bodyMedium.copyWith(
                             fontWeight: FontWeight.w600, fontSize: 15)),
-                    Text(userName,
+                    Text('$userName 👋',
                         style: AppText.bodyMedium.copyWith(
                             fontWeight: FontWeight.w700, fontSize: 15)),
                   ],
@@ -52,8 +53,7 @@ class HomeScreen extends StatelessWidget {
                 Semantics(
                   button: true,
                   label: 'Notifications',
-                  child: Icon(Icons.notifications_none_rounded,
-                      color: AppColors.primary, size: 26),
+                  child: CfIcons.bell(color: AppColors.primary, size: 26),
                 ),
               ],
             ),
@@ -104,73 +104,25 @@ class HomeScreen extends StatelessWidget {
               children: [
                 _ServiceCard(
                   label: l10n.serviceWarehouses,
-                  icon: const _WarehouseIcon(),
+                  icon: CfIcons.homeBuilding(size: 27, color: AppColors.text),
                   onTap: () => context.push(Routes.warehouses),
                 ),
                 _ServiceCard(
                   label: l10n.serviceLockers,
-                  icon: const _LockerIcon(),
+                  icon: CfIcons.lockers(size: 27, color: AppColors.text),
                   onTap: () => context.push(Routes.lockers),
                 ),
                 _ServiceCard(
                   label: l10n.servicePlans,
-                  icon: const _PlansIcon(),
+                  icon: CfIcons.plans(size: 27, color: AppColors.text),
                   onTap: () => context.push(Routes.plans),
                 ),
                 _ServiceCard(
                   label: l10n.serviceCalculator,
-                  icon: const _CalculatorIcon(),
+                  icon: CfIcons.cartCalculator(size: 27, color: AppColors.text),
                   onTap: () => context.push(Routes.calculator),
                 ),
               ],
-            ),
-            const SizedBox(height: 20),
-
-            // ── My address row ────────────────────────────────────────
-            Semantics(
-              button: true,
-              label: 'My address',
-              child: Material(
-                color: AppColors.fieldBg,
-                borderRadius: BorderRadius.circular(14),
-                child: InkWell(
-                  onTap: () => context.push(Routes.myAddress),
-                  borderRadius: BorderRadius.circular(14),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14),
-                      boxShadow: AppColors.shadowSoft,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 14),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.location_on_outlined,
-                            size: 24, color: AppColors.text),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            'My address',
-                            style: AppText.bodyMedium.copyWith(
-                                fontWeight: FontWeight.w700, fontSize: 15),
-                          ),
-                        ),
-                        Container(
-                          width: 26,
-                          height: 26,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: AppColors.text, width: 2),
-                          ),
-                          child: const Icon(Icons.arrow_forward,
-                              size: 14, color: AppColors.text),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
             ),
             const SizedBox(height: 24),
           ],
@@ -220,6 +172,7 @@ class _ServiceCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     icon,
+                    // arrow-circle affordance (design: 26×26 circle border + arrowRight)
                     Container(
                       width: 26,
                       height: 26,
@@ -228,7 +181,8 @@ class _ServiceCard extends StatelessWidget {
                         border: Border.all(
                             color: AppColors.text, width: 2),
                       ),
-                      child: const Icon(Icons.arrow_forward,
+                      alignment: Alignment.center,
+                      child: CfIcons.arrowRight(
                           size: 14, color: AppColors.text),
                     ),
                   ],
@@ -237,7 +191,9 @@ class _ServiceCard extends StatelessWidget {
                 Text(
                   label,
                   style: AppText.bodyMedium.copyWith(
-                      fontWeight: FontWeight.w700, fontSize: 15, height: 1.2),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                      height: 1.2),
                 ),
               ],
             ),
@@ -246,48 +202,4 @@ class _ServiceCard extends StatelessWidget {
       ),
     );
   }
-}
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Icon widgets (path-drawn, matching design SVGs)
-// ──────────────────────────────────────────────────────────────────────────────
-
-class _WarehouseIcon extends StatelessWidget {
-  const _WarehouseIcon();
-  @override
-  Widget build(BuildContext context) => const Icon(
-        Icons.warehouse_outlined,
-        size: 27,
-        color: AppColors.text,
-      );
-}
-
-class _LockerIcon extends StatelessWidget {
-  const _LockerIcon();
-  @override
-  Widget build(BuildContext context) => const Icon(
-        Icons.lock_outline_rounded,
-        size: 27,
-        color: AppColors.text,
-      );
-}
-
-class _PlansIcon extends StatelessWidget {
-  const _PlansIcon();
-  @override
-  Widget build(BuildContext context) => const Icon(
-        Icons.calendar_today_outlined,
-        size: 27,
-        color: AppColors.text,
-      );
-}
-
-class _CalculatorIcon extends StatelessWidget {
-  const _CalculatorIcon();
-  @override
-  Widget build(BuildContext context) => const Icon(
-        Icons.shopping_cart_outlined,
-        size: 27,
-        color: AppColors.text,
-      );
 }

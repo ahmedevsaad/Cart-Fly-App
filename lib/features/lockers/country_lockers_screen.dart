@@ -8,6 +8,7 @@ import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 
 class CountryLockersScreen extends StatelessWidget {
   const CountryLockersScreen({super.key, required this.code});
@@ -79,7 +80,7 @@ class CountryLockersScreen extends StatelessWidget {
                   height: 280,
                   color: AppColors.fieldBg,
                   alignment: Alignment.center,
-                  child: const Icon(Icons.map_outlined,
+                  child: CfIcons.pin(
                       size: 48, color: AppColors.mutedDisabled),
                 ),
               ),
@@ -168,8 +169,7 @@ class _CopyButton extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.copy_rounded,
-                    size: 13, color: AppColors.primary),
+                CfIcons.copy(size: 13, color: AppColors.primary),
                 const SizedBox(width: 5),
                 Text(
                   l10n.copyAddress,
