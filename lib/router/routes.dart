@@ -35,4 +35,6 @@ class Routes {
   static const settingsLanguage = '/settings/language';
   static const settingsCurrency = '/settings/currency';
   static const calculator = '/calculator';
+  static const myAddress = '/my-address';
+  static const confirmOrder = '/orders/:id/confirm';
 }

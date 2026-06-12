@@ -120,6 +120,51 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 20),
+
+            // ── My address row ────────────────────────────────────────
+            GestureDetector(
+              onTap: () => context.push(Routes.myAddress),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.fieldBg,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Color(0x0F0F172A),
+                        blurRadius: 6,
+                        offset: Offset(0, 2)),
+                  ],
+                ),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16, vertical: 14),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_on_outlined,
+                        size: 24, color: AppColors.text),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        'My address',
+                        style: AppText.bodyMedium.copyWith(
+                            fontWeight: FontWeight.w700, fontSize: 15),
+                      ),
+                    ),
+                    Container(
+                      width: 26,
+                      height: 26,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border:
+                            Border.all(color: AppColors.text, width: 2),
+                      ),
+                      child: const Icon(Icons.arrow_forward,
+                          size: 14, color: AppColors.text),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(height: 24),
           ],
         ),

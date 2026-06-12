@@ -133,5 +133,39 @@
   "receiptAmountPaid": "المبلغ المدفوع",
   "receiptAmountVal": "19.99\$",
   "backToHome": "العودة للرئيسية",
-  "viewSubscription": "عرض اشتراكي"
+  "viewSubscription": "عرض اشتراكي",
+
+  "myOrderTitle": "طلبي:",
+  "orderDetailTrack": "تتبع الطلب",
+  "hubWarehouses": "مستودعاتنا",
+  "hubLockers": "مواقع الكاسات",
+  "hubPlans": "خطط الاشتراك",
+
+  "confirmOrderTitle": "تأكيد طلبك",
+  "confirmCustomerName": "اسم العميل:",
+  "confirmCustomerPhone": "رقم هاتف العميل:",
+  "confirmCustomerEmail": "بريد العميل الإلكتروني:",
+
+  "trackOrderTitle": "تتبع طلبك",
+  "trackCurrentStatus": "الحالة الحالية",
+  "trackExpectedDelivery": "التسليم المتوقع",
+  "trackExpectedDate": "15 يونيو 2026",
+  "trackHistory": "سجل التتبع",
+  "trackStepConfirmed": "تم\nتأكيد الطلب",
+  "trackStepShipped": "تم\nشحن الطلب",
+  "trackStepOutForDelivery": "خرج\nللتسليم",
+  "trackHistoryOrderConfirmed": "تم تأكيد الطلب",
+  "trackHistoryPackageReceived": "تم استلام الطرد",
+  "trackHistoryInTransit": "في الطريق",
+  "trackHistoryCustomClearance": "التخليص الجمركي",
+  "trackHistoryOutForDelivery": "خرج للتسليم",
+  "trackHistoryDelivered": "تم التسليم",
+
+  "statusAtWarehouse": "في المستودع",
+  "statusOrderConfirmed": "تم تأكيد الطلب",
+  "statusOutForDelivery": "خرج للتسليم",
+  "statusPackagingMsg": "طردك في مستودعنا ويجري تجهيزه.",
+  "statusShippedMsg": "طردك في طريقه إلى الدولة المقصودة.",
+  "statusPlacedMsg": "تم تأكيد طلبك وهو في انتظار الاستلام.",
+  "statusDeliveredMsg": "تم تسليم طردك بنجاح."
 }

@@ -137,5 +137,39 @@
   "receiptAmountPaid": "Amount paid",
   "receiptAmountVal": "\$19.99",
   "backToHome": "Back to home",
-  "viewSubscription": "View my subscription"
+  "viewSubscription": "View my subscription",
+
+  "myOrderTitle": "My order:",
+  "orderDetailTrack": "Track order",
+  "hubWarehouses": "Our warehouses",
+  "hubLockers": "Locker locations",
+  "hubPlans": "Subscription plans",
+
+  "confirmOrderTitle": "Confirm your order",
+  "confirmCustomerName": "Customer name:",
+  "confirmCustomerPhone": "Customer phone no.:",
+  "confirmCustomerEmail": "Customer email:",
+
+  "trackOrderTitle": "Track your order",
+  "trackCurrentStatus": "current status",
+  "trackExpectedDelivery": "Expected Delivery",
+  "trackExpectedDate": "15 June 2026",
+  "trackHistory": "Tracking History",
+  "trackStepConfirmed": "order\nconfirmed",
+  "trackStepShipped": "order\nshipped",
+  "trackStepOutForDelivery": "out for\ndelivery",
+  "trackHistoryOrderConfirmed": "Order confirmed",
+  "trackHistoryPackageReceived": "Package Received",
+  "trackHistoryInTransit": "In transit",
+  "trackHistoryCustomClearance": "Custom clearance",
+  "trackHistoryOutForDelivery": "Out for Delivery",
+  "trackHistoryDelivered": "Delivered",
+
+  "statusAtWarehouse": "At Warehouse",
+  "statusOrderConfirmed": "Order Confirmed",
+  "statusOutForDelivery": "Out for Delivery",
+  "statusPackagingMsg": "Your package is at our warehouse and being prepared.",
+  "statusShippedMsg": "Your package is on the way to the destination country.",
+  "statusPlacedMsg": "Your order has been confirmed and is awaiting pickup.",
+  "statusDeliveredMsg": "Your package has been delivered successfully."
 }

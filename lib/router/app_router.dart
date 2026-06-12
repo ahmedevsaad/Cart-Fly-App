@@ -23,6 +23,8 @@ import '../features/profile/profile_screen.dart';
 import '../features/settings/currency_screen.dart';
 import '../features/settings/language_screen.dart';
 import '../features/settings/settings_screen.dart';
+import '../features/address/my_address_screen.dart';
+import '../features/shipments/confirm_order_screen.dart';
 import '../features/shipments/create_shipment_screen.dart';
 import '../features/shipments/order_detail_screen.dart';
 import '../features/shipments/orders_screen.dart';
@@ -73,6 +75,7 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(path: Routes.howItWorks, builder: (_, __) => const HowItWorksScreen()),
       GoRoute(path: Routes.support, builder: (_, __) => const SupportScreen()),
       GoRoute(path: Routes.calculator, builder: (_, __) => const ShippingCalculatorScreen()),
+      GoRoute(path: Routes.myAddress, builder: (_, __) => const MyAddressScreen()),
       GoRoute(path: Routes.plans, builder: (_, __) => const PlansScreen()),
       GoRoute(
           path: Routes.planDetail,
@@ -110,6 +113,10 @@ GoRouter buildRouter(AuthProvider auth) {
           path: Routes.orderDetail,
           builder: (_, s) =>
               OrderDetailScreen(id: s.pathParameters['id']!)),
+      GoRoute(
+          path: Routes.confirmOrder,
+          builder: (_, s) =>
+              ConfirmOrderScreen(orderId: s.pathParameters['id'])),
       GoRoute(
           path: Routes.trackOrder,
           builder: (_, s) =>
