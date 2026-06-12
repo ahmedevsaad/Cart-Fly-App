@@ -1,77 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/cf_button.dart';
-import '../../widgets/cf_input.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
-class SupportScreen extends StatefulWidget {
+class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
 
   @override
-  State<SupportScreen> createState() => _SupportScreenState();
-}
-
-class _SupportScreenState extends State<SupportScreen> {
-  final _subject = TextEditingController();
-  final _description = TextEditingController();
-
-  @override
-  void dispose() {
-    _subject.dispose();
-    _description.dispose();
-    super.dispose();
-  }
-
-  void _submit() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Thanks, we'll get back to you")),
-    );
-    _subject.clear();
-    _description.clear();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Have an Issue?',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(22, 18, 22, 24),
+        children: [
+          // Page title
+          Text(
+            l.supportIssueTitle,
+            style: GoogleFonts.inter(
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
+              color: AppColors.text,
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Describe your issue and we\'ll get back to you as soon as possible.',
-              style: TextStyle(fontSize: 14, color: Color(0xFF64748B)),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 18),
+
+          // Body card
+          Container(
+            padding: const EdgeInsets.all(22),
+            decoration: BoxDecoration(
+              color: AppColors.fieldBg,
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: AppColors.shadowSoft,
             ),
-            const SizedBox(height: 20),
-            CfInput(label: 'Subject:', controller: _subject),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Text(
+              l.supportIssueBody,
+              style: GoogleFonts.inter(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w500,
+                height: 1.6,
+                color: AppColors.text,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Contact card
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.fieldBg,
+              borderRadius: BorderRadius.circular(AppColors.radiusCard),
+              boxShadow: AppColors.shadowSoft,
+            ),
+            child: Column(
               children: [
-                const Text('Describe the issue:',
-                    style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 6),
-                TextField(
-                  controller: _description,
-                  maxLines: 5,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.all(12),
+                Text(
+                  l.supportContactLabel,
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.muted,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 3),
+                Text(
+                  l.supportContactEmail,
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primary,
+                  ),
+                ),
               ],
             ),
-            CfButton(label: 'Submit', onPressed: _submit),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

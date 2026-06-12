@@ -411,4 +411,100 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get viewSubscription => 'عرض اشتراكي';
+
+  // Profile (Frame 26)
+  @override
+  String get profileTitle => 'ملفي الشخصي';
+  @override
+  String get profileName => 'الاسم:';
+  @override
+  String get profileEmail => 'البريد الإلكتروني:';
+  @override
+  String get profilePhone => 'رقم الهاتف:';
+  @override
+  String get profileCountry => 'الدولة:';
+  @override
+  String get profilePlan => 'خطتك:';
+  @override
+  String get profileCurrency => 'العملة:';
+  @override
+  String get profileSignOut => 'تسجيل الخروج';
+
+  // Settings (Frame 27)
+  @override
+  String get settingsTitle => 'الإعدادات';
+  @override
+  String get settingsAccountSection => 'إعدادات الحساب:';
+  @override
+  String get settingsSavedAddresses => 'العناوين المحفوظة';
+  @override
+  String get settingsEditProfile => 'تعديل الملفات الشخصية';
+  @override
+  String get settingsChangePassword => 'تغيير كلمة المرور';
+  @override
+  String get settingsAppPrefsSection => 'تفضيلات التطبيق:';
+  @override
+  String get settingsLanguages => 'اللغات';
+  @override
+  String get settingsCurrency => 'العملة';
+  @override
+  String get settingsNotifications => 'إعدادات الإشعارات';
+  @override
+  String get settingsSupportSection => 'الدعم والمساعدة:';
+  @override
+  String get settingsHelpCenter => 'مركز المساعدة';
+  @override
+  String get settingsHaveAnIssue => 'هل لديك مشكلة';
+  @override
+  String get settingsReportProblem => 'الإبلاغ عن مشكلة';
+  @override
+  String get settingsAboutUs => 'من نحن';
+  @override
+  String get settingsPolicy => 'السياسة';
+  @override
+  String get settingsContactUs => 'تواصل معنا:';
+  @override
+  String get settingsContactEmail => 'cartflylog@gmail.com';
+  @override
+  String get settingsSignOut => 'تسجيل الخروج';
+
+  // Currency screen (Frame 28)
+  @override
+  String get currencyScreenTitle => 'الإعدادات';
+  @override
+  String get currencyEGP => 'EGP';
+  @override
+  String get currencyUSD => 'USD';
+  @override
+  String get currencySAR => 'SAR';
+
+  // Language screen (Frame 29)
+  @override
+  String get langScreenTitle => 'الإعدادات';
+  @override
+  String get langEnglish => 'English';
+  @override
+  String get langArabic => 'العربية';
+
+  // About screen (Frame 30)
+  @override
+  String get aboutTitle => 'من نحن';
+  @override
+  String get aboutBody =>
+      'نحن خدمة شحن دولية موثوقة تربط مصر والولايات المتحدة والإمارات والصين والمملكة العربية السعودية عبر منصة واحدة متكاملة. هدفنا تبسيط التوصيل عبر الحدود من خلال توفير حلول شحن موثوقة وتسعير شفاف وتتبع فوري وإدارة فعّالة للطلبات لضمان وصول كل شحنة إلى وجهتها بأمان وفي الوقت المحدد.';
+  @override
+  String get aboutContactLabel => 'تواصل معنا:';
+  @override
+  String get aboutContactEmail => 'cartflylog@gmail.com';
+
+  // Support / Have an issue (Frame 31)
+  @override
+  String get supportIssueTitle => 'هل لديك مشكلة؟';
+  @override
+  String get supportIssueBody =>
+      'إذا كنت تواجه أي مشكلة أثناء استخدام التطبيق، نحن هنا للمساعدة.\n\nسواء كانت مشكلة في اختيار المستودعات أو تحميل البيانات أو أي شيء لا يعمل كما هو متوقع، يُرجى إعلامنا.\n\nيُرجى تقديم وصف واضح للمشكلة، وإن أمكن، أذكر المستودع الذي كنت تحاول الوصول إليه وأرفق لقطة شاشة لمساعدتنا على فهم المشكلة بشكل أفضل.\n\nسيراجع فريقنا طلبك ويعود إليك في أقرب وقت ممكن.';
+  @override
+  String get supportContactLabel => 'تواصل معنا:';
+  @override
+  String get supportContactEmail => 'cartflylog@gmail.com';
 }

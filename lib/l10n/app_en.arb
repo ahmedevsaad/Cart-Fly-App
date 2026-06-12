@@ -171,5 +171,52 @@
   "statusPackagingMsg": "Your package is at our warehouse and being prepared.",
   "statusShippedMsg": "Your package is on the way to the destination country.",
   "statusPlacedMsg": "Your order has been confirmed and is awaiting pickup.",
-  "statusDeliveredMsg": "Your package has been delivered successfully."
+  "statusDeliveredMsg": "Your package has been delivered successfully.",
+
+  "profileTitle": "My Profile",
+  "profileName": "Name:",
+  "profileEmail": "Email address:",
+  "profilePhone": "Phone number:",
+  "profileCountry": "Country:",
+  "profilePlan": "Your plan:",
+  "profileCurrency": "Currency:",
+  "profileSignOut": "Sign out",
+
+  "settingsTitle": "Settings",
+  "settingsAccountSection": "Account settings:",
+  "settingsSavedAddresses": "Saved addresses",
+  "settingsEditProfile": "Edit profiles",
+  "settingsChangePassword": "Change password",
+  "settingsAppPrefsSection": "App Preferences:",
+  "settingsLanguages": "Languages",
+  "settingsCurrency": "Currency",
+  "settingsNotifications": "Notification settings",
+  "settingsSupportSection": "Support & Help:",
+  "settingsHelpCenter": "Help center",
+  "settingsHaveAnIssue": "Have an issue",
+  "settingsReportProblem": "Report a problem",
+  "settingsAboutUs": "About us",
+  "settingsPolicy": "Policy",
+  "settingsContactUs": "contact us:",
+  "settingsContactEmail": "cartflylog@gmail.com",
+  "settingsSignOut": "Sign out",
+
+  "currencyScreenTitle": "Settings",
+  "currencyEGP": "EGP",
+  "currencyUSD": "USD",
+  "currencySAR": "SAR",
+
+  "langScreenTitle": "Settings",
+  "langEnglish": "English",
+  "langArabic": "العربية",
+
+  "aboutTitle": "About us",
+  "aboutBody": "We are a trusted international shipping service connecting Egypt, the USA, the UAE, China, and Saudi Arabia through one seamless platform. Our goal is to simplify cross-border delivery by providing reliable shipping solutions, transparent pricing, real-time tracking, and efficient order management to ensure every shipment reaches its destination safely and on time.",
+  "aboutContactLabel": "contact us:",
+  "aboutContactEmail": "cartflylog@gmail.com",
+
+  "supportIssueTitle": "Have an issue?",
+  "supportIssueBody": "If you are experiencing any problem while using the application, we're here to help.\n\nWhether it's an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.",
+  "supportContactLabel": "contact us:",
+  "supportContactEmail": "cartflylog@gmail.com"
 }

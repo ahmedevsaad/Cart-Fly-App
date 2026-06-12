@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/auth/auth_provider.dart';
-import '../../router/routes.dart';
-import '../../widgets/cf_button.dart';
-import '../../widgets/cf_list_row.dart';
+import '../../l10n/app_localizations.dart';
+import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 
@@ -14,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final user = context.watch<AuthProvider>().state.user;
 
     if (user == null) {
@@ -22,58 +22,110 @@ class ProfileScreen extends StatelessWidget {
 
     return CfScaffold(
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(22, 22, 22, 24),
         children: [
-          const SizedBox(height: 8),
-          // Avatar / name header
+          // Title
+          Text(
+            l.profileTitle,
+            style: GoogleFonts.inter(
+              fontSize: 23,
+              fontWeight: FontWeight.w800,
+              color: AppColors.text,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 14),
+
+          // Avatar
           Center(
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 36,
-                  backgroundColor: const Color(0xFFECEEF0),
-                  child: Text(
-                    user.name.isNotEmpty
-                        ? user.name[0].toUpperCase()
-                        : '?',
-                    style: const TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.bold),
+            child: Container(
+              width: 108,
+              height: 108,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.fieldBg,
+                border: Border.all(color: Colors.white, width: 3),
+                boxShadow: AppColors.shadowSoft,
+              ),
+              child: Center(
+                child: Text(
+                  user.name.isNotEmpty ? user.name[0].toUpperCase() : '?',
+                  style: GoogleFonts.inter(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.text,
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  user.name,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                if (user.email.isNotEmpty)
-                  Text(
-                    user.email,
-                    style: const TextStyle(
-                        fontSize: 13, color: Color(0xFF64748B)),
-                  ),
-              ],
+              ),
             ),
           ),
-          const SizedBox(height: 20),
-          // Info rows
-          _InfoRow(label: 'Phone', value: user.phone.isNotEmpty ? user.phone : '-'),
-          _InfoRow(label: 'Country', value: user.country.isNotEmpty ? user.country : '-'),
-          _InfoRow(label: 'Currency', value: user.currency.isNotEmpty ? user.currency : 'USD'),
-          const SizedBox(height: 16),
-          // Actions
-          CfListRow(
-            label: 'Edit profile',
-            onTap: () => context.push(Routes.editProfile),
+          const SizedBox(height: 18),
+
+          // Detail rows
+          _ProfileField(label: l.profileName, value: user.name),
+          const SizedBox(height: 11),
+          _ProfileField(label: l.profileEmail, value: user.email),
+          const SizedBox(height: 11),
+          _ProfileField(
+            label: l.profilePhone,
+            value: user.phone.isNotEmpty ? user.phone : '-',
           ),
-          CfListRow(
-            label: 'Change password',
-            onTap: () => context.push(Routes.changePassword),
+          const SizedBox(height: 11),
+
+          // Country + Plan row
+          Row(
+            children: [
+              Expanded(
+                child: _ProfileField(
+                  label: l.profileCountry,
+                  value: user.country.isNotEmpty ? user.country : '-',
+                ),
+              ),
+              const SizedBox(width: 11),
+              Expanded(
+                child: _ProfileField(
+                  label: l.profilePlan,
+                  value: 'Smart cart',
+                  valueColor: AppColors.primary,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 24),
-          CfButton(
-            label: 'Sign out',
-            onPressed: () => context.read<AuthProvider>().logout(),
+          const SizedBox(height: 11),
+
+          // Currency
+          _ProfileField(
+            label: l.profileCurrency,
+            value: user.currency.isNotEmpty ? user.currency : 'USD',
+          ),
+          const SizedBox(height: 18),
+
+          // Sign out button — danger red per design
+          Center(
+            child: ElevatedButton.icon(
+              onPressed: () => context.read<AuthProvider>().logout(),
+              icon: const Icon(Icons.logout, size: 18, color: Colors.white),
+              label: Text(
+                l.profileSignOut,
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.danger,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppColors.radius),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 26,
+                  vertical: 11,
+                ),
+                elevation: 0,
+              ),
+            ),
           ),
         ],
       ),
@@ -81,29 +133,45 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.label, required this.value});
+class _ProfileField extends StatelessWidget {
+  const _ProfileField({
+    required this.label,
+    required this.value,
+    this.valueColor,
+  });
+
   final String label;
   final String value;
+  final Color? valueColor;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 13, 16, 13),
+      decoration: BoxDecoration(
+        color: AppColors.fieldBg,
+        borderRadius: BorderRadius.circular(AppColors.radius),
+        boxShadow: AppColors.shadowSoft,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 90,
-            child: Text(
-              label,
-              style: const TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF64748B),
-                  fontWeight: FontWeight.w500),
+          Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.muted,
             ),
           ),
-          Expanded(
-            child: Text(value, style: const TextStyle(fontSize: 14)),
+          const SizedBox(height: 2),
+          Text(
+            value,
+            style: GoogleFonts.inter(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: valueColor ?? AppColors.text,
+            ),
           ),
         ],
       ),

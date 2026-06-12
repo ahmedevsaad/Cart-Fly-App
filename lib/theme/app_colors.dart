@@ -19,6 +19,9 @@ class AppColors {
   static const danger = Color(0xFFEF4444);
   static const navIdle = Color(0xFF7E8AA0); // idle bottom-nav icon
   static const cardBg = Color(0xFFF1F3F5);
+  static const navyTile = Color(0xFF86A6EA);   // "About us" card bg (Frame 27)
+  static const navyLabel = Color(0xFF16447B);  // "About us" card label/icon
+  static const activeTint = Color(0xFFE7EEFB); // expanded-section highlight bg
 
   static const double radius = 12; // fields
   static const double radiusCard = 16; // cards

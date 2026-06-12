@@ -167,5 +167,52 @@
   "statusPackagingMsg": "طردك في مستودعنا ويجري تجهيزه.",
   "statusShippedMsg": "طردك في طريقه إلى الدولة المقصودة.",
   "statusPlacedMsg": "تم تأكيد طلبك وهو في انتظار الاستلام.",
-  "statusDeliveredMsg": "تم تسليم طردك بنجاح."
+  "statusDeliveredMsg": "تم تسليم طردك بنجاح.",
+
+  "profileTitle": "ملفي الشخصي",
+  "profileName": "الاسم:",
+  "profileEmail": "البريد الإلكتروني:",
+  "profilePhone": "رقم الهاتف:",
+  "profileCountry": "الدولة:",
+  "profilePlan": "خطتك:",
+  "profileCurrency": "العملة:",
+  "profileSignOut": "تسجيل الخروج",
+
+  "settingsTitle": "الإعدادات",
+  "settingsAccountSection": "إعدادات الحساب:",
+  "settingsSavedAddresses": "العناوين المحفوظة",
+  "settingsEditProfile": "تعديل الملفات الشخصية",
+  "settingsChangePassword": "تغيير كلمة المرور",
+  "settingsAppPrefsSection": "تفضيلات التطبيق:",
+  "settingsLanguages": "اللغات",
+  "settingsCurrency": "العملة",
+  "settingsNotifications": "إعدادات الإشعارات",
+  "settingsSupportSection": "الدعم والمساعدة:",
+  "settingsHelpCenter": "مركز المساعدة",
+  "settingsHaveAnIssue": "هل لديك مشكلة",
+  "settingsReportProblem": "الإبلاغ عن مشكلة",
+  "settingsAboutUs": "من نحن",
+  "settingsPolicy": "السياسة",
+  "settingsContactUs": "تواصل معنا:",
+  "settingsContactEmail": "cartflylog@gmail.com",
+  "settingsSignOut": "تسجيل الخروج",
+
+  "currencyScreenTitle": "الإعدادات",
+  "currencyEGP": "EGP",
+  "currencyUSD": "USD",
+  "currencySAR": "SAR",
+
+  "langScreenTitle": "الإعدادات",
+  "langEnglish": "English",
+  "langArabic": "العربية",
+
+  "aboutTitle": "من نحن",
+  "aboutBody": "نحن خدمة شحن دولية موثوقة تربط مصر والولايات المتحدة والإمارات والصين والمملكة العربية السعودية عبر منصة واحدة متكاملة. هدفنا تبسيط التوصيل عبر الحدود من خلال توفير حلول شحن موثوقة وتسعير شفاف وتتبع فوري وإدارة فعّالة للطلبات لضمان وصول كل شحنة إلى وجهتها بأمان وفي الوقت المحدد.",
+  "aboutContactLabel": "تواصل معنا:",
+  "aboutContactEmail": "cartflylog@gmail.com",
+
+  "supportIssueTitle": "هل لديك مشكلة؟",
+  "supportIssueBody": "إذا كنت تواجه أي مشكلة أثناء استخدام التطبيق، نحن هنا للمساعدة.\n\nسواء كانت مشكلة في اختيار المستودعات أو تحميل البيانات أو أي شيء لا يعمل كما هو متوقع، يُرجى إعلامنا.\n\nيُرجى تقديم وصف واضح للمشكلة، وإن أمكن، أذكر المستودع الذي كنت تحاول الوصول إليه وأرفق لقطة شاشة لمساعدتنا على فهم المشكلة بشكل أفضل.\n\nسيراجع فريقنا طلبك ويعود إليك في أقرب وقت ممكن.",
+  "supportContactLabel": "تواصل معنا:",
+  "supportContactEmail": "cartflylog@gmail.com"
 }

@@ -412,4 +412,100 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get viewSubscription => 'View my subscription';
+
+  // Profile (Frame 26)
+  @override
+  String get profileTitle => 'My Profile';
+  @override
+  String get profileName => 'Name:';
+  @override
+  String get profileEmail => 'Email address:';
+  @override
+  String get profilePhone => 'Phone number:';
+  @override
+  String get profileCountry => 'Country:';
+  @override
+  String get profilePlan => 'Your plan:';
+  @override
+  String get profileCurrency => 'Currency:';
+  @override
+  String get profileSignOut => 'Sign out';
+
+  // Settings (Frame 27)
+  @override
+  String get settingsTitle => 'Settings';
+  @override
+  String get settingsAccountSection => 'Account settings:';
+  @override
+  String get settingsSavedAddresses => 'Saved addresses';
+  @override
+  String get settingsEditProfile => 'Edit profiles';
+  @override
+  String get settingsChangePassword => 'Change password';
+  @override
+  String get settingsAppPrefsSection => 'App Preferences:';
+  @override
+  String get settingsLanguages => 'Languages';
+  @override
+  String get settingsCurrency => 'Currency';
+  @override
+  String get settingsNotifications => 'Notification settings';
+  @override
+  String get settingsSupportSection => 'Support & Help:';
+  @override
+  String get settingsHelpCenter => 'Help center';
+  @override
+  String get settingsHaveAnIssue => 'Have an issue';
+  @override
+  String get settingsReportProblem => 'Report a problem';
+  @override
+  String get settingsAboutUs => 'About us';
+  @override
+  String get settingsPolicy => 'Policy';
+  @override
+  String get settingsContactUs => 'contact us:';
+  @override
+  String get settingsContactEmail => 'cartflylog@gmail.com';
+  @override
+  String get settingsSignOut => 'Sign out';
+
+  // Currency screen (Frame 28)
+  @override
+  String get currencyScreenTitle => 'Settings';
+  @override
+  String get currencyEGP => 'EGP';
+  @override
+  String get currencyUSD => 'USD';
+  @override
+  String get currencySAR => 'SAR';
+
+  // Language screen (Frame 29)
+  @override
+  String get langScreenTitle => 'Settings';
+  @override
+  String get langEnglish => 'English';
+  @override
+  String get langArabic => 'العربية';
+
+  // About screen (Frame 30)
+  @override
+  String get aboutTitle => 'About us';
+  @override
+  String get aboutBody =>
+      'We are a trusted international shipping service connecting Egypt, the USA, the UAE, China, and Saudi Arabia through one seamless platform. Our goal is to simplify cross-border delivery by providing reliable shipping solutions, transparent pricing, real-time tracking, and efficient order management to ensure every shipment reaches its destination safely and on time.';
+  @override
+  String get aboutContactLabel => 'contact us:';
+  @override
+  String get aboutContactEmail => 'cartflylog@gmail.com';
+
+  // Support / Have an issue (Frame 31)
+  @override
+  String get supportIssueTitle => 'Have an issue?';
+  @override
+  String get supportIssueBody =>
+      'If you are experiencing any problem while using the application, we\'re here to help.\n\nWhether it\'s an issue with selecting warehouses, loading data, or anything not working as expected, please let us know.\n\nKindly provide a clear description of the issue, and if possible, include the warehouse you were trying to access and a screenshot to help us understand the problem better.\n\nOur team will review your request and get back to you as soon as possible.';
+  @override
+  String get supportContactLabel => 'contact us:';
+  @override
+  String get supportContactEmail => 'cartflylog@gmail.com';
 }

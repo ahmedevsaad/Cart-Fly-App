@@ -448,6 +448,59 @@ abstract class AppLocalizations {
   String get receiptAmountVal;
   String get backToHome;
   String get viewSubscription;
+
+  // Profile (Frame 26)
+  String get profileTitle;
+  String get profileName;
+  String get profileEmail;
+  String get profilePhone;
+  String get profileCountry;
+  String get profilePlan;
+  String get profileCurrency;
+  String get profileSignOut;
+
+  // Settings (Frame 27)
+  String get settingsTitle;
+  String get settingsAccountSection;
+  String get settingsSavedAddresses;
+  String get settingsEditProfile;
+  String get settingsChangePassword;
+  String get settingsAppPrefsSection;
+  String get settingsLanguages;
+  String get settingsCurrency;
+  String get settingsNotifications;
+  String get settingsSupportSection;
+  String get settingsHelpCenter;
+  String get settingsHaveAnIssue;
+  String get settingsReportProblem;
+  String get settingsAboutUs;
+  String get settingsPolicy;
+  String get settingsContactUs;
+  String get settingsContactEmail;
+  String get settingsSignOut;
+
+  // Currency screen (Frame 28)
+  String get currencyScreenTitle;
+  String get currencyEGP;
+  String get currencyUSD;
+  String get currencySAR;
+
+  // Language screen (Frame 29)
+  String get langScreenTitle;
+  String get langEnglish;
+  String get langArabic;
+
+  // About screen (Frame 30)
+  String get aboutTitle;
+  String get aboutBody;
+  String get aboutContactLabel;
+  String get aboutContactEmail;
+
+  // Support / Have an issue (Frame 31)
+  String get supportIssueTitle;
+  String get supportIssueBody;
+  String get supportContactLabel;
+  String get supportContactEmail;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
