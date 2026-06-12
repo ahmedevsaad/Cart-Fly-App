@@ -8,6 +8,7 @@ import '../../router/routes.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/cf_top_bar.dart';
@@ -345,31 +346,36 @@ class _ConsolidationHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF0FDFA),
-        border: Border.all(
-            color: const Color(0xFF0D9488), style: BorderStyle.solid),
-        borderRadius: BorderRadius.circular(AppColors.radius),
+    return CustomPaint(
+      painter: CfDashedBorderPainter(
+        color: const Color(0xFF0D9488), // teal brand — intentionally one-off
+        radius: AppColors.radius,
+        strokeWidth: 1.5,
       ),
-      child: Row(
-        children: [
-          const Icon(Icons.local_shipping_outlined,
-              color: Color(0xFF0D9488), size: 20),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              '$count packages at the warehouse can be combined to save on shipping.',
-              style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF0F766E),
-                height: 1.4,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0FDFA),
+          borderRadius: BorderRadius.circular(AppColors.radius),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.local_shipping_outlined,
+                color: Color(0xFF0D9488), size: 20),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                '$count packages at the warehouse can be combined to save on shipping.',
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF0F766E),
+                  height: 1.4,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

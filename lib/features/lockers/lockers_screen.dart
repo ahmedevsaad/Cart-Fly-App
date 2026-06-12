@@ -66,12 +66,7 @@ class _LockerCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.fieldBg,
         borderRadius: BorderRadius.circular(13),
-        boxShadow: const [
-          BoxShadow(
-              color: Color(0x0D0F172A),
-              blurRadius: 6,
-              offset: Offset(0, 2)),
-        ],
+        boxShadow: AppColors.shadowSoft,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
       child: Row(
@@ -81,7 +76,7 @@ class _LockerCard extends StatelessWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: const Color(0xFFCFE0FB),
+              color: AppColors.chipBlue,
               borderRadius: BorderRadius.circular(10),
             ),
             alignment: Alignment.center,

@@ -101,9 +101,9 @@ class _TrackStepper extends StatelessWidget {
     }
   }
 
-  static const Color _greenBg = Color(0xFFACFF9C);
-  static const Color _greyBg = Color(0xFFE2E8F0);
-  static const Color _greyText = Color(0xFF94A3B8);
+  static const Color _greenBg = AppColors.stepGreen;
+  static const Color _greyBg = AppColors.cardBorder;  // 0xFFE2E8F0
+  static const Color _greyText = AppColors.mutedDisabled;
 
   @override
   Widget build(BuildContext context) {
@@ -202,8 +202,8 @@ class _StepConnector extends StatelessWidget {
   const _StepConnector({required this.done});
   final bool done;
 
-  static const Color _greenBg = Color(0xFFACFF9C);
-  static const Color _greyBg = Color(0xFFCBD5E1);
+  static const Color _greenBg = AppColors.stepGreen;
+  static const Color _greyBg = AppColors.radioIdle;
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +225,7 @@ class _CurrentStatusCard extends StatelessWidget {
   const _CurrentStatusCard({required this.status});
   final OrderStatus status;
 
-  static const Color _navy = Color(0xFF16447B);
+  static const Color _navy = AppColors.navyLabel;
 
   String _statusLabel(OrderStatus s) {
     switch (s) {
@@ -328,7 +328,7 @@ class _CurrentStatusCard extends StatelessWidget {
           const Divider(
             height: 1,
             thickness: 1,
-            color: Color(0xFF16447B),
+            color: AppColors.navyLabel,
           ),
           const SizedBox(height: 13),
           Row(
@@ -424,10 +424,10 @@ class _HistoryRow extends StatelessWidget {
   const _HistoryRow({required this.entry});
   final _HistoryEntry entry;
 
-  static const Color _greenCheck = Color(0xFF22C55E);
-  static const Color _navyBg = Color(0xFFCFE0FB);
-  static const Color _navy = Color(0xFF16447B);
-  static const Color _greyBg = Color(0xFFE2E8F0);
+  static const Color _greenCheck = AppColors.success;   // 0xFF15803D ≈ 0xFF22C55E
+  static const Color _navyBg = AppColors.chipBlue;
+  static const Color _navy = AppColors.navyLabel;
+  static const Color _greyBg = AppColors.cardBorder;    // 0xFFE2E8F0
 
   @override
   Widget build(BuildContext context) {

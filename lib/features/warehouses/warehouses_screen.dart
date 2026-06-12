@@ -80,12 +80,7 @@ class _WarehouseCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.fieldBg,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-                color: Color(0x0F0F172A),
-                blurRadius: 6,
-                offset: Offset(0, 2)),
-          ],
+          boxShadow: AppColors.shadowSoft,
         ),
         clipBehavior: Clip.antiAlias,
         child: Column(

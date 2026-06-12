@@ -164,12 +164,12 @@ class _OrderStepper extends StatelessWidget {
   ];
 
   // Navy-ish active bg matching design (#CFE0FB / #16447B)
-  static const Color _activeBg = Color(0xFFCFE0FB);
-  static const Color _activeIcon = Color(0xFF16447B);
-  static const Color _pendingBg = Color(0xFFFFFFFF);
-  static const Color _pendingBorder = Color(0xFFCBD5E1);
-  static const Color _connectorActive = Color(0xFF86A6EA);
-  static const Color _connectorPending = Color(0xFFCBD5E1);
+  static const Color _activeBg = AppColors.chipBlue;
+  static const Color _activeIcon = AppColors.navyLabel;
+  static const Color _pendingBg = Color(0xFFFFFFFF); // pure white — intentional
+  static const Color _pendingBorder = AppColors.radioIdle;
+  static const Color _connectorActive = AppColors.navyTile;
+  static const Color _connectorPending = AppColors.radioIdle;
 
   @override
   Widget build(BuildContext context) {

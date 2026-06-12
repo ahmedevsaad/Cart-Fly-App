@@ -47,7 +47,7 @@ class CfBottomNav extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: AppColors.cardBorder),
+        border: Border.all(color: AppColors.navBarBorder),
         boxShadow: const [_navShadow],
       ),
       padding: const EdgeInsets.all(8),

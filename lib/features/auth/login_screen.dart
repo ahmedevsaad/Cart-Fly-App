@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 72,
                       height: 72,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFCFE0FB),
+                        color: AppColors.chipBlue,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Center(
@@ -187,7 +187,7 @@ class _UserIcon extends StatelessWidget {
 class _UserIconPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const strokeColor = Color(0xFF16447B);
+    const strokeColor = AppColors.navyLabel;
     final paint = Paint()
       ..color = strokeColor
       ..style = PaintingStyle.stroke

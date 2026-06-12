@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../data/warehouse_addresses.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
@@ -324,7 +325,7 @@ class _AddressRow extends StatelessWidget {
                   width: 30,
                   height: 30,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE3E8EE),
+                    color: AppColors.tagBg,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
@@ -338,11 +339,7 @@ class _AddressRow extends StatelessWidget {
           ),
         ),
         if (showDivider)
-          const Divider(
-            height: 1,
-            thickness: 1,
-            color: Color(0xFFD5DCE3),
-          ),
+          CfDashedDivider(color: const Color(0xFFD5DCE3)),
       ],
     );
   }

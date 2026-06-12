@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/repositories/user_repository.dart';
 import '../../features/auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
+import '../../router/routes.dart';
 import '../../state/settings_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -78,7 +80,7 @@ class CurrencyScreen extends StatelessWidget {
                 _PrefsRow(
                   label: l.settingsLanguages,
                   expanded: false,
-                  onTap: () => Navigator.of(context).maybePop(),
+                  onTap: () => context.push(Routes.settingsLanguage),
                 ),
                 _divider(),
 
@@ -266,7 +268,7 @@ class _RadioRow extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.mutedDisabled,
+                        color: AppColors.radioIdle,
                         width: 2,
                       ),
                     ),

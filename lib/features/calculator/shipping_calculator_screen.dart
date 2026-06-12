@@ -106,7 +106,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE3E8EE),
+                      color: AppColors.tagBg,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: const EdgeInsets.symmetric(
@@ -200,7 +200,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
             // ── Estimated Cost card ───────────────────────────────────
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFEAF1FE),
+                color: AppColors.calcCardBg,
                 borderRadius:
                     BorderRadius.circular(AppColors.radiusCard),
               ),
@@ -234,7 +234,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                   ),
                   Container(
                     height: 1,
-                    color: const Color(0xFFC5D6F3),
+                    color: AppColors.calcDivider,
                     margin: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   Row(
@@ -267,7 +267,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
             // ── Estimated Delivery card ───────────────────────────────
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFECFBF0),
+                color: AppColors.deliveryBg,
                 borderRadius:
                     BorderRadius.circular(AppColors.radiusCard),
               ),
@@ -279,7 +279,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
                     width: 42,
                     height: 42,
                     decoration: const BoxDecoration(
-                      color: Color(0xFFD2F1DC),
+                      color: AppColors.deliveryIconBg,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.local_shipping_outlined,
@@ -348,7 +348,7 @@ class _StepHeader extends StatelessWidget {
               child: Container(
                 height: 2,
                 margin: const EdgeInsets.only(bottom: 18),
-                color: const Color(0xFFCBD5E1),
+                color: AppColors.radioIdle,
               ),
             ),
         ],
@@ -547,7 +547,7 @@ class _CostRow extends StatelessWidget {
           ? const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Color(0xFFC5D6F3),
+                  color: AppColors.calcDivider,
                   style: BorderStyle.solid,
                 ),
               ),

@@ -46,7 +46,7 @@ class PlanDetailScreen extends StatelessWidget {
   bool isFree(String c) => c == 'basic';
 
   Color priceColor(String c) =>
-      isFree(c) ? const Color(0xFF16A34A) : AppColors.primary;
+      isFree(c) ? AppColors.planFree : AppColors.primary;
 
   @override
   Widget build(BuildContext context) {
@@ -117,19 +117,6 @@ class PlanDetailScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  // Price
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Text(
-                      planPrice(l10n, code),
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 18,
-                        color: priceColor(code),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
                   // Features (smart & prime only)
                   if (planFeatures(l10n, code) != null) ...[
                     const SizedBox(height: 8),
@@ -198,6 +185,19 @@ class PlanDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                  // Price — shown after features & subscribe button
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Text(
+                      planPrice(l10n, code),
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 18,
+                        color: priceColor(code),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -95,7 +95,7 @@ class ConfirmOrderScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF86A6EA),
+                  color: AppColors.navyTile,
                   borderRadius: BorderRadius.circular(AppColors.radius),
                 ),
                 alignment: Alignment.center,
@@ -127,8 +127,8 @@ class _StepIndicator extends StatelessWidget {
   /// 0-based: 0 = step 1 done, 1 = steps 1+2 done, 2 = all done
   final int activeStep;
 
-  static const Color _greenBg = Color(0xFFACFF9C);
-  static const Color _greyBg = Color(0xFFD9D9D9);
+  static const Color _greenBg = AppColors.stepGreen;
+  static const Color _greyBg = Color(0xFFD9D9D9); // neutral stepper grey — intentional
 
   @override
   Widget build(BuildContext context) {
@@ -182,8 +182,8 @@ class _Connector extends StatelessWidget {
   const _Connector({required this.done});
   final bool done;
 
-  static const Color _greenBg = Color(0xFFACFF9C);
-  static const Color _greyBg = Color(0xFFD9D9D9);
+  static const Color _greenBg = AppColors.stepGreen;
+  static const Color _greyBg = Color(0xFFD9D9D9); // neutral stepper grey — intentional
 
   @override
   Widget build(BuildContext context) {

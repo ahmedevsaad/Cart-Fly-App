@@ -247,7 +247,7 @@ class _RadioRow extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.mutedDisabled,
+                        color: AppColors.radioIdle,
                         width: 2,
                       ),
                     ),

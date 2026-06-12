@@ -157,7 +157,7 @@ class _CopyButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: const Color(0xFFCFE0FB),
+          color: AppColors.chipBlue,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(

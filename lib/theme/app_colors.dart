@@ -23,6 +23,22 @@ class AppColors {
   static const navyLabel = Color(0xFF16447B);  // "About us" card label/icon
   static const activeTint = Color(0xFFE7EEFB); // expanded-section highlight bg
 
+  // Redesign accent + surface tokens
+  static const chipBlue = Color(0xFFCFE0FB);       // light-blue chip/avatar bg
+  static const navBarBorder = Color(0xFFEAEFF5);   // bottom nav bar border
+  static const radioIdle = Color(0xFFCBD5E1);      // unselected radio ring
+  static const tagBg = Color(0xFFE3E8EE);          // KG pill / tag background
+  static const calcCardBg = Color(0xFFEAF1FE);     // calculator estimated cost card
+  static const calcDivider = Color(0xFFC5D6F3);    // calculator card divider
+  static const deliveryBg = Color(0xFFECFBF0);     // estimated delivery card bg
+  static const deliveryIconBg = Color(0xFFD2F1DC); // delivery icon circle bg
+  static const planPrime = Color(0xFF7C3AED);      // prime plan purple
+  static const planPrimeBg = Color(0xFFF5F0FF);    // prime plan card background
+  static const planPrimeBorder = Color(0xFFE4D5FF); // prime plan card border
+  static const planFree = Color(0xFF16A34A);        // free/basic plan green
+  static const stepGreen = Color(0xFFACFF9C);       // done-step connector on confirm/track
+  static const signOutBg = Color(0xFFFA5D5F);       // sign-out button background
+
   static const double radius = 12; // fields
   static const double radiusCard = 16; // cards
   static const double radiusPill = 999;

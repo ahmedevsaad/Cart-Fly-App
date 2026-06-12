@@ -9,6 +9,7 @@ import '../../router/routes.dart';
 import '../../state/plan_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
@@ -112,9 +113,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
             // Plan summary card
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFF5F0FF),
+                color: AppColors.planPrimeBg,
                 border: Border.all(
-                    color: const Color(0xFFE4D5FF), width: 1.5),
+                    color: AppColors.planPrimeBorder, width: 1.5),
                 borderRadius:
                     BorderRadius.circular(AppColors.radiusCard),
               ),
@@ -125,7 +126,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     width: 46,
                     height: 46,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF7C3AED),
+                      color: AppColors.planPrime,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(Icons.shopping_bag_outlined,
@@ -150,7 +151,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.w700,
                             fontSize: 12.5,
-                            color: const Color(0xFF7C3AED),
+                            color: AppColors.planPrime,
                           ),
                         ),
                       ],
@@ -287,39 +288,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             const SizedBox(height: 18),
 
-            // Total row
-            Container(
-              padding: const EdgeInsets.only(top: 15),
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: Color(0xFFCBD5E1),
-                    style: BorderStyle.solid,
+            // Total row — dashed separator per design (1px dashed #CBD5E1)
+            CfDashedDivider(color: AppColors.radioIdle),
+            const SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  l10n.totalToday,
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                    color: AppColors.text,
                   ),
                 ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    l10n.totalToday,
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                      color: AppColors.text,
-                    ),
+                Text(
+                  l10n.checkoutPlanPrice,
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 22,
+                    color: AppColors.planPrime,
+                    letterSpacing: -0.22,
                   ),
-                  Text(
-                    l10n.checkoutPlanPrice,
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 22,
-                      color: const Color(0xFF7C3AED),
-                      letterSpacing: -0.22,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(height: 14),
 
@@ -386,7 +378,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
           children: [
             Text(
               l10n.checkoutTitle,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: AppText.heading.copyWith(
+                fontWeight: FontWeight.w800,
+                fontSize: 22,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),

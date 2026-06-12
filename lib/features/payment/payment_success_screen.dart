@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
+import '../../theme/app_text.dart';
+import '../../widgets/cf_dashed.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 
@@ -47,7 +49,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 width: 104,
                 height: 104,
                 decoration: const BoxDecoration(
-                  color: Color(0xFFECFBF0),
+                  color: AppColors.deliveryBg,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -55,11 +57,11 @@ class PaymentSuccessScreen extends StatelessWidget {
                     width: 74,
                     height: 74,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF16A34A),
+                      color: AppColors.planFree,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF16A34A)
+                          color: AppColors.planFree
                               .withValues(alpha: 0.34),
                           blurRadius: 24,
                           offset: const Offset(0, 10),
@@ -148,7 +150,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.w800,
                             fontSize: 18,
-                            color: const Color(0xFF16A34A),
+                            color: AppColors.planFree,
                           ),
                         ),
                       ],
@@ -195,7 +197,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
-                  color: const Color(0xFF7C3AED),
+                  color: AppColors.planPrime,
                 ),
               ),
             ),
@@ -219,11 +221,14 @@ class PaymentSuccessScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Icon(Icons.check_circle_outline,
-                size: 80, color: Colors.green),
+                size: 80, color: AppColors.success),
             const SizedBox(height: 24),
             Text(
               l10n.planConfirmedThankYou,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: AppText.heading.copyWith(
+                fontWeight: FontWeight.w800,
+                fontSize: 22,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -274,40 +279,35 @@ class _ReceiptRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-          top: paddingTop, bottom: dashedBottom ? 11 : 0),
-      decoration: dashedBottom
-          ? const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color(0xFFCBD5E1),
-                  style: BorderStyle.solid,
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: paddingTop, bottom: dashedBottom ? 11 : 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                label,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13.5,
+                  color: AppColors.muted,
                 ),
               ),
-            )
-          : null,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: GoogleFonts.inter(
-              fontWeight: FontWeight.w600,
-              fontSize: 13.5,
-              color: AppColors.muted,
-            ),
+              Text(
+                value,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: AppColors.text,
+                ),
+              ),
+            ],
           ),
-          Text(
-            value,
-            style: GoogleFonts.inter(
-              fontWeight: FontWeight.w700,
-              fontSize: 14,
-              color: AppColors.text,
-            ),
-          ),
-        ],
-      ),
+        ),
+        if (dashedBottom)
+          CfDashedDivider(color: AppColors.radioIdle),
+      ],
     );
   }
 }

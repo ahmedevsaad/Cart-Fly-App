@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../features/auth/auth_provider.dart';
 import '../../l10n/auth_error.dart';
+import '../../theme/app_colors.dart';
 import '../../widgets/cf_button.dart';
 import '../../widgets/cf_input.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -101,7 +102,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               const SizedBox(height: 4),
               Text(
                 _error!,
-                style: const TextStyle(color: Color(0xFFEF4444), fontSize: 13),
+                style: const TextStyle(color: AppColors.danger, fontSize: 13), // danger red
               ),
               const SizedBox(height: 8),
             ],

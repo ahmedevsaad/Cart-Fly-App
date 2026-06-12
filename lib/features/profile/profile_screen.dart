@@ -1,3 +1,4 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,27 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
+
+/// Maps ISO currency code → display label shown in the profile field.
+const _kCurrencyLabels = <String, String>{
+  'EGP': 'EGP — Egyptian Pound',
+  'USD': 'USD — US Dollar',
+  'SAR': 'SAR — Saudi Riyal',
+  'EUR': 'EUR — Euro',
+  'GBP': 'GBP — British Pound',
+  'AED': 'AED — UAE Dirham',
+};
+
+/// Maps ISO country name (as stored) → ISO 2-letter code for the flag widget.
+const _kCountryCodes = <String, String>{
+  'Egypt': 'EG',
+  'United States': 'US',
+  'Saudi Arabia': 'SA',
+  'UAE': 'AE',
+  'United Kingdom': 'GB',
+  'Germany': 'DE',
+  'France': 'FR',
+};
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -79,6 +101,10 @@ class ProfileScreen extends StatelessWidget {
                 child: _ProfileField(
                   label: l.profileCountry,
                   value: user.country.isNotEmpty ? user.country : '-',
+                  prefixFlag: user.country.isNotEmpty
+                      ? _kCountryCodes[user.country]
+                      : null,
+                  valueFontSize: 14,
                 ),
               ),
               const SizedBox(width: 11),
@@ -93,10 +119,12 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 11),
 
-          // Currency
+          // Currency — show expanded label e.g. "EGP — Egyptian Pound"
           _ProfileField(
             label: l.profileCurrency,
-            value: user.currency.isNotEmpty ? user.currency : 'USD',
+            value: _kCurrencyLabels[
+                    user.currency.isNotEmpty ? user.currency : 'USD'] ??
+                (user.currency.isNotEmpty ? user.currency : 'USD'),
           ),
           const SizedBox(height: 18),
 
@@ -114,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.danger,
+                backgroundColor: AppColors.signOutBg,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppColors.radius),
@@ -138,14 +166,25 @@ class _ProfileField extends StatelessWidget {
     required this.label,
     required this.value,
     this.valueColor,
+    this.prefixFlag,
+    this.valueFontSize = 15,
   });
 
   final String label;
   final String value;
   final Color? valueColor;
+  /// ISO 2-letter country code for a flag prefix (e.g. 'EG'). Null = no flag.
+  final String? prefixFlag;
+  final double valueFontSize;
 
   @override
   Widget build(BuildContext context) {
+    final valueStyle = GoogleFonts.inter(
+      fontSize: valueFontSize,
+      fontWeight: FontWeight.w700,
+      color: valueColor ?? AppColors.text,
+    );
+
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 13, 16, 13),
       decoration: BoxDecoration(
@@ -165,14 +204,23 @@ class _ProfileField extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 2),
-          Text(
-            value,
-            style: GoogleFonts.inter(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: valueColor ?? AppColors.text,
-            ),
-          ),
+          if (prefixFlag != null)
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(3),
+                  child: CountryFlag.fromCountryCode(
+                    prefixFlag!,
+                    width: 22,
+                    height: 15,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Expanded(child: Text(value, style: valueStyle)),
+              ],
+            )
+          else
+            Text(value, style: valueStyle),
         ],
       ),
     );
