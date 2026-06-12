@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import '../../router/routes.dart';
 import '../../theme/app_colors.dart';
@@ -33,9 +34,9 @@ class WelcomeScreen extends StatelessWidget {
                       style: AppText.logo.copyWith(
                         fontSize: 40,
                         color: Colors.white,
-                        shadows: [
-                          const Shadow(
-                            color: Color(0x662B2B2B),
+                        shadows: const [
+                          Shadow(
+                            color: Color(0x66000000),
                             blurRadius: 12,
                             offset: Offset(0, 2),
                           ),
@@ -54,8 +55,7 @@ class WelcomeScreen extends StatelessWidget {
                       Text(
                         'Create shipments, monitor status and manage deliveries from one powerful logistics app.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
+                        style: GoogleFonts.inter(
                           fontSize: 15.5,
                           fontWeight: FontWeight.w600,
                           height: 1.45,
@@ -99,8 +99,7 @@ class WelcomeScreen extends StatelessWidget {
                                     child: Text(
                                       'Tap to create shipment',
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
+                                      style: GoogleFonts.inter(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.white,

@@ -11,6 +11,7 @@ import '../../widgets/cf_button.dart';
 import '../../widgets/cf_input.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
+import '../../widgets/icons/cf_icons.dart';
 import 'auth_provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -285,8 +286,7 @@ class _LabeledDropdown<T> extends StatelessWidget {
             child: DropdownButton<T>(
               value: value,
               isExpanded: true,
-              icon: const Icon(
-                Icons.keyboard_arrow_down,
+              icon: CfIcons.chevronDown(
                 size: 18,
                 color: AppColors.mutedDisabled,
               ),
