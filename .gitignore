@@ -49,3 +49,11 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 .design-dl/
+node_modules/
+tools/
+screenshots/
+.cmp/
+package.json
+package-lock.json
+cmp-*.png
+screen-*.png
