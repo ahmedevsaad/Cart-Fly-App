@@ -669,4 +669,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorAuthInvalidOtp => 'Invalid verification code.';
+
+  @override
+  String get advanceStatus => 'Advance status (demo)';
 }

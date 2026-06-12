@@ -234,5 +234,7 @@
   "verifyDemoHint": "رمز تجريبي: 000000",
   "verifyResend": "إعادة إرسال البريد",
   "verifyInvalidCode": "الرمز غير صحيح. يرجى المحاولة مجدداً.",
-  "errorAuthInvalidOtp": "رمز التحقق غير صحيح."
+  "errorAuthInvalidOtp": "رمز التحقق غير صحيح.",
+
+  "advanceStatus": "تقدم الحالة (تجريبي)"
 }

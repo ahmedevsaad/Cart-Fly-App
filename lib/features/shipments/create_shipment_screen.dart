@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../widgets/icons/cf_icons.dart';
 
 import '../../data/lockers.dart';
+import '../../router/routes.dart';
 import '../../data/models/order.dart';
 import '../../data/warehouses.dart';
 import '../../state/orders_provider.dart';
@@ -94,8 +95,15 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
         lockerId: _method == DeliveryMethod.locker ? _lockerId : null,
         status: OrderStatus.placed,
         createdAt: DateTime.now(),
+        store: _merchant.text.trim().isNotEmpty ? _merchant.text.trim() : null,
+        trackingNumber: _trackingNumber.text.trim().isNotEmpty
+            ? _trackingNumber.text.trim()
+            : null,
+        category: _category.label,
+        declaredValue: double.tryParse(_estimatedValue.text.trim()),
+        quantity: int.tryParse(_quantity.text.trim()),
       ));
-      if (mounted) context.pushReplacement('/orders/$id/track');
+      if (mounted) context.go(Routes.trackOrder.replaceFirst(':id', id));
     } finally {
       if (mounted) setState(() => _loading = false);
     }

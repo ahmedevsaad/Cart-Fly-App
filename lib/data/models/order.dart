@@ -22,6 +22,11 @@ class Order {
     this.lockerId,
     this.status = OrderStatus.placed,
     required this.createdAt,
+    this.store,
+    this.trackingNumber,
+    this.category,
+    this.declaredValue,
+    this.quantity,
   });
 
   final String id;
@@ -31,6 +36,11 @@ class Order {
   final String? lockerId;
   final OrderStatus status;
   final DateTime createdAt;
+  final String? store;
+  final String? trackingNumber;
+  final String? category;
+  final double? declaredValue;
+  final int? quantity;
 
   Map<String, dynamic> toMap() => {
         'title': title,
@@ -39,6 +49,11 @@ class Order {
         'lockerId': lockerId,
         'status': status.name,
         'createdAt': Timestamp.fromDate(createdAt),
+        if (store != null) 'store': store,
+        if (trackingNumber != null) 'trackingNumber': trackingNumber,
+        if (category != null) 'category': category,
+        if (declaredValue != null) 'declaredValue': declaredValue,
+        if (quantity != null) 'quantity': quantity,
       };
 
   factory Order.fromMap(String id, Map<String, dynamic> m) => Order(
@@ -52,9 +67,22 @@ class Order {
         status: OrderStatusX.fromId(m['status'] as String? ?? 'placed'),
         createdAt:
             (m['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+        store: m['store'] as String?,
+        trackingNumber: m['trackingNumber'] as String?,
+        category: m['category'] as String?,
+        declaredValue: (m['declaredValue'] as num?)?.toDouble(),
+        quantity: (m['quantity'] as num?)?.toInt(),
       );
 
-  Order copyWith({OrderStatus? status}) => Order(
+  Order copyWith({
+    OrderStatus? status,
+    String? store,
+    String? trackingNumber,
+    String? category,
+    double? declaredValue,
+    int? quantity,
+  }) =>
+      Order(
         id: id,
         title: title,
         sourceCountry: sourceCountry,
@@ -62,5 +90,10 @@ class Order {
         lockerId: lockerId,
         status: status ?? this.status,
         createdAt: createdAt,
+        store: store ?? this.store,
+        trackingNumber: trackingNumber ?? this.trackingNumber,
+        category: category ?? this.category,
+        declaredValue: declaredValue ?? this.declaredValue,
+        quantity: quantity ?? this.quantity,
       );
 }

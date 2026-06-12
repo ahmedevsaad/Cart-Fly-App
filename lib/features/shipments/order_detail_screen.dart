@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/models/order.dart';
+import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
@@ -143,6 +144,11 @@ class OrderDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 12),
+
+            // ── Advance status (demo) ────────────────────────────────
+            if (order.status != OrderStatus.delivered)
+              _AdvanceButton(orderId: order.id),
             const SizedBox(height: 32),
           ],
         ),
@@ -283,6 +289,68 @@ class _StepCircle extends StatelessWidget {
       alignment: Alignment.center,
       child: stepDef.iconBuilder(18, isDone ? activeIcon : AppColors.mutedDisabled),
     );
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Hub row card
+// ──────────────────────────────────────────────────────────────────────────────
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Advance status button (demo affordance)
+// ──────────────────────────────────────────────────────────────────────────────
+
+class _AdvanceButton extends StatefulWidget {
+  const _AdvanceButton({required this.orderId});
+  final String orderId;
+
+  @override
+  State<_AdvanceButton> createState() => _AdvanceButtonState();
+}
+
+class _AdvanceButtonState extends State<_AdvanceButton> {
+  bool _loading = false;
+
+  Future<void> _advance() async {
+    setState(() => _loading = true);
+    try {
+      await context.read<OrdersProvider>().advance(widget.orderId);
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return _loading
+        ? const Center(child: CircularProgressIndicator())
+        : GestureDetector(
+            onTap: _advance,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 13),
+              decoration: BoxDecoration(
+                color: AppColors.teal,
+                borderRadius: BorderRadius.circular(AppColors.radius),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x470D9488),
+                    blurRadius: 14,
+                    offset: Offset(0, 6),
+                  ),
+                ],
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                l.advanceStatus,
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          );
   }
 }
 

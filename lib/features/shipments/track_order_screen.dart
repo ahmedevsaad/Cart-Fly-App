@@ -6,6 +6,7 @@ import '../../l10n/app_localizations.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_button.dart';
 import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
@@ -24,17 +25,70 @@ class TrackOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
     final orders = context.watch<OrdersProvider>().orders;
     final order = orders.where((o) => o.id == id).firstOrNull;
 
-    if (order == null) {
-      return CfScaffold(
-        topBar: const CfTopBar(),
-        bottomNav: cfJourneyNav(context),
-        body: const CfEmptyState(message: 'Order not found'),
-      );
+    // Order already in the live stream — render directly.
+    if (order != null) {
+      return _TrackBody(id: id, order: order);
     }
+
+    // Not in stream yet — fetch once from Firestore, then let stream take over.
+    return FutureBuilder<Order>(
+      future: context.read<OrdersProvider>().getOnce(id),
+      builder: (context, snap) {
+        if (snap.connectionState != ConnectionState.done) {
+          return CfScaffold(
+            topBar: const CfTopBar(),
+            bottomNav: cfJourneyNav(context),
+            body: const CfLoading(),
+          );
+        }
+        if (snap.hasError || !snap.hasData) {
+          return CfScaffold(
+            topBar: const CfTopBar(),
+            bottomNav: cfJourneyNav(context),
+            body: const CfEmptyState(message: 'Order not found'),
+          );
+        }
+        return _TrackBody(id: id, order: snap.data!);
+      },
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// _TrackBody — actual content once order is resolved.
+// StatefulWidget so we can track async advance in-progress state.
+// ──────────────────────────────────────────────────────────────────────────────
+
+class _TrackBody extends StatefulWidget {
+  const _TrackBody({required this.id, required this.order});
+  final String id;
+  final Order order;
+
+  @override
+  State<_TrackBody> createState() => _TrackBodyState();
+}
+
+class _TrackBodyState extends State<_TrackBody> {
+  bool _advancing = false;
+
+  Future<void> _advance() async {
+    if (_advancing) return;
+    setState(() => _advancing = true);
+    try {
+      await context.read<OrdersProvider>().advance(widget.id);
+    } finally {
+      if (mounted) setState(() => _advancing = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final order = widget.order;
+    final isDelivered = order.status == OrderStatus.delivered;
 
     return CfScaffold(
       topBar: const CfTopBar(),
@@ -61,6 +115,15 @@ class TrackOrderScreen extends StatelessWidget {
             // ── Current status card ───────────────────────────────────
             _CurrentStatusCard(status: order.status),
             const SizedBox(height: 16),
+
+            // ── Advance status button (hidden when delivered) ─────────
+            if (!isDelivered) ...[
+              CfButton(
+                label: _advancing ? '…' : l.advanceStatus,
+                onPressed: _advancing ? null : _advance,
+              ),
+              const SizedBox(height: 16),
+            ],
 
             // ── Tracking history ──────────────────────────────────────
             Text(

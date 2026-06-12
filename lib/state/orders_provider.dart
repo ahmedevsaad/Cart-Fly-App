@@ -22,6 +22,7 @@ class OrdersProvider extends ChangeNotifier {
 
   Future<String> create(Order o) => _repo.create(o);
   Future<void> advance(String id) => _repo.advance(id);
+  Future<Order> getOnce(String id) => _repo.getOnce(id);
 
   @override
   void dispose() {

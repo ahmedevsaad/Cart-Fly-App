@@ -238,5 +238,7 @@
   "verifyDemoHint": "Demo code: 000000",
   "verifyResend": "Resend email",
   "verifyInvalidCode": "Invalid code. Please try again.",
-  "errorAuthInvalidOtp": "Invalid verification code."
+  "errorAuthInvalidOtp": "Invalid verification code.",
+
+  "advanceStatus": "Advance status (demo)"
 }

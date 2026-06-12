@@ -669,4 +669,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorAuthInvalidOtp => 'رمز التحقق غير صحيح.';
+
+  @override
+  String get advanceStatus => 'تقدم الحالة (تجريبي)';
 }

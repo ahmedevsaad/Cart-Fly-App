@@ -1402,6 +1402,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid verification code.'**
   String get errorAuthInvalidOtp;
+
+  /// No description provided for @advanceStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Advance status (demo)'**
+  String get advanceStatus;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
