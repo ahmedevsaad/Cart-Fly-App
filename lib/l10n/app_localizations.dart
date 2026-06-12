@@ -1408,6 +1408,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Advance status (demo)'**
   String get advanceStatus;
+
+  /// No description provided for @paymentDemoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo mode — no real charge'**
+  String get paymentDemoHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

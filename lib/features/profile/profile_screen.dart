@@ -10,6 +10,14 @@ import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/icons/cf_icons.dart';
 
+/// Returns a human-readable plan name for display in the profile.
+String _planLabel(String? plan) => switch (plan) {
+      'basic' => 'Basic cart',
+      'smart' => 'Smart cart',
+      'prime' => 'Prime cart',
+      _ => 'No active plan',
+    };
+
 /// Maps ISO currency code → display label shown in the profile field.
 const _kCurrencyLabels = <String, String>{
   'EGP': 'EGP — Egyptian Pound',
@@ -131,8 +139,8 @@ class ProfileScreen extends StatelessWidget {
               Expanded(
                 child: _ProfileField(
                   label: l.profilePlan,
-                  value: 'Smart cart',
-                  valueColor: AppColors.primary,
+                  value: _planLabel(user.plan),
+                  valueColor: user.plan != null ? AppColors.primary : null,
                 ),
               ),
             ],

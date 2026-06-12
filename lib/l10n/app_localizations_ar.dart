@@ -672,4 +672,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get advanceStatus => 'تقدم الحالة (تجريبي)';
+
+  @override
+  String get paymentDemoHint => 'وضع تجريبي — لا يوجد خصم حقيقي';
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../features/auth/auth_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
+import '../../state/orders_provider.dart';
 import '../../state/plan_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
@@ -39,6 +40,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
   int _selectedMethod = 0;
 
   @override
+  void initState() {
+    super.initState();
+    // Pre-fill demo card values — any input is accepted (DEMO mode).
+    _holderCtrl.text = 'Demo User';
+    _cardCtrl.text = '4242424242424242';
+    _cvvCtrl.text = '123';
+  }
+
+  @override
   void dispose() {
     _holderCtrl.dispose();
     _cardCtrl.dispose();
@@ -47,15 +57,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   bool get _isPlanMode => widget.forItem.startsWith('plan_');
+  bool get _isOrderMode => widget.forItem.startsWith('order_');
 
   String get _planCode =>
       _isPlanMode ? widget.forItem.substring('plan_'.length) : '';
 
-  bool _orderValid() =>
-      _holderCtrl.text.isNotEmpty &&
-      _cardCtrl.text.isNotEmpty &&
-      _cvvCtrl.text.isNotEmpty &&
-      _cardCtrl.text.length >= 12;
+  String get _orderId =>
+      _isOrderMode ? widget.forItem.substring('order_'.length) : '';
 
   Future<void> _confirm() async {
     if (_isPlanMode) {
@@ -63,14 +71,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
       final authProvider = context.read<AuthProvider>();
       await planProvider.subscribe(_planCode);
       await authProvider.refreshProfile();
-      if (mounted) {
-        context.go('${Routes.paymentSuccess}?plan=$_planCode');
-      }
+      if (!mounted) return;
+      context.go('${Routes.paymentSuccess}?plan=$_planCode');
+    } else if (_isOrderMode) {
+      final ordersProvider = context.read<OrdersProvider>();
+      await ordersProvider.advance(_orderId);
+      if (!mounted) return;
+      context.go(Routes.paymentSuccess);
     } else {
-      if (!_orderValid()) {
-        context.go(Routes.paymentError);
-        return;
-      }
       if (mounted) context.go(Routes.paymentSuccess);
     }
   }
@@ -375,7 +383,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 11),
+            const SizedBox(height: 8),
+
+            // Demo hint
+            Center(
+              child: Text(
+                l10n.paymentDemoHint,
+                style: AppText.caption.copyWith(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.planPrime,
+                ),
+              ),
+            ),
+            const SizedBox(height: 6),
 
             // Security note
             Row(
@@ -457,6 +478,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Center(
+              child: Text(
+                l10n.paymentDemoHint,
+                style: AppText.caption.copyWith(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.planPrime,
                 ),
               ),
             ),

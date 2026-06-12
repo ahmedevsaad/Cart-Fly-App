@@ -672,4 +672,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get advanceStatus => 'Advance status (demo)';
+
+  @override
+  String get paymentDemoHint => 'Demo mode — no real charge';
 }

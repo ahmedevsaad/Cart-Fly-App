@@ -6,6 +6,7 @@ class AppUser {
     required this.email,
     required this.country,
     required this.currency,
+    this.plan,
   });
 
   final String uid;
@@ -14,6 +15,9 @@ class AppUser {
   final String email;
   final String country;
   final String currency;
+  /// Active subscription plan code (e.g. 'basic', 'smart', 'prime').
+  /// Null means no plan has been purchased yet.
+  final String? plan;
 
   Map<String, dynamic> toMap() => {
         'name': name,
@@ -21,6 +25,7 @@ class AppUser {
         'email': email,
         'country': country,
         'currency': currency,
+        if (plan != null) 'plan': plan,
       };
 
   factory AppUser.fromMap(String uid, Map<String, dynamic> m) => AppUser(
@@ -30,5 +35,6 @@ class AppUser {
         email: m['email'] as String? ?? '',
         country: m['country'] as String? ?? '',
         currency: m['currency'] as String? ?? 'USD',
+        plan: m['plan'] as String?,
       );
 }

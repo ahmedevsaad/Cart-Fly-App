@@ -240,5 +240,7 @@
   "verifyInvalidCode": "Invalid code. Please try again.",
   "errorAuthInvalidOtp": "Invalid verification code.",
 
-  "advanceStatus": "Advance status (demo)"
+  "advanceStatus": "Advance status (demo)",
+
+  "paymentDemoHint": "Demo mode — no real charge"
 }

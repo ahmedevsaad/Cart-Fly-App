@@ -98,7 +98,12 @@ class ConfirmOrderScreen extends StatelessWidget {
               button: true,
               label: l.next,
               child: GestureDetector(
-                onTap: () => context.push(Routes.payment),
+                onTap: () {
+                  final forParam = orderId != null && orderId!.isNotEmpty
+                      ? '?for=order_$orderId'
+                      : '';
+                  context.push('${Routes.payment}$forParam');
+                },
                 child: Container(
                   padding: const EdgeInsetsDirectional.symmetric(vertical: 14),
                   decoration: BoxDecoration(
