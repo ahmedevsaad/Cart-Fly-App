@@ -13,25 +13,32 @@ ThemeData buildAppTheme() {
     textTheme: base.textTheme.apply(bodyColor: AppColors.text),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.inputBg,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      fillColor: AppColors.fieldBg,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      hintStyle: AppText.body.copyWith(color: AppColors.mutedDisabled),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppColors.radius),
-        borderSide: const BorderSide(color: AppColors.borderStrong),
+        borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppColors.radius),
-        borderSide: const BorderSide(color: AppColors.borderStrong),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppColors.radius),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.btnFill,
+        backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        textStyle: AppText.bodyMedium.copyWith(color: Colors.white),
+        textStyle: AppText.bodyMedium.copyWith(
+            color: Colors.white, fontWeight: FontWeight.w700),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppColors.radius)),
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        elevation: 0,
       ),
     ),
   );

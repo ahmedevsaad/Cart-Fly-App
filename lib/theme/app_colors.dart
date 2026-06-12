@@ -1,25 +1,45 @@
 import 'package:flutter/material.dart';
 
-/// CartFly color tokens — mirror of html/design-system.css :root.
+/// CartFly color tokens — mirror of `CartFly Redesign.dc.html` design system.
 class AppColors {
   AppColors._();
 
   static const bgSplash = Color(0xFFC5E2FF);
   static const bgPage = Color(0xFFFFFFFF);
-  static const primary = Color(0xFF2563EB);
-  static const btnFill = Color(0xFF86A6EA);
-  static const btnAlt = Color(0xFF649DDE);
-  static const borderStrong = Color(0xFF16447B);
-  static const inputBg = Color(0xFFFFFFFF);
-  static const inputBgAlt = Color(0xFFF1F3F5);
-  static const inputBorder = Color(0xFF848484);
-  static const text = Color(0xFF000000);
-  static const textSoft = Color(0xFF120101);
+  static const primary = Color(0xFF2563EB); // brand blue — buttons + accents
+  static const navy = Color(0xFF16335E); // deep accent / icon strokes
+  static const fieldBg = Color(0xFFF1F3F5); // gray input/card fill
+  static const cardBorder = Color(0xFFE2E8F0); // hairline border
+  static const text = Color(0xFF0F172A); // slate-900
   static const muted = Color(0xFF64748B);
-  static const navBar = Color(0xFF86A6EA);   // bottom bar background
-  static const navPill = Color(0xFFC7D3F2);  // inactive nav item pill
+  static const mutedLabel = Color(0xFF475569); // field labels
+  static const mutedDisabled = Color(0xFF94A3B8);
+  static const success = Color(0xFF15803D);
+  static const successBg = Color(0xFFDCFCE7);
   static const danger = Color(0xFFEF4444);
-  static const cardBg = Color(0xFFECEEF0);
+  static const navIdle = Color(0xFF7E8AA0); // idle bottom-nav icon
+  static const cardBg = Color(0xFFF1F3F5);
 
-  static const double radius = 10;
+  static const double radius = 12; // fields
+  static const double radiusCard = 16; // cards
+  static const double radiusPill = 999;
+
+  // --- Temporary aliases (removed in Stage 2 Task 2.7 once widgets migrate) ---
+  static const btnFill = primary;
+  static const btnAlt = primary;
+  static const navBar = primary;
+  static const navPill = fieldBg;
+  static const inputBg = bgPage;
+  static const inputBgAlt = fieldBg;
+  static const inputBorder = cardBorder;
+  static const textSoft = text;
+  static const borderStrong = navy;
+
+  // Soft elevations (use in BoxShadow lists).
+  static const List<BoxShadow> shadowSoft = [
+    BoxShadow(color: Color(0x0D0F172A), blurRadius: 3, offset: Offset(0, 1)),
+  ];
+  static const List<BoxShadow> shadowCard = [
+    BoxShadow(color: Color(0x210F172A), blurRadius: 44, offset: Offset(0, 18)),
+  ];
 }
