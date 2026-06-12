@@ -63,6 +63,11 @@ class AppColors {
     BoxShadow(color: Color(0x0D0F172A), blurRadius: 3, offset: Offset(0, 1)),
   ];
   static const List<BoxShadow> shadowCard = [
-    BoxShadow(color: Color(0x210F172A), blurRadius: 44, offset: Offset(0, 18)),
+    BoxShadow(color: Color(0x210F172A), blurRadius: 26, offset: Offset(0, 8)),
+  ];
+
+  /// Floating nav-bar shadow — same value, explicit semantic alias.
+  static const List<BoxShadow> shadowNav = [
+    BoxShadow(color: Color(0x210F172A), blurRadius: 26, offset: Offset(0, 8)),
   ];
 }

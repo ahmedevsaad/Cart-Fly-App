@@ -22,7 +22,7 @@ ThemeData buildAppTheme() {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppColors.radius),
-        borderSide: BorderSide.none,
+        borderSide: const BorderSide(color: AppColors.cardBorder, width: 1),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppColors.radius),

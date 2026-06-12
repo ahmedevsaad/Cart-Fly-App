@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../theme/app_text.dart';
+import 'icons/cf_icons.dart';
 
+/// AppBar with centred Playfair "CartFly" logo and optional back chevron.
+///
+/// Back chevron uses [CfIcons.chevronLeft]; RTL-aware via [Directionality].
+/// Stable public API: [showBack], [onBack].
 class CfTopBar extends StatelessWidget implements PreferredSizeWidget {
   const CfTopBar({super.key, this.showBack = true, this.onBack});
   final bool showBack;
@@ -12,6 +16,7 @@ class CfTopBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -19,14 +24,9 @@ class CfTopBar extends StatelessWidget implements PreferredSizeWidget {
       leading: showBack
           ? IconButton(
               onPressed: onBack ?? () => Navigator.of(context).maybePop(),
-              icon: Directionality.of(context) == TextDirection.rtl
-                  ? Transform.flip(
-                      flipX: true,
-                      child: SvgPicture.asset('assets/icons/chevron-back.svg',
-                          width: 24, height: 24),
-                    )
-                  : SvgPicture.asset('assets/icons/chevron-back.svg',
-                      width: 24, height: 24),
+              icon: isRtl
+                  ? CfIcons.chevronRight(size: 24)
+                  : CfIcons.chevronLeft(size: 24),
             )
           : null,
       centerTitle: true,

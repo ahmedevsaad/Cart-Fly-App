@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_colors.dart';
+import 'icons/cf_icons.dart';
 
+/// Floating 4-tab bottom navigation bar.
+///
+/// Active tab expands into a labelled blue pill (r15, pad 14x10);
+/// idle tabs show icon-only in [AppColors.navIdle].
+/// Stable public API: [currentIndex] + [onTap].
 class CfBottomNav extends StatelessWidget {
   const CfBottomNav({
     super.key,
@@ -14,30 +19,18 @@ class CfBottomNav extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  static const _navShadow = BoxShadow(
-    color: Color(0x210F172A), // rgba(15,23,42,0.13)
-    blurRadius: 26,
-    offset: Offset(0, 8),
-  );
+  static const _labels = ['Home', 'Account', 'Orders', 'Settings'];
 
-  static const _items = [
-    _NavItem(
-      label: 'Home',
-      svgBody: '''<svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5M5 9.5V20h14V9.5" stroke="{{color}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>''',
-    ),
-    _NavItem(
-      label: 'Account',
-      svgBody: '''<svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.4" stroke="{{color}}" stroke-width="1.9"/><path d="M5.5 19.5c0-3.4 2.9-5.6 6.5-5.6s6.5 2.2 6.5 5.6" stroke="{{color}}" stroke-width="1.9" stroke-linecap="round"/></svg>''',
-    ),
-    _NavItem(
-      label: 'Orders',
-      svgBody: '''<svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16l-3-2-2 2-2-2-2 2-2-2-3 2V4Z" stroke="{{color}}" stroke-width="1.9" stroke-linejoin="round"/><path d="M9 9h6M9 12.5h6" stroke="{{color}}" stroke-width="1.9" stroke-linecap="round"/></svg>''',
-    ),
-    _NavItem(
-      label: 'Settings',
-      svgBody: '''<svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="{{color}}" stroke-width="1.9"/><path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.5 5.5l-2 2M7.5 16.5l-2 2M18.5 18.5l-2-2M7.5 7.5l-2-2" stroke="{{color}}" stroke-width="1.9" stroke-linecap="round"/></svg>''',
-    ),
-  ];
+  Widget _icon(int index, bool active) {
+    final color = active ? Colors.white : AppColors.navIdle;
+    return switch (index) {
+      0 => CfIcons.home(size: 21, color: color),
+      1 => CfIcons.account(size: 21, color: color),
+      2 => CfIcons.orders(size: 21, color: color),
+      3 => CfIcons.settings(size: 21, color: color),
+      _ => CfIcons.home(size: 21, color: color),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,27 +41,23 @@ class CfBottomNav extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
         border: Border.all(color: AppColors.navBarBorder),
-        boxShadow: const [_navShadow],
+        boxShadow: AppColors.shadowNav,
       ),
       padding: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          for (var i = 0; i < _items.length; i++)
-            _buildItem(context, i, _items[i]),
+          for (var i = 0; i < _labels.length; i++) _buildItem(i),
         ],
       ),
     );
   }
 
-  Widget _buildItem(BuildContext context, int index, _NavItem item) {
+  Widget _buildItem(int index) {
     final active = index == currentIndex;
-    final color = active ? Colors.white : AppColors.navIdle;
-    final colorHex = active ? '#FFFFFF' : '#7E8AA0';
-    final svg = item.svgBody.replaceAll('{{color}}', colorHex);
 
     return Semantics(
-      label: item.label,
+      label: _labels[index],
       selected: active,
       button: true,
       child: InkWell(
@@ -77,24 +66,25 @@ class CfBottomNav extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOut,
-          // vertical padding 11.5 each side → 21 + 2×11.5 = 44 px minimum touch target
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11.5),
+          constraints: const BoxConstraints(minHeight: 44),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
             color: active ? AppColors.primary : Colors.transparent,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.string(svg, width: 21, height: 21),
+              _icon(index, active),
               if (active) ...[
                 const SizedBox(width: 7),
                 Text(
-                  item.label,
+                  _labels[index],
                   style: GoogleFonts.inter(
                     fontSize: 12.5,
                     fontWeight: FontWeight.w700,
-                    color: color,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -104,10 +94,4 @@ class CfBottomNav extends StatelessWidget {
       ),
     );
   }
-}
-
-class _NavItem {
-  const _NavItem({required this.label, required this.svgBody});
-  final String label;
-  final String svgBody;
 }

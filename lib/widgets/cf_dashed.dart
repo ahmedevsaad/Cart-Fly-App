@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 
 /// A horizontal dashed line drawn via [CustomPaint].
 ///
-/// Use [CfDashedDivider] as a drop-in replacement for a solid [Divider] where
-/// the design calls for a dashed separator (e.g. receipt rows, total separator).
+/// Drop-in replacement for a solid [Divider] where the design calls for a
+/// dashed separator (e.g. receipt rows, total separator).
 class CfDashedDivider extends StatelessWidget {
   const CfDashedDivider({
     super.key,
-    required this.color,
+    Color? color,
     this.dashWidth = 4.0,
     this.gap = 3.0,
     this.thickness = 1.0,
-  });
+  }) : color = color ?? AppColors.dashedDivider;
 
   final Color color;
   final double dashWidth;
@@ -105,8 +106,11 @@ class CfDashedBorderPainter extends CustomPainter {
 
     final rrect = RRect.fromRectAndRadius(
       Rect.fromLTWH(
-          strokeWidth / 2, strokeWidth / 2, size.width - strokeWidth,
-          size.height - strokeWidth),
+        strokeWidth / 2,
+        strokeWidth / 2,
+        size.width - strokeWidth,
+        size.height - strokeWidth,
+      ),
       Radius.circular(radius),
     );
 

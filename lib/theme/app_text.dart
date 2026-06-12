@@ -27,4 +27,8 @@ class AppText {
   static TextStyle get accent => GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w400,
       fontStyle: FontStyle.italic, color: AppColors.text);
+
+  /// Small label (e.g. input field labels, section headers).
+  static TextStyle get label => GoogleFonts.inter(
+      fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.mutedLabel);
 }

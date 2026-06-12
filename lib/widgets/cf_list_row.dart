@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../theme/app_text.dart';
+import 'icons/cf_icons.dart';
 
+/// Single tappable row with a label and a trailing chevron / arrow icon.
+///
+/// RTL-aware: uses chevronLeft (mirrored) in RTL, chevronRight in LTR.
+/// Stable public API: [label], [onTap].
 class CfListRow extends StatelessWidget {
   const CfListRow({super.key, required this.label, this.onTap});
   final String label;
@@ -9,6 +13,7 @@ class CfListRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
     return InkWell(
       onTap: onTap,
       child: Padding(
@@ -16,14 +21,9 @@ class CfListRow extends StatelessWidget {
         child: Row(
           children: [
             Expanded(child: Text(label, style: AppText.bodyMedium)),
-            Directionality.of(context) == TextDirection.rtl
-                ? Transform.flip(
-                    flipX: true,
-                    child: SvgPicture.asset('assets/icons/arrow-right-circle.svg',
-                        width: 24, height: 24),
-                  )
-                : SvgPicture.asset('assets/icons/arrow-right-circle.svg',
-                    width: 24, height: 24),
+            isRtl
+                ? CfIcons.chevronLeft(size: 24)
+                : CfIcons.chevronRight(size: 24),
           ],
         ),
       ),

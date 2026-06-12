@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
+/// White surface card: cardBorder 1 px, r16, shadowSoft.
 class CfCard extends StatelessWidget {
   const CfCard({super.key, required this.child, this.padding});
   final Widget child;
