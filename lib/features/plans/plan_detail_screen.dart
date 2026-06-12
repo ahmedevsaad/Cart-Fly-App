@@ -8,6 +8,7 @@ import '../../router/routes.dart';
 import '../../state/plan_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 import '../../widgets/icons/cf_icons.dart';
@@ -57,6 +58,7 @@ class PlanDetailScreen extends StatelessWidget {
 
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
+      bottomNav: cfJourneyNav(context),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(22, 0, 22, 24),
         child: Column(

@@ -6,6 +6,7 @@ import '../../data/warehouse_addresses.dart';
 import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 import '../../widgets/icons/cf_icons.dart';
@@ -38,6 +39,7 @@ class CountryLockersScreen extends StatelessWidget {
 
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
+      bottomNav: cfJourneyNav(context),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: Column(

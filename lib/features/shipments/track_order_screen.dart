@@ -6,6 +6,7 @@ import '../../l10n/app_localizations.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_states.dart';
 import '../../widgets/cf_top_bar.dart';
@@ -28,14 +29,16 @@ class TrackOrderScreen extends StatelessWidget {
     final order = orders.where((o) => o.id == id).firstOrNull;
 
     if (order == null) {
-      return const CfScaffold(
-        topBar: CfTopBar(),
-        body: CfEmptyState(message: 'Order not found'),
+      return CfScaffold(
+        topBar: const CfTopBar(),
+        bottomNav: cfJourneyNav(context),
+        body: const CfEmptyState(message: 'Order not found'),
       );
     }
 
     return CfScaffold(
       topBar: const CfTopBar(),
+      bottomNav: cfJourneyNav(context),
       body: SingleChildScrollView(
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 22, vertical: 8),
         child: Column(

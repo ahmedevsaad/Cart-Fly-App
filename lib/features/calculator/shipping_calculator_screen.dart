@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_dashed.dart';
+import '../../widgets/cf_journey_nav.dart';
 import '../../widgets/cf_scaffold.dart';
 import '../../widgets/cf_top_bar.dart';
 import '../../widgets/icons/cf_icons.dart';
@@ -18,6 +19,7 @@ class ShippingCalculatorScreen extends StatelessWidget {
 
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
+      bottomNav: cfJourneyNav(context),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
         child: Column(
