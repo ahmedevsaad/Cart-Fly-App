@@ -18,7 +18,7 @@ class CfBackground extends StatelessWidget {
           if (solid == null)
             IgnorePointer(
               child: Opacity(
-                opacity: 0.06,
+                opacity: 0.05,
                 child: LayoutBuilder(builder: (context, c) {
                   const tile = 240.0;
                   final cols = (c.maxWidth / tile).ceil();

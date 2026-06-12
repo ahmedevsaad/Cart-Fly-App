@@ -11,8 +11,10 @@ class CfCard extends StatelessWidget {
     return Container(
       padding: padding ?? const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.cardBg,
-        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(AppColors.radiusCard),
+        border: Border.all(color: AppColors.cardBorder),
+        boxShadow: AppColors.shadowSoft,
       ),
       child: child,
     );

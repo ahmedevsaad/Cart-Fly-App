@@ -103,9 +103,7 @@ GoRouter buildRouter(AuthProvider auth) {
       GoRoute(
           path: Routes.createShipment,
           builder: (_, __) => const CreateShipmentScreen()),
-      GoRoute(
-          path: Routes.orders,
-          builder: (_, __) => const OrdersScreen()),
+      GoRoute(path: Routes.menu, builder: (_, __) => const MenuScreen()),
       GoRoute(
           path: Routes.orderDetail,
           builder: (_, s) =>
@@ -124,7 +122,7 @@ GoRouter buildRouter(AuthProvider auth) {
             GoRoute(path: Routes.profile, builder: (_, __) => const ProfileScreen()),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(path: Routes.menu, builder: (_, __) => const MenuScreen()),
+            GoRoute(path: Routes.orders, builder: (_, __) => const OrdersScreen()),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: Routes.settings, builder: (_, __) => const SettingsScreen()),

@@ -24,17 +24,6 @@ class AppColors {
   static const double radiusCard = 16; // cards
   static const double radiusPill = 999;
 
-  // --- Temporary aliases (removed in Stage 2 Task 2.7 once widgets migrate) ---
-  static const btnFill = primary;
-  static const btnAlt = primary;
-  static const navBar = primary;
-  static const navPill = fieldBg;
-  static const inputBg = bgPage;
-  static const inputBgAlt = fieldBg;
-  static const inputBorder = cardBorder;
-  static const textSoft = text;
-  static const borderStrong = navy;
-
   // Soft elevations (use in BoxShadow lists).
   static const List<BoxShadow> shadowSoft = [
     BoxShadow(color: Color(0x0D0F172A), blurRadius: 3, offset: Offset(0, 1)),
