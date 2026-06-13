@@ -674,6 +674,194 @@ class AppLocalizationsAr extends AppLocalizations {
   String get declareRequiredField => 'أضف متجراً أو رقم تتبع أولاً';
 
   @override
+  String get declarePackageTitle => 'أعلن عن طرد';
+
+  @override
+  String get declarePackageSubtitle => 'أخبرنا بما هو قادم حتى نتمكن من مطابقته عند الوصول.';
+
+  @override
+  String get storeMerchant => 'المتجر / التاجر';
+
+  @override
+  String get trackingNumber => 'رقم التتبع';
+
+  @override
+  String get declareCategory => 'الفئة';
+
+  @override
+  String get catElectronics => 'إلكترونيات';
+
+  @override
+  String get catFashion => 'موضة';
+
+  @override
+  String get catOther => 'أخرى';
+
+  @override
+  String get estValue => 'القيمة التقديرية';
+
+  @override
+  String get quantity => 'الكمية';
+
+  @override
+  String get deliveryMethod => 'طريقة التسليم';
+
+  @override
+  String get deliveryHome => 'المنزل';
+
+  @override
+  String get deliveryLocker => 'الكاسة';
+
+  @override
+  String get sourceCountry => 'دولة المصدر';
+
+  @override
+  String get itemTitle => 'العنوان / الوصف';
+
+  @override
+  String get selectLocker => 'اختر الكاسة';
+
+  @override
+  String get addPackage => 'إضافة طرد';
+
+  @override
+  String get myPackages => 'طرودي';
+
+  @override
+  String get addNewPackage => 'إضافة طرد جديد';
+
+  @override
+  String get tabAll => 'الكل';
+
+  @override
+  String get tabAtWarehouse => 'في المستودع';
+
+  @override
+  String get tabInTransit => 'في الطريق';
+
+  @override
+  String get statusDeclared => 'معلن';
+
+  @override
+  String get statusInTransitPill => 'في الطريق';
+
+  @override
+  String get statusDeliveredPill => 'تم التسليم';
+
+  @override
+  String get noPackagesYet => 'لا توجد طرود هنا بعد';
+
+  @override
+  String consolidationHint(int count) {
+    return '$count طرود في المستودع يمكن دمجها لتوفير تكلفة الشحن.';
+  }
+
+  @override
+  String get warehouseAddressTitle => 'عنوان المستودع الخاص بك';
+
+  @override
+  String get warehouseAddressSubtitle => 'اشحن طلباتك الإلكترونية إلى هذا العنوان. نستلمها ثم نوصلها إليك.';
+
+  @override
+  String get cityProvince => 'المدينة / المحافظة';
+
+  @override
+  String get postalCode => 'الرمز البريدي';
+
+  @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get copyFullAddress => 'نسخ العنوان الكامل';
+
+  @override
+  String get copied => 'تم النسخ';
+
+  @override
+  String get fullAddressCopied => 'تم نسخ العنوان الكامل';
+
+  @override
+  String get cfIdWarningPrefix => 'احرص دائماً على إضافة ';
+
+  @override
+  String get cfIdWarningHighlight => 'CF-ID';
+
+  @override
+  String get cfIdWarningSuffix => ' إلى اسم المستلم حتى نتمكن من مطابقة الطرد بحسابك.';
+
+  @override
+  String get verifyResendSuccess => 'تم إعادة إرسال بريد التحقق.';
+
+  @override
+  String get verifyResendFailed => 'فشل إعادة إرسال بريد التحقق.';
+
+  @override
+  String get verifyEnterCode => 'أدخل الرمز المكوّن من 6 أرقام';
+
+  @override
+  String get forgotPasswordTitle => 'نسيت كلمة المرور';
+
+  @override
+  String get forgotPasswordBody => 'أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.';
+
+  @override
+  String get sendResetLink => 'إرسال رابط الاستعادة';
+
+  @override
+  String get pleaseEnterEmail => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get passwordResetSent => 'تم إرسال بريد إعادة تعيين كلمة المرور.';
+
+  @override
+  String get changePasswordTitle => 'تغيير كلمة المرور';
+
+  @override
+  String get currentPassword => 'كلمة المرور الحالية:';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة:';
+
+  @override
+  String get confirmNewPassword => 'تأكيد كلمة المرور الجديدة:';
+
+  @override
+  String get allFieldsRequired => 'جميع الحقول مطلوبة.';
+
+  @override
+  String get newPasswordsDontMatch => 'كلمتا المرور الجديدتان غير متطابقتين.';
+
+  @override
+  String get passwordUpdated => 'تم تحديث كلمة المرور';
+
+  @override
+  String get failedUpdatePassword => 'فشل تحديث كلمة المرور.';
+
+  @override
+  String get updateButton => 'تحديث';
+
+  @override
+  String get editProfileTitle => 'تعديل الملف الشخصي';
+
+  @override
+  String get saveButton => 'حفظ';
+
+  @override
+  String get weightDialogTitle => 'أدخل الوزن (كجم)';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get weightError => 'أدخل وزناً أكبر من 0';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
   String get advanceStatus => 'تقدم الحالة (تجريبي)';
 
   @override

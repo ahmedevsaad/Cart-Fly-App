@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../widgets/icons/cf_icons.dart';
 
 import '../../data/lockers.dart';
@@ -21,14 +22,14 @@ import '../../widgets/cf_top_bar.dart';
 enum _Category { electronics, fashion, other }
 
 extension _CategoryLabel on _Category {
-  String get label {
+  String label(AppLocalizations l10n) {
     switch (this) {
       case _Category.electronics:
-        return 'Electronics';
+        return l10n.catElectronics;
       case _Category.fashion:
-        return 'Fashion';
+        return l10n.catFashion;
       case _Category.other:
-        return 'Other';
+        return l10n.catOther;
     }
   }
 
@@ -78,9 +79,10 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
   }
 
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context)!;
     if (_merchant.text.trim().isEmpty && _trackingNumber.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Add a store or tracking number first')),
+        SnackBar(content: Text(l10n.declareRequiredField)),
       );
       return;
     }
@@ -88,8 +90,8 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
     final titleText = _title.text.trim().isNotEmpty
         ? _title.text.trim()
         : (_merchant.text.trim().isNotEmpty
-            ? '${_merchant.text.trim()} · ${_category.label}'
-            : _category.label);
+            ? '${_merchant.text.trim()} · ${_category.label(l10n)}'
+            : _category.label(l10n));
 
     setState(() => _loading = true);
     final provider = context.read<OrdersProvider>();
@@ -118,6 +120,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final lockerCountry =
         countryLockers.where((c) => c.code == _country).firstOrNull;
     final allLockers = lockerCountry?.cities
@@ -134,7 +137,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
           children: [
             // ── Title (Frame 14) ─────────────────────────────────────
             Text(
-              'Declare a package',
+              l10n.declarePackageTitle,
               style: GoogleFonts.inter(
                 fontWeight: FontWeight.w800,
                 fontSize: 22,
@@ -144,7 +147,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             ),
             const SizedBox(height: 4),
             Text(
-              'Tell us what\'s coming so we can match it on arrival.',
+              l10n.declarePackageSubtitle,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -155,7 +158,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             const SizedBox(height: 16),
 
             // ── Store / merchant ─────────────────────────────────────
-            _FieldLabel('Store / merchant'),
+            _FieldLabel(l10n.storeMerchant),
             const SizedBox(height: 6),
             _FieldContainer(
               child: Row(
@@ -181,7 +184,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             const SizedBox(height: 12),
 
             // ── Tracking number ──────────────────────────────────────
-            _FieldLabel('Tracking number'),
+            _FieldLabel(l10n.trackingNumber),
             const SizedBox(height: 6),
             _FieldContainer(
               child: Row(
@@ -209,7 +212,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
             const SizedBox(height: 14),
 
             // ── Category chips ────────────────────────────────────────
-            _FieldLabel('Category'),
+            _FieldLabel(l10n.declareCategory),
             const SizedBox(height: 8),
             Row(
               children: _Category.values.map((cat) {
@@ -241,7 +244,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                           cat.icon(selected: selected),
                           const SizedBox(height: 5),
                           Text(
-                            cat.label,
+                            cat.label(l10n),
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               fontWeight: FontWeight.w700,
@@ -267,7 +270,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _FieldLabel('Est. value'),
+                      _FieldLabel(l10n.estValue),
                       const SizedBox(height: 6),
                       _FieldContainer(
                         child: TextField(
@@ -291,7 +294,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _FieldLabel('Quantity'),
+                      _FieldLabel(l10n.quantity),
                       const SizedBox(height: 6),
                       _FieldContainer(
                         child: TextField(
@@ -320,13 +323,13 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
 
             // ── Original shipment fields ──────────────────────────────
             CfInput(
-              label: 'Item / title',
+              label: l10n.itemTitle,
               controller: _title,
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               value: _country,
-              decoration: const InputDecoration(labelText: 'Source country'),
+              decoration: InputDecoration(labelText: l10n.sourceCountry),
               items: warehouses
                   .map((w) => DropdownMenuItem(
                         value: w.code,
@@ -339,13 +342,13 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
               }),
             ),
             const SizedBox(height: 16),
-            const Text('Delivery method'),
+            Text(l10n.deliveryMethod),
             const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
                   child: _MethodButton(
-                    label: 'Home',
+                    label: l10n.deliveryHome,
                     selected: _method == DeliveryMethod.home,
                     onTap: () => setState(() => _method = DeliveryMethod.home),
                   ),
@@ -353,7 +356,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _MethodButton(
-                    label: 'Locker',
+                    label: l10n.deliveryLocker,
                     selected: _method == DeliveryMethod.locker,
                     onTap: () =>
                         setState(() => _method = DeliveryMethod.locker),
@@ -367,7 +370,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
               DropdownButtonFormField<String>(
                 value: _lockerId,
                 decoration:
-                    const InputDecoration(labelText: 'Select locker'),
+                    InputDecoration(labelText: l10n.selectLocker),
                 items: allLockers
                     .map((l) => DropdownMenuItem(
                           value: l.name,
@@ -384,7 +387,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                 ? const Center(child: CircularProgressIndicator())
                 : Semantics(
                     button: true,
-                    label: 'Add package',
+                    label: l10n.addPackage,
                     child: Material(
                       color: AppColors.teal,
                       borderRadius: BorderRadius.circular(13),
@@ -409,7 +412,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                               CfIcons.plus(size: 20, color: Colors.white),
                               const SizedBox(width: 10),
                               Text(
-                                'Add package',
+                                l10n.addPackage,
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,

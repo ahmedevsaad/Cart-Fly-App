@@ -674,6 +674,194 @@ class AppLocalizationsEn extends AppLocalizations {
   String get declareRequiredField => 'Add a store or tracking number first';
 
   @override
+  String get declarePackageTitle => 'Declare a package';
+
+  @override
+  String get declarePackageSubtitle => 'Tell us what\'s coming so we can match it on arrival.';
+
+  @override
+  String get storeMerchant => 'Store / merchant';
+
+  @override
+  String get trackingNumber => 'Tracking number';
+
+  @override
+  String get declareCategory => 'Category';
+
+  @override
+  String get catElectronics => 'Electronics';
+
+  @override
+  String get catFashion => 'Fashion';
+
+  @override
+  String get catOther => 'Other';
+
+  @override
+  String get estValue => 'Est. value';
+
+  @override
+  String get quantity => 'Quantity';
+
+  @override
+  String get deliveryMethod => 'Delivery method';
+
+  @override
+  String get deliveryHome => 'Home';
+
+  @override
+  String get deliveryLocker => 'Locker';
+
+  @override
+  String get sourceCountry => 'Source country';
+
+  @override
+  String get itemTitle => 'Item / title';
+
+  @override
+  String get selectLocker => 'Select locker';
+
+  @override
+  String get addPackage => 'Add package';
+
+  @override
+  String get myPackages => 'My packages';
+
+  @override
+  String get addNewPackage => 'Add new package';
+
+  @override
+  String get tabAll => 'All';
+
+  @override
+  String get tabAtWarehouse => 'At warehouse';
+
+  @override
+  String get tabInTransit => 'In transit';
+
+  @override
+  String get statusDeclared => 'Declared';
+
+  @override
+  String get statusInTransitPill => 'In transit';
+
+  @override
+  String get statusDeliveredPill => 'Delivered';
+
+  @override
+  String get noPackagesYet => 'No packages here yet';
+
+  @override
+  String consolidationHint(int count) {
+    return '$count packages at the warehouse can be combined to save on shipping.';
+  }
+
+  @override
+  String get warehouseAddressTitle => 'Your warehouse address';
+
+  @override
+  String get warehouseAddressSubtitle => 'Ship your online orders to this address. We receive them, then forward to you.';
+
+  @override
+  String get cityProvince => 'City / Province';
+
+  @override
+  String get postalCode => 'Postal code';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get copyFullAddress => 'Copy full address';
+
+  @override
+  String get copied => 'Copied';
+
+  @override
+  String get fullAddressCopied => 'Full address copied';
+
+  @override
+  String get cfIdWarningPrefix => 'Always add your ';
+
+  @override
+  String get cfIdWarningHighlight => 'CF-ID';
+
+  @override
+  String get cfIdWarningSuffix => ' to the recipient name so we can match the package to you.';
+
+  @override
+  String get verifyResendSuccess => 'Verification email resent.';
+
+  @override
+  String get verifyResendFailed => 'Failed to resend verification email.';
+
+  @override
+  String get verifyEnterCode => 'Enter the 6-digit code';
+
+  @override
+  String get forgotPasswordTitle => 'Forgot Password';
+
+  @override
+  String get forgotPasswordBody => 'Enter your email address and we will send you a link to reset your password.';
+
+  @override
+  String get sendResetLink => 'Send reset link';
+
+  @override
+  String get pleaseEnterEmail => 'Please enter your email';
+
+  @override
+  String get passwordResetSent => 'Password reset email sent.';
+
+  @override
+  String get changePasswordTitle => 'Change Password';
+
+  @override
+  String get currentPassword => 'Current password:';
+
+  @override
+  String get newPassword => 'New password:';
+
+  @override
+  String get confirmNewPassword => 'Confirm new password:';
+
+  @override
+  String get allFieldsRequired => 'All fields are required.';
+
+  @override
+  String get newPasswordsDontMatch => 'New passwords do not match.';
+
+  @override
+  String get passwordUpdated => 'Password updated';
+
+  @override
+  String get failedUpdatePassword => 'Failed to update password.';
+
+  @override
+  String get updateButton => 'Update';
+
+  @override
+  String get editProfileTitle => 'Edit Profile';
+
+  @override
+  String get saveButton => 'Save';
+
+  @override
+  String get weightDialogTitle => 'Enter Weight (kg)';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get weightError => 'Enter a weight greater than 0';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
   String get advanceStatus => 'Advance status (demo)';
 
   @override

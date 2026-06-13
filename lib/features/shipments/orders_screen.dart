@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/models/order.dart';
+import '../../l10n/app_localizations.dart';
 import '../../router/routes.dart';
 import '../../state/orders_provider.dart';
 import '../../theme/app_colors.dart';
@@ -20,14 +21,14 @@ import '../../widgets/icons/cf_icons.dart';
 enum _Tab { all, atWarehouse, inTransit }
 
 extension _TabLabel on _Tab {
-  String get label {
+  String label(AppLocalizations l10n) {
     switch (this) {
       case _Tab.all:
-        return 'All';
+        return l10n.tabAll;
       case _Tab.atWarehouse:
-        return 'At warehouse';
+        return l10n.tabAtWarehouse;
       case _Tab.inTransit:
-        return 'In transit';
+        return l10n.tabInTransit;
     }
   }
 }
@@ -88,14 +89,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    'My packages',
+                    AppLocalizations.of(context)!.myPackages,
                     style: AppText.heading.copyWith(
                         fontWeight: FontWeight.w800, fontSize: 22),
                   ),
                 ),
                 Semantics(
                   button: true,
-                  label: 'Add new package',
+                  label: AppLocalizations.of(context)!.addNewPackage,
                   child: InkWell(
                     onTap: () => context.push(Routes.createShipment),
                     borderRadius: BorderRadius.circular(10),
@@ -127,6 +128,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             child: _SegmentedTabs(
               active: _activeTab,
               onChanged: (t) => setState(() => _activeTab = t),
+              l10n: AppLocalizations.of(context)!,
             ),
           ),
           const SizedBox(height: 14),
@@ -134,7 +136,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           // ── List ──────────────────────────────────────────────────
           Expanded(
             child: displayed.isEmpty
-                ? const CfEmptyState(message: 'No packages here yet')
+                ? CfEmptyState(message: AppLocalizations.of(context)!.noPackagesYet)
                 : ListView.separated(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 22, vertical: 0),
@@ -164,9 +166,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
 // ──────────────────────────────────────────────────────────────────────────────
 
 class _SegmentedTabs extends StatelessWidget {
-  const _SegmentedTabs({required this.active, required this.onChanged});
+  const _SegmentedTabs({required this.active, required this.onChanged, required this.l10n});
   final _Tab active;
   final ValueChanged<_Tab> onChanged;
+  final AppLocalizations l10n;
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +195,7 @@ class _SegmentedTabs extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  tab.label,
+                  tab.label(l10n),
                   style: GoogleFonts.inter(
                     fontSize: 12.5,
                     fontWeight:
@@ -315,7 +318,8 @@ class _StatusPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (label, fg, bg) = _pillStyle(status);
+    final l10n = AppLocalizations.of(context)!;
+    final (label, fg, bg) = _pillStyle(status, l10n);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       decoration: BoxDecoration(
@@ -333,18 +337,18 @@ class _StatusPill extends StatelessWidget {
     );
   }
 
-  (String, Color, Color) _pillStyle(OrderStatus s) {
+  (String, Color, Color) _pillStyle(OrderStatus s, AppLocalizations l10n) {
     switch (s) {
       case OrderStatus.placed:
-        return ('Declared', AppColors.statusAmber, AppColors.statusAmberBg);
+        return (l10n.statusDeclared, AppColors.statusAmber, AppColors.statusAmberBg);
       case OrderStatus.atWarehouse:
-        return ('At warehouse', AppColors.success, AppColors.successBg);
+        return (l10n.tabAtWarehouse, AppColors.success, AppColors.successBg);
       case OrderStatus.packaging:
       case OrderStatus.shipped:
       case OrderStatus.ready:
-        return ('In transit', AppColors.statusBlue, AppColors.statusBlueBg);
+        return (l10n.statusInTransitPill, AppColors.statusBlue, AppColors.statusBlueBg);
       case OrderStatus.delivered:
-        return ('Delivered', AppColors.mutedLabel, AppColors.fieldBg);
+        return (l10n.statusDeliveredPill, AppColors.mutedLabel, AppColors.fieldBg);
     }
   }
 }
@@ -377,7 +381,7 @@ class _ConsolidationHint extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                '$count packages at the warehouse can be combined to save on shipping.',
+                AppLocalizations.of(context)!.consolidationHint(count),
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,

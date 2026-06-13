@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../../l10n/auth_error.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
@@ -28,9 +29,10 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   Future<void> _verify() async {
+    final l10n = AppLocalizations.of(context)!;
     final code = _codeCtrl.text.trim();
     if (code.length != 6) {
-      setState(() => _inlineError = 'Enter the 6-digit code');
+      setState(() => _inlineError = l10n.verifyEnterCode);
       return;
     }
     setState(() {
@@ -42,7 +44,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     setState(() => _busy = false);
     // ok → router redirect sends to /home automatically
     if (!ok) {
-      setState(() => _inlineError = 'Enter the 6-digit code');
+      setState(() => _inlineError = AppLocalizations.of(context)!.verifyEnterCode);
     }
   }
 
@@ -50,19 +52,22 @@ class _VerifyScreenState extends State<VerifyScreen> {
     try {
       await FirebaseAuth.instance.currentUser?.sendEmailVerification();
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Verification email resent.')),
+        SnackBar(content: Text(l10n.verifyResendSuccess)),
       );
     } catch (_) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to resend verification email.')),
+        SnackBar(content: Text(l10n.verifyResendFailed)),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final auth = context.watch<AuthProvider>();
     final email = auth.state.pendingEmail ?? '';
     final errorText = authErrorText(auth.errorKey);
@@ -75,24 +80,24 @@ class _VerifyScreenState extends State<VerifyScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(child: Text('Verify your account', style: AppText.title)),
+            Center(child: Text(l10n.verifyCodeTitle, style: AppText.title)),
             const SizedBox(height: 24),
             Text(
-              'Enter the 6-digit code sent to $email.',
+              l10n.verifyCodeBody(email),
               style: AppText.body,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
-              'Demo code: 000000',
+              l10n.verifyDemoHint,
               style: AppText.caption.copyWith(color: AppColors.mutedLabel),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
             CfInput(
-              label: 'Verification code',
+              label: l10n.verifyCodeLabel,
               controller: _codeCtrl,
-              hint: '000000',
+              hint: l10n.verifyCodeHint,
               keyboardType: TextInputType.number,
             ),
             if (_inlineError != null || errorText.isNotEmpty)
@@ -105,13 +110,13 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 ),
               ),
             CfButton(
-              label: _busy ? '...' : 'Verify',
+              label: _busy ? '...' : l10n.verifyButton,
               onPressed: _busy ? null : _verify,
             ),
             const SizedBox(height: 16),
             TextButton(
               onPressed: _resend,
-              child: const Text('Resend email'),
+              child: Text(l10n.verifyResend),
             ),
           ],
         ),

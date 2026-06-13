@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../data/repositories/user_repository.dart';
 import '../../features/auth/auth_provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../../widgets/cf_button.dart';
 import '../../widgets/cf_input.dart';
 import '../../widgets/cf_scaffold.dart';
@@ -78,6 +79,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return CfScaffold(
       topBar: const CfTopBar(showBack: true),
       body: SingleChildScrollView(
@@ -85,19 +87,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Edit Profile',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              l10n.editProfileTitle,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            CfInput(label: 'Full name:', controller: _name),
+            CfInput(label: l10n.fullName, controller: _name),
             CfInput(
-              label: 'Phone:',
+              label: l10n.phoneNumber,
               controller: _phone,
               keyboardType: TextInputType.phone,
             ),
-            const Text('Country:',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+            Text(l10n.profileCountry,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
             const SizedBox(height: 6),
             DropdownButtonFormField<String>(
               value: _country,
@@ -113,7 +115,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const SizedBox(height: 24),
             CfButton(
-              label: 'Save',
+              label: l10n.saveButton,
               onPressed: _save,
             ),
           ],

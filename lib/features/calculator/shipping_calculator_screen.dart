@@ -540,8 +540,9 @@ class _WeightDialogState extends State<_WeightDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      title: const Text('Enter Weight (kg)'),
+      title: Text(l10n.weightDialogTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -551,7 +552,7 @@ class _WeightDialogState extends State<_WeightDialog> {
             keyboardType:
                 const TextInputType.numberWithOptions(decimal: true),
             autofocus: true,
-            decoration: const InputDecoration(suffixText: 'kg'),
+            decoration: InputDecoration(suffixText: l10n.calcWeightUnit),
           ),
           if (_error != null) ...[
             const SizedBox(height: 6),
@@ -565,7 +566,7 @@ class _WeightDialogState extends State<_WeightDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(l10n.cancel),
         ),
         TextButton(
           onPressed: () {
@@ -573,10 +574,10 @@ class _WeightDialogState extends State<_WeightDialog> {
             if (v != null && v > 0) {
               Navigator.pop(context, v);
             } else {
-              setState(() => _error = 'Enter a weight greater than 0');
+              setState(() => _error = l10n.weightError);
             }
           },
-          child: const Text('OK'),
+          child: Text(l10n.ok),
         ),
       ],
     );

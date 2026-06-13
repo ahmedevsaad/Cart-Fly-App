@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/warehouse_addresses.dart';
+import '../../l10n/app_localizations.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
 import '../../widgets/cf_dashed.dart';
@@ -41,9 +42,10 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
   void _copyField(String value) {
     Clipboard.setData(ClipboardData(text: value));
     if (mounted) {
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Copied', style: AppText.body),
+          content: Text(l10n.copied, style: AppText.body),
           duration: const Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.text,
@@ -53,18 +55,19 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
   }
 
   void _copyFullAddress() {
+    final l10n = AppLocalizations.of(context)!;
     final full = [
-      'Recipient: ${_addr.recipient}',
-      'Address: ${_addr.address}',
-      'City: ${_addr.city}',
-      'Postal Code: $_postalCode',
-      'Phone: $_phone',
+      '${l10n.recipient}: ${_addr.recipient}',
+      '${l10n.address}: ${_addr.address}',
+      '${l10n.city}: ${_addr.city}',
+      '${l10n.postalCode}: $_postalCode',
+      '${l10n.phone}: $_phone',
     ].join('\n');
     Clipboard.setData(ClipboardData(text: full));
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Full address copied',
+          content: Text(l10n.fullAddressCopied,
               style: AppText.body.copyWith(fontWeight: FontWeight.w600)),
           duration: const Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
@@ -76,6 +79,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return CfScaffold(
       topBar: const CfTopBar(),
       bottomNav: cfJourneyNav(context),
@@ -85,13 +89,13 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Your warehouse address',
+              l10n.warehouseAddressTitle,
               style: AppText.heading
                   .copyWith(fontWeight: FontWeight.w800, fontSize: 22),
             ),
             const SizedBox(height: 4),
             Text(
-              'Ship your online orders to this address. We receive them, then forward to you.',
+              l10n.warehouseAddressSubtitle,
               style: AppText.bodyMedium.copyWith(
                   color: AppColors.muted,
                   fontWeight: FontWeight.w500,
@@ -128,7 +132,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                                 _WarehouseFlag(code: code),
                                 const SizedBox(width: 8),
                                 Text(
-                                  code == 'cn' ? 'China' : 'Egypt',
+                                  code == 'cn' ? l10n.calcCountryChina : l10n.calcCountryEgypt,
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 13,
@@ -159,31 +163,31 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
               child: Column(
                 children: [
                   _AddressRow(
-                    label: 'Recipient',
+                    label: l10n.recipient,
                     value: _addr.recipient,
                     onCopy: () => _copyField(_addr.recipient),
                     showDivider: true,
                   ),
                   _AddressRow(
-                    label: 'Address',
+                    label: l10n.address,
                     value: _addr.address,
                     onCopy: () => _copyField(_addr.address),
                     showDivider: true,
                   ),
                   _AddressRow(
-                    label: 'City / Province',
+                    label: l10n.cityProvince,
                     value: _addr.city,
                     onCopy: () => _copyField(_addr.city),
                     showDivider: true,
                   ),
                   _AddressRow(
-                    label: 'Postal code',
+                    label: l10n.postalCode,
                     value: _postalCode,
                     onCopy: () => _copyField(_postalCode),
                     showDivider: true,
                   ),
                   _AddressRow(
-                    label: 'Phone',
+                    label: l10n.phone,
                     value: _phone,
                     onCopy: () => _copyField(_phone),
                     showDivider: false,
@@ -215,7 +219,7 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                     CfIcons.copy(size: 18, color: Colors.white),
                     const SizedBox(width: 10),
                     Text(
-                      'Copy full address',
+                      l10n.copyFullAddress,
                       style: AppText.body.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -257,15 +261,13 @@ class _MyAddressScreenState extends State<MyAddressScreen> {
                           fontWeight: FontWeight.w500,
                           height: 1.45,
                         ),
-                        children: const [
-                          TextSpan(text: 'Always add your '),
+                        children: [
+                          TextSpan(text: l10n.cfIdWarningPrefix),
                           TextSpan(
-                            text: 'CF-ID',
-                            style: TextStyle(fontWeight: FontWeight.w800),
+                            text: l10n.cfIdWarningHighlight,
+                            style: const TextStyle(fontWeight: FontWeight.w800),
                           ),
-                          TextSpan(
-                              text:
-                                  ' to the recipient name so we can match the package to you.'),
+                          TextSpan(text: l10n.cfIdWarningSuffix),
                         ],
                       ),
                     ),

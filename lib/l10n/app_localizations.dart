@@ -1409,6 +1409,378 @@ abstract class AppLocalizations {
   /// **'Add a store or tracking number first'**
   String get declareRequiredField;
 
+  /// No description provided for @declarePackageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Declare a package'**
+  String get declarePackageTitle;
+
+  /// No description provided for @declarePackageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what\'s coming so we can match it on arrival.'**
+  String get declarePackageSubtitle;
+
+  /// No description provided for @storeMerchant.
+  ///
+  /// In en, this message translates to:
+  /// **'Store / merchant'**
+  String get storeMerchant;
+
+  /// No description provided for @trackingNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking number'**
+  String get trackingNumber;
+
+  /// No description provided for @declareCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get declareCategory;
+
+  /// No description provided for @catElectronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get catElectronics;
+
+  /// No description provided for @catFashion.
+  ///
+  /// In en, this message translates to:
+  /// **'Fashion'**
+  String get catFashion;
+
+  /// No description provided for @catOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get catOther;
+
+  /// No description provided for @estValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Est. value'**
+  String get estValue;
+
+  /// No description provided for @quantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantity;
+
+  /// No description provided for @deliveryMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery method'**
+  String get deliveryMethod;
+
+  /// No description provided for @deliveryHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get deliveryHome;
+
+  /// No description provided for @deliveryLocker.
+  ///
+  /// In en, this message translates to:
+  /// **'Locker'**
+  String get deliveryLocker;
+
+  /// No description provided for @sourceCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Source country'**
+  String get sourceCountry;
+
+  /// No description provided for @itemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Item / title'**
+  String get itemTitle;
+
+  /// No description provided for @selectLocker.
+  ///
+  /// In en, this message translates to:
+  /// **'Select locker'**
+  String get selectLocker;
+
+  /// No description provided for @addPackage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add package'**
+  String get addPackage;
+
+  /// No description provided for @myPackages.
+  ///
+  /// In en, this message translates to:
+  /// **'My packages'**
+  String get myPackages;
+
+  /// No description provided for @addNewPackage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new package'**
+  String get addNewPackage;
+
+  /// No description provided for @tabAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get tabAll;
+
+  /// No description provided for @tabAtWarehouse.
+  ///
+  /// In en, this message translates to:
+  /// **'At warehouse'**
+  String get tabAtWarehouse;
+
+  /// No description provided for @tabInTransit.
+  ///
+  /// In en, this message translates to:
+  /// **'In transit'**
+  String get tabInTransit;
+
+  /// No description provided for @statusDeclared.
+  ///
+  /// In en, this message translates to:
+  /// **'Declared'**
+  String get statusDeclared;
+
+  /// No description provided for @statusInTransitPill.
+  ///
+  /// In en, this message translates to:
+  /// **'In transit'**
+  String get statusInTransitPill;
+
+  /// No description provided for @statusDeliveredPill.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get statusDeliveredPill;
+
+  /// No description provided for @noPackagesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No packages here yet'**
+  String get noPackagesYet;
+
+  /// No description provided for @consolidationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} packages at the warehouse can be combined to save on shipping.'**
+  String consolidationHint(int count);
+
+  /// No description provided for @warehouseAddressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your warehouse address'**
+  String get warehouseAddressTitle;
+
+  /// No description provided for @warehouseAddressSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship your online orders to this address. We receive them, then forward to you.'**
+  String get warehouseAddressSubtitle;
+
+  /// No description provided for @cityProvince.
+  ///
+  /// In en, this message translates to:
+  /// **'City / Province'**
+  String get cityProvince;
+
+  /// No description provided for @postalCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal code'**
+  String get postalCode;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @copyFullAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy full address'**
+  String get copyFullAddress;
+
+  /// No description provided for @copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copied;
+
+  /// No description provided for @fullAddressCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Full address copied'**
+  String get fullAddressCopied;
+
+  /// No description provided for @cfIdWarningPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Always add your '**
+  String get cfIdWarningPrefix;
+
+  /// No description provided for @cfIdWarningHighlight.
+  ///
+  /// In en, this message translates to:
+  /// **'CF-ID'**
+  String get cfIdWarningHighlight;
+
+  /// No description provided for @cfIdWarningSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **' to the recipient name so we can match the package to you.'**
+  String get cfIdWarningSuffix;
+
+  /// No description provided for @verifyResendSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email resent.'**
+  String get verifyResendSuccess;
+
+  /// No description provided for @verifyResendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to resend verification email.'**
+  String get verifyResendFailed;
+
+  /// No description provided for @verifyEnterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code'**
+  String get verifyEnterCode;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address and we will send you a link to reset your password.'**
+  String get forgotPasswordBody;
+
+  /// No description provided for @sendResetLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset link'**
+  String get sendResetLink;
+
+  /// No description provided for @pleaseEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterEmail;
+
+  /// No description provided for @passwordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent.'**
+  String get passwordResetSent;
+
+  /// No description provided for @changePasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePasswordTitle;
+
+  /// No description provided for @currentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password:'**
+  String get currentPassword;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password:'**
+  String get newPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password:'**
+  String get confirmNewPassword;
+
+  /// No description provided for @allFieldsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'All fields are required.'**
+  String get allFieldsRequired;
+
+  /// No description provided for @newPasswordsDontMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'New passwords do not match.'**
+  String get newPasswordsDontMatch;
+
+  /// No description provided for @passwordUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated'**
+  String get passwordUpdated;
+
+  /// No description provided for @failedUpdatePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update password.'**
+  String get failedUpdatePassword;
+
+  /// No description provided for @updateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get updateButton;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfileTitle;
+
+  /// No description provided for @saveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveButton;
+
+  /// No description provided for @weightDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Weight (kg)'**
+  String get weightDialogTitle;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @weightError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a weight greater than 0'**
+  String get weightError;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
   /// No description provided for @advanceStatus.
   ///
   /// In en, this message translates to:

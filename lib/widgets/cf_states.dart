@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text.dart';
 
@@ -42,7 +43,7 @@ class CfErrorState extends StatelessWidget {
             if (onRetry != null)
               TextButton(
                 onPressed: onRetry,
-                child: const Text('Retry'),
+                child: Text(AppLocalizations.of(context)!.retry),
               ),
           ],
         ),

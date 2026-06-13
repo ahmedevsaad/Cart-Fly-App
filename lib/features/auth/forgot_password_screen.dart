@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../../l10n/auth_error.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text.dart';
@@ -29,8 +30,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context)!;
     if (_email.text.trim().isEmpty) {
-      setState(() => _error = 'Please enter your email');
+      setState(() => _error = l10n.pleaseEnterEmail);
       return;
     }
     setState(() {
@@ -45,8 +47,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       if (!ok) _error = authErrorText(auth.errorKey);
     });
     if (ok) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password reset email sent.')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.passwordResetSent)),
       );
       context.pop();
     }
@@ -54,6 +57,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return CfScaffold(
       solidBackground: AppColors.bgSplash,
       topBar: CfTopBar(onBack: () => context.pop()),
@@ -63,16 +67,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 40),
-            Center(child: Text('Forgot Password', style: AppText.title)),
+            Center(child: Text(l10n.forgotPasswordTitle, style: AppText.title)),
             const SizedBox(height: 24),
             Text(
-              'Enter your email address and we will send you a link to reset your password.',
+              l10n.forgotPasswordBody,
               style: AppText.body,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
             CfInput(
-              label: 'Email:',
+              label: l10n.email,
               controller: _email,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -83,7 +87,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
             const SizedBox(height: 8),
             CfButton(
-              label: _busy ? '...' : 'Send reset link',
+              label: _busy ? '...' : l10n.sendResetLink,
               onPressed: _busy ? null : _submit,
             ),
           ],
