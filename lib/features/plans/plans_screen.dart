@@ -79,20 +79,24 @@ class _PlanRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context.push(
-        Routes.planDetail.replaceFirst(':code', plan.code),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 22),
-        child: Text(
-          plan.name,
-          style: AppText.heading.copyWith(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-            color: AppColors.text,
+    return Semantics(
+      button: true,
+      label: plan.name,
+      child: InkWell(
+        onTap: () => context.push(
+          Routes.planDetail.replaceFirst(':code', plan.code),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 22),
+          child: Text(
+            plan.name,
+            style: AppText.heading.copyWith(
+              fontWeight: FontWeight.w700,
+              fontSize: 18,
+              color: AppColors.text,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
       ),
     );

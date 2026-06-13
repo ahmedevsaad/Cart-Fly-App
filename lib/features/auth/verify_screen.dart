@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
@@ -49,20 +48,12 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   Future<void> _resend() async {
-    try {
-      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
-      if (!mounted) return;
-      final l10n = AppLocalizations.of(context)!;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.verifyResendSuccess)),
-      );
-    } catch (_) {
-      if (!mounted) return;
-      final l10n = AppLocalizations.of(context)!;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.verifyResendFailed)),
-      );
-    }
+    await context.read<AuthProvider>().resendCode();
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.verifyResendSuccess)),
+    );
   }
 
   @override

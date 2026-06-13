@@ -109,14 +109,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Align(
                     alignment: AlignmentDirectional.centerEnd,
-                    child: GestureDetector(
-                      onTap: () => context.push(Routes.forgot),
-                      child: Text(
-                        'Forgot password?',
-                        style: GoogleFonts.inter(
-                          fontSize: 12.5,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primary,
+                    child: Semantics(
+                      button: true,
+                      label: 'Forgot password?',
+                      child: InkWell(
+                        onTap: () => context.push(Routes.forgot),
+                        borderRadius: BorderRadius.circular(6),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 4),
+                          child: Text(
+                            'Forgot password?',
+                            style: GoogleFonts.inter(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
+                          ),
                         ),
                       ),
                     ),

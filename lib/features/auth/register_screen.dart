@@ -215,26 +215,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const SizedBox(height: 14),
             Center(
-              child: GestureDetector(
-                onTap: () => context.push(Routes.login),
-                child: RichText(
-                  text: TextSpan(
-                    style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.muted,
-                    ),
-                    children: [
-                      const TextSpan(text: 'Already have an account? '),
-                      TextSpan(
-                        text: 'Sign in',
+              child: Semantics(
+                button: true,
+                label: 'Sign in — already have an account',
+                child: InkWell(
+                  onTap: () => context.push(Routes.login),
+                  borderRadius: BorderRadius.circular(6),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: RichText(
+                      text: TextSpan(
                         style: GoogleFonts.inter(
                           fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primary,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.muted,
                         ),
+                        children: [
+                          const TextSpan(text: 'Already have an account? '),
+                          TextSpan(
+                            text: 'Sign in',
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

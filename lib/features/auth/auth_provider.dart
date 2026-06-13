@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,8 +57,11 @@ class AuthProvider extends ChangeNotifier {
   StreamSubscription<User?>? _sub;
 
   bool _disposed = false;
+  bool _busy = false;
   AuthState _state = AuthState.initial();
   String? _pendingCode;
+
+  String _genCode() => (100000 + Random.secure().nextInt(900000)).toString();
   // Set once the user passes OTP in THIS session. Lets sign-in proceed even if
   // Firestore (where the persistent `verified` flag lives) is slow/unreachable.
   bool _codeVerified = false;
@@ -138,6 +142,8 @@ class AuthProvider extends ChangeNotifier {
     required String currency,
     required String password,
   }) async {
+    if (_busy) return false;
+    _busy = true;
     try {
       final cred = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -156,13 +162,15 @@ class AuthProvider extends ChangeNotifier {
         'currency': currency,
         'createdAt': FieldValue.serverTimestamp(),
       });
-      _pendingCode = (cred.user!.uid.hashCode.abs() % 900000 + 100000).toString();
+      _pendingCode = _genCode();
       await cred.user!.sendEmailVerification();
       _set(AuthState.pendingOtp(email: email));
       return true;
     } on FirebaseAuthException catch (e) {
       _fail('errorAuth_${e.code}');
       return false;
+    } finally {
+      _busy = false;
     }
   }
 
@@ -236,7 +244,17 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> logout() => _auth.signOut();
+  Future<void> logout() async {
+    _pendingCode = null;
+    await _auth.signOut();
+  }
+
+  Future<void> resendCode() async {
+    _pendingCode = _genCode();
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } catch (_) {}
+  }
 
   @override
   void dispose() {

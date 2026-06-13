@@ -142,7 +142,7 @@ class _StepIndicator extends StatelessWidget {
   final int activeStep;
 
   static const Color _greenBg = AppColors.stepGreen;
-  static const Color _greyBg = Color(0xFFD9D9D9); // neutral stepper grey — intentional
+  static const Color _greyBg = AppColors.stepperIdle;
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +200,7 @@ class _Connector extends StatelessWidget {
   final bool done;
 
   static const Color _greenBg = AppColors.stepGreen;
-  static const Color _greyBg = Color(0xFFD9D9D9); // neutral stepper grey — intentional
+  static const Color _greyBg = AppColors.stepperIdle;
 
   @override
   Widget build(BuildContext context) {

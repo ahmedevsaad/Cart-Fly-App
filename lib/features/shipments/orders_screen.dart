@@ -183,26 +183,32 @@ class _SegmentedTabs extends StatelessWidget {
         children: _Tab.values.map((tab) {
           final isActive = tab == active;
           return Expanded(
-            child: GestureDetector(
-              onTap: () => onChanged(tab),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                decoration: BoxDecoration(
-                  color: isActive ? Colors.white : Colors.transparent,
-                  borderRadius: BorderRadius.circular(9),
-                  boxShadow: isActive ? AppColors.shadowSoft : null,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  tab.label(l10n),
-                  style: GoogleFonts.inter(
-                    fontSize: 12.5,
-                    fontWeight:
-                        isActive ? FontWeight.w700 : FontWeight.w600,
-                    color: isActive
-                        ? AppColors.text
-                        : AppColors.mutedDisabled,
+            child: Semantics(
+              button: true,
+              selected: isActive,
+              label: tab.label(l10n),
+              child: InkWell(
+                onTap: () => onChanged(tab),
+                borderRadius: BorderRadius.circular(9),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 150),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: isActive ? Colors.white : Colors.transparent,
+                    borderRadius: BorderRadius.circular(9),
+                    boxShadow: isActive ? AppColors.shadowSoft : null,
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    tab.label(l10n),
+                    style: GoogleFonts.inter(
+                      fontSize: 12.5,
+                      fontWeight:
+                          isActive ? FontWeight.w700 : FontWeight.w600,
+                      color: isActive
+                          ? AppColors.text
+                          : AppColors.mutedDisabled,
+                    ),
                   ),
                 ),
               ),
@@ -224,20 +230,19 @@ class _PackageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context
-          .push(Routes.orderDetail.replaceFirst(':id', order.id)),
-      child: Container(
+    return Semantics(
+      button: true,
+      label: 'View order ${order.title}',
+      child: InkWell(
+        onTap: () => context
+            .push(Routes.orderDetail.replaceFirst(':id', order.id)),
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: AppColors.fieldBg,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-                color: Color(0x0D0F172A),
-                blurRadius: 6,
-                offset: Offset(0, 2)),
-          ],
+          boxShadow: AppColors.shadowSoft,
         ),
         child: Row(
           children: [
@@ -303,6 +308,7 @@ class _PackageCard extends StatelessWidget {
             CfIcons.chevronRight(size: 18, color: AppColors.mutedDisabled),
           ],
         ),
+      ),
       ),
     );
   }

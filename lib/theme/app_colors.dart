@@ -53,6 +53,7 @@ class AppColors {
   static const statusBlueBg = Color(0xFFDBEAFE);
   static const tabActiveBg = Color(0xFFEFF4FE);
   static const dashedDivider = Color(0xFFD5DCE3);
+  static const stepperIdle = Color(0xFFD9D9D9); // pending stepper step / connector
 
   static const double radius = 12; // fields
   static const double radiusCard = 16; // cards

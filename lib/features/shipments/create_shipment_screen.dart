@@ -218,42 +218,52 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
               children: _Category.values.map((cat) {
                 final selected = _category == cat;
                 return Expanded(
-                  child: GestureDetector(
-                    onTap: () => setState(() => _category = cat),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 150),
-                      margin: EdgeInsetsDirectional.only(
-                          end: cat != _Category.other ? 8 : 0),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 6),
-                      decoration: BoxDecoration(
-                        color: selected
-                            ? AppColors.tealBg
-                            : AppColors.fieldBg,
-                        border: Border.all(
-                          color: selected
-                              ? AppColors.teal
-                              : Colors.transparent,
-                          width: 1.5,
-                        ),
-                        borderRadius:
-                            BorderRadius.circular(11),
-                      ),
-                      child: Column(
-                        children: [
-                          cat.icon(selected: selected),
-                          const SizedBox(height: 5),
-                          Text(
-                            cat.label(l10n),
-                            style: GoogleFonts.inter(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
+                  child: Semantics(
+                    button: true,
+                    selected: selected,
+                    label: cat.label(l10n),
+                    child: Material(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(11),
+                      child: InkWell(
+                        onTap: () => setState(() => _category = cat),
+                        borderRadius: BorderRadius.circular(11),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          margin: EdgeInsetsDirectional.only(
+                              end: cat != _Category.other ? 8 : 0),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 6),
+                          decoration: BoxDecoration(
+                            color: selected
+                                ? AppColors.tealBg
+                                : AppColors.fieldBg,
+                            border: Border.all(
                               color: selected
-                                  ? AppColors.tealDark
-                                  : AppColors.mutedLabel,
+                                  ? AppColors.teal
+                                  : Colors.transparent,
+                              width: 1.5,
                             ),
+                            borderRadius:
+                                BorderRadius.circular(11),
                           ),
-                        ],
+                          child: Column(
+                            children: [
+                              cat.icon(selected: selected),
+                              const SizedBox(height: 5),
+                              Text(
+                                cat.label(l10n),
+                                style: GoogleFonts.inter(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                  color: selected
+                                      ? AppColors.tealDark
+                                      : AppColors.mutedLabel,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),

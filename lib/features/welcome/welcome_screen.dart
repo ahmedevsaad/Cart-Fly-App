@@ -120,33 +120,20 @@ class WelcomeScreen extends StatelessWidget {
                       Semantics(
                         button: true,
                         label: 'Log in to existing account',
-                        child: GestureDetector(
-                          onTap: () => context.go(Routes.login),
-                          child: Center(
-                            child: RichText(
-                              text: TextSpan(
-                                style: GoogleFonts.inter(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white.withValues(alpha: 0.85),
-                                  shadows: const [
-                                    Shadow(
-                                      color: Color(0x99000000),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
-                                ),
-                                children: [
-                                  const TextSpan(
-                                      text: 'I already have an account — '),
-                                  TextSpan(
-                                    text: 'Log in',
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => context.go(Routes.login),
+                            borderRadius: BorderRadius.circular(8),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: Center(
+                                child: RichText(
+                                  text: TextSpan(
                                     style: GoogleFonts.inter(
                                       fontSize: 13,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white.withValues(alpha: 0.85),
                                       shadows: const [
                                         Shadow(
                                           color: Color(0x99000000),
@@ -154,8 +141,28 @@ class WelcomeScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
+                                    children: [
+                                      const TextSpan(
+                                          text: 'I already have an account — '),
+                                      TextSpan(
+                                        text: 'Log in',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: Colors.white,
+                                          shadows: const [
+                                            Shadow(
+                                              color: Color(0x99000000),
+                                              blurRadius: 8,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),

@@ -34,20 +34,26 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: AppColors.cardBorder,
                   backgroundImage:
                       const AssetImage('assets/images/avatar.png'),
+                  onBackgroundImageError: (_, __) {},
+                  child: const Icon(Icons.person, size: 22),
                 ),
                 const SizedBox(width: 11),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(l10n.welcomeUser,
-                        style: AppText.bodyMedium.copyWith(
-                            fontWeight: FontWeight.w600, fontSize: 15)),
-                    Text('$userName 👋',
-                        style: AppText.bodyMedium.copyWith(
-                            fontWeight: FontWeight.w700, fontSize: 15)),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l10n.welcomeUser,
+                          style: AppText.bodyMedium.copyWith(
+                              fontWeight: FontWeight.w600, fontSize: 15)),
+                      Text('$userName 👋',
+                          style: AppText.bodyMedium.copyWith(
+                              fontWeight: FontWeight.w700, fontSize: 15),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1),
+                    ],
+                  ),
                 ),
-                const Spacer(),
+                const SizedBox(width: 8),
                 Semantics(
                   button: true,
                   label: 'Notifications',

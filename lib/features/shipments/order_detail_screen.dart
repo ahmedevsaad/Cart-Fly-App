@@ -82,13 +82,7 @@ class OrderDetailScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.fieldBg,
                 borderRadius: BorderRadius.circular(AppColors.radiusCard),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x0D0F172A),
-                    blurRadius: 8,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+                boxShadow: AppColors.shadowSoft,
               ),
               child: _OrderStepper(activeStep: activeStep),
             ),
@@ -116,30 +110,37 @@ class OrderDetailScreen extends StatelessWidget {
             const SizedBox(height: 22),
 
             // ── Track button ──────────────────────────────────────────
-            GestureDetector(
-              onTap: () => context.push(
-                  Routes.trackOrder.replaceFirst(':id', order.id)),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius:
-                      BorderRadius.circular(AppColors.radius),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x472563EB),
-                      blurRadius: 18,
-                      offset: Offset(0, 8),
+            Semantics(
+              button: true,
+              label: 'Track order',
+              child: Material(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(AppColors.radius),
+                child: InkWell(
+                  onTap: () => context.push(
+                      Routes.trackOrder.replaceFirst(':id', order.id)),
+                  borderRadius: BorderRadius.circular(AppColors.radius),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppColors.radius),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x472563EB),
+                          blurRadius: 18,
+                          offset: Offset(0, 8),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'Track order',
-                  style: GoogleFonts.inter(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Track order',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -148,30 +149,37 @@ class OrderDetailScreen extends StatelessWidget {
 
             // ── Proceed to checkout button (hidden when delivered) ────
             if (order.status != OrderStatus.delivered)
-              GestureDetector(
-                onTap: () => context.push(
-                    Routes.confirmOrder.replaceFirst(':id', order.id)),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  decoration: BoxDecoration(
-                    color: AppColors.teal,
-                    borderRadius:
-                        BorderRadius.circular(AppColors.radius),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x470D9488),
-                        blurRadius: 14,
-                        offset: Offset(0, 6),
+              Semantics(
+                button: true,
+                label: 'Proceed to checkout',
+                child: Material(
+                  color: AppColors.teal,
+                  borderRadius: BorderRadius.circular(AppColors.radius),
+                  child: InkWell(
+                    onTap: () => context.push(
+                        Routes.confirmOrder.replaceFirst(':id', order.id)),
+                    borderRadius: BorderRadius.circular(AppColors.radius),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppColors.radius),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x470D9488),
+                            blurRadius: 14,
+                            offset: Offset(0, 6),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Proceed to checkout',
-                    style: GoogleFonts.inter(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Proceed to checkout',
+                        style: GoogleFonts.inter(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -357,28 +365,36 @@ class _AdvanceButtonState extends State<_AdvanceButton> {
     final l = AppLocalizations.of(context)!;
     return _loading
         ? const Center(child: CircularProgressIndicator())
-        : GestureDetector(
-            onTap: _advance,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 13),
-              decoration: BoxDecoration(
-                color: AppColors.teal,
+        : Semantics(
+            button: true,
+            label: l.advanceStatus,
+            child: Material(
+              color: AppColors.teal,
+              borderRadius: BorderRadius.circular(AppColors.radius),
+              child: InkWell(
+                onTap: _advance,
                 borderRadius: BorderRadius.circular(AppColors.radius),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x470D9488),
-                    blurRadius: 14,
-                    offset: Offset(0, 6),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 13),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppColors.radius),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x470D9488),
+                        blurRadius: 14,
+                        offset: Offset(0, 6),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                l.advanceStatus,
-                style: GoogleFonts.inter(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 15,
+                  alignment: Alignment.center,
+                  child: Text(
+                    l.advanceStatus,
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -402,41 +418,46 @@ class _HubRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
-        decoration: BoxDecoration(
-          color: AppColors.fieldBg,
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        color: AppColors.fieldBg,
+        borderRadius: BorderRadius.circular(14),
+        child: InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x0F0F172A),
-              blurRadius: 6,
-              offset: Offset(0, 2),
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: AppColors.shadowSoft,
             ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Icon(icon, size: 26, color: AppColors.text),
-            const SizedBox(width: 13),
-            Expanded(
-              child: Text(
-                label,
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  color: AppColors.text,
-                ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+              child: Row(
+                children: [
+                  Icon(icon, size: 26, color: AppColors.text),
+                  const SizedBox(width: 13),
+                  Expanded(
+                    child: Text(
+                      label,
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: AppColors.text,
+                      ),
+                    ),
+                  ),
+                  const Icon(
+                    Icons.chevron_right_rounded,
+                    color: AppColors.mutedDisabled,
+                    size: 20,
+                  ),
+                ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.mutedDisabled,
-              size: 20,
-            ),
-          ],
+          ),
         ),
       ),
     );
