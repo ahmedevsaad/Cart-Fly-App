@@ -259,12 +259,15 @@ class _PackageCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        '#CF-${order.id.length > 4 ? order.id.substring(0, 4).toUpperCase() : order.id}',
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 14,
-                          color: AppColors.text,
+                      Flexible(
+                        child: Text(
+                          '#CF-${order.id.length > 4 ? order.id.substring(0, 4).toUpperCase() : order.id}',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 14,
+                            color: AppColors.text,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       const SizedBox(width: 7),

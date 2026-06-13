@@ -86,23 +86,27 @@ class _LockerCard extends StatelessWidget {
             child: CfIcons.pin(size: 20, color: AppColors.navy),
           ),
           const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.name,
-                style: AppText.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w700, fontSize: 14),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                item.sub,
-                style: AppText.caption.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                    color: AppColors.muted),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.name,
+                  style: AppText.bodyMedium.copyWith(
+                      fontWeight: FontWeight.w700, fontSize: 14),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  item.sub,
+                  style: AppText.caption.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      color: AppColors.muted),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         ],
       ),

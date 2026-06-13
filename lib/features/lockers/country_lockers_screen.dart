@@ -48,6 +48,7 @@ class CountryLockersScreen extends StatelessWidget {
             // ── Country heading row ─────────────────────────────────
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(4),
@@ -58,10 +59,13 @@ class CountryLockersScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 9),
-                Text(
-                  addr.countryLabel,
-                  style: AppText.heading.copyWith(
-                      fontWeight: FontWeight.w800, fontSize: 24),
+                Flexible(
+                  child: Text(
+                    addr.countryLabel,
+                    style: AppText.heading.copyWith(
+                        fontWeight: FontWeight.w800, fontSize: 24),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -118,11 +122,15 @@ class _AddressCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                l10n.yourCartFlyAddress,
-                style: AppText.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w700, fontSize: 13.5),
+              Expanded(
+                child: Text(
+                  l10n.yourCartFlyAddress,
+                  style: AppText.bodyMedium.copyWith(
+                      fontWeight: FontWeight.w700, fontSize: 13.5),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
+              const SizedBox(width: 8),
               _CopyButton(addr: addr, l10n: l10n),
             ],
           ),

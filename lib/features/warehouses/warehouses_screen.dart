@@ -163,10 +163,17 @@ class _WarehouseCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: Column(
+                // mainAxisSize.min + FlexFit.loose prevents the unbounded-height
+                // layout assertion that fires when this card is rendered inside a
+                // shrink-wrapping GridView during a GoRouter route transition
+                // (where the parent momentarily provides an infinite height).
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Thumbnail
-                  Expanded(
+                  // Thumbnail — Flexible(loose) so the widget collapses to
+                  // zero height when the Column has no bounded height available.
+                  Flexible(
+                    fit: FlexFit.loose,
                     child: Image.asset(
                       _imagePath,
                       fit: BoxFit.cover,
