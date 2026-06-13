@@ -58,5 +58,7 @@ const warehouseAddresses = <WarehouseAddress>[
   ),
 ];
 
-WarehouseAddress addressByCode(String code) =>
-    warehouseAddresses.firstWhere((a) => a.code == code);
+WarehouseAddress addressByCode(String code) => warehouseAddresses.firstWhere(
+      (a) => a.code == code,
+      orElse: () => warehouseAddresses.first,
+    );

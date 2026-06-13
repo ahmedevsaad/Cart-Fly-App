@@ -57,32 +57,63 @@ class AuthProvider extends ChangeNotifier {
 
   AuthState _state = AuthState.initial();
   String? _pendingCode;
+  // Set once the user passes OTP in THIS session. Lets sign-in proceed even if
+  // Firestore (where the persistent `verified` flag lives) is slow/unreachable.
+  bool _codeVerified = false;
   AuthState get state => _state;
   String? errorKey;
 
+  static const _fsTimeout = Duration(seconds: 4);
+
   Future<void> _onAuthChange(User? u) async {
     if (u == null) {
+      _codeVerified = false;
       _set(AuthState.signedOut());
       return;
     }
-    if (!u.emailVerified) {
+    // Treat the user as verified if: Firebase email-verified, OR they passed the
+    // OTP code this session, OR a persisted Firestore `verified` flag is set.
+    if (!u.emailVerified && !_codeVerified) {
       bool flag = false;
       try {
-        final d = await _db.collection('users').doc(u.uid).get();
+        final d = await _db
+            .collection('users')
+            .doc(u.uid)
+            .get()
+            .timeout(_fsTimeout);
         flag = d.data()?['verified'] == true;
       } catch (_) {}
-      if (!flag) { _set(AuthState.pendingOtp(email: u.email ?? '')); return; }
+      if (!flag) {
+        _set(AuthState.pendingOtp(email: u.email ?? ''));
+        return;
+      }
     }
     try {
-      final doc = await _db.collection('users').doc(u.uid).get();
-      final profile = AppUser.fromMap(u.uid, doc.data() ?? {'email': u.email});
-      _set(AuthState.signedIn(profile));
+      final doc = await _db
+          .collection('users')
+          .doc(u.uid)
+          .get()
+          .timeout(_fsTimeout);
+      _set(AuthState.signedIn(_profileFrom(u, doc.data())));
     } catch (_) {
-      // Firestore unavailable (e.g. emulator not running) — fall back to
-      // auth-only profile so the app still renders the authenticated shell.
-      final profile = AppUser.fromMap(u.uid, {'email': u.email ?? ''});
-      _set(AuthState.signedIn(profile));
+      // Firestore unavailable/slow — fall back to the Firebase Auth profile
+      // (name lives in displayName) so the shell still renders with the name.
+      _set(AuthState.signedIn(_profileFrom(u, null)));
     }
+  }
+
+  /// Builds an [AppUser], preferring Firestore fields but falling back to the
+  /// Firebase Auth user's displayName/email when Firestore is empty/unreachable.
+  AppUser _profileFrom(User u, Map<String, dynamic>? data) {
+    final d = data ?? const <String, dynamic>{};
+    final name = (d['name'] as String?)?.isNotEmpty == true
+        ? d['name'] as String
+        : (u.displayName ?? '');
+    return AppUser.fromMap(u.uid, {
+      ...d,
+      'name': name,
+      'email': d['email'] ?? u.email ?? '',
+    });
   }
 
   void _set(AuthState s) {
@@ -109,6 +140,11 @@ class AuthProvider extends ChangeNotifier {
         email: email,
         password: password,
       );
+      // Store the name on the Firebase Auth profile so it is always available
+      // (even offline / when Firestore is unreachable) via user.displayName.
+      try {
+        await cred.user!.updateDisplayName(name);
+      } catch (_) {}
       await _db.collection('users').doc(cred.user!.uid).set({
         'name': name,
         'phone': phone,
@@ -134,9 +170,14 @@ class AuthProvider extends ChangeNotifier {
       _fail('errorAuthInvalidOtp');
       return false;
     }
-    try {
-      await _db.collection('users').doc(u.uid).set({'verified': true}, SetOptions(merge: true));
-    } catch (_) {}
+    // Code matched → mark verified for this session so sign-in cannot be blocked
+    // by a slow/unreachable Firestore. Persist the flag best-effort (fire-and-forget).
+    _codeVerified = true;
+    unawaited(_db
+        .collection('users')
+        .doc(u.uid)
+        .set({'verified': true}, SetOptions(merge: true))
+        .catchError((_) {}));
     await _onAuthChange(u);
     return true;
   }

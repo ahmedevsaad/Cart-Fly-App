@@ -110,5 +110,7 @@ const warehouses = <Warehouse>[
   ),
 ];
 
-Warehouse warehouseByCode(String code) =>
-    warehouses.firstWhere((w) => w.code == code);
+Warehouse warehouseByCode(String code) => warehouses.firstWhere(
+      (w) => w.code == code,
+      orElse: () => warehouses.first,
+    );
