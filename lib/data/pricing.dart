@@ -8,6 +8,7 @@ class CalcResult {
 const _perKg = <String, double>{
   'cn-eg': 4.8, 'us-eg': 6.0, 'ae-eg': 3.0, 'sa-eg': 2.4, 'cn-sa': 4.0,
   'us-sa': 6.4, 'cn-ae': 4.2, 'us-ae': 6.2,
+  'ae-sa': 2.8, 'sa-ae': 2.8,
 };
 const _customsPct = <String, double>{
   'electronics': 0.10, 'fashion': 0.05, 'accessories': 0.04, 'other': 0.06,

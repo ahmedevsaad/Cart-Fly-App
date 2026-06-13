@@ -78,6 +78,13 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
   }
 
   Future<void> _submit() async {
+    if (_merchant.text.trim().isEmpty && _trackingNumber.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Add a store or tracking number first')),
+      );
+      return;
+    }
+
     final titleText = _title.text.trim().isNotEmpty
         ? _title.text.trim()
         : (_merchant.text.trim().isNotEmpty
@@ -99,7 +106,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
         trackingNumber: _trackingNumber.text.trim().isNotEmpty
             ? _trackingNumber.text.trim()
             : null,
-        category: _category.label,
+        category: _category.name,
         declaredValue: double.tryParse(_estimatedValue.text.trim()),
         quantity: int.tryParse(_quantity.text.trim()),
       ));
@@ -265,7 +272,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
                       _FieldContainer(
                         child: TextField(
                           controller: _estimatedValue,
-                          keyboardType: TextInputType.number,
+                          keyboardType: const TextInputType.numberWithOptions(decimal: true),
                           style: GoogleFonts.inter(
                               fontWeight: FontWeight.w700, fontSize: 14),
                           decoration: const InputDecoration(

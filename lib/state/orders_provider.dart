@@ -69,12 +69,13 @@ class OrdersProvider extends ChangeNotifier {
   final OrderRepository? _repo;
   StreamSubscription<List<Order>>? _sub;
   List<Order> _orders = [];
+  int _demoSeq = 100;
   List<Order> get orders => _orders;
   Order? get latest => _orders.isEmpty ? null : _orders.first;
 
   Future<String> create(Order o) {
     if (_demo) {
-      final id = 'demo${_orders.length + 1}';
+      final id = 'demo${++_demoSeq}';
       final inserted = Order(
         id: id,
         title: o.title,

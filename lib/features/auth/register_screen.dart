@@ -64,15 +64,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future<void> _submit() async {
-    if (_password.text != _confirmPassword.text) {
-      setState(() => _error = 'Passwords do not match');
-      return;
-    }
     if (_name.text.trim().isEmpty ||
         _phone.text.trim().isEmpty ||
         _email.text.trim().isEmpty ||
         _password.text.isEmpty) {
       setState(() => _error = 'Please fill in all fields');
+      return;
+    }
+    final emailVal = _email.text.trim();
+    if (!emailVal.contains('@') || !emailVal.contains('.')) {
+      setState(() => _error = 'Enter a valid email');
+      return;
+    }
+    if (_password.text != _confirmPassword.text) {
+      setState(() => _error = 'Passwords do not match');
       return;
     }
 

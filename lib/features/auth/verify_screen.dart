@@ -19,6 +19,7 @@ class VerifyScreen extends StatefulWidget {
 class _VerifyScreenState extends State<VerifyScreen> {
   final _codeCtrl = TextEditingController();
   bool _busy = false;
+  String? _inlineError;
 
   @override
   void dispose() {
@@ -28,14 +29,20 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   Future<void> _verify() async {
     final code = _codeCtrl.text.trim();
-    if (code.length != 6) return;
-    setState(() => _busy = true);
+    if (code.length != 6) {
+      setState(() => _inlineError = 'Enter the 6-digit code');
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _inlineError = null;
+    });
     final ok = await context.read<AuthProvider>().verifyCode(code);
     if (!mounted) return;
     setState(() => _busy = false);
     // ok → router redirect sends to /home automatically
     if (!ok) {
-      // error is surfaced via auth.errorKey below — no extra action needed
+      setState(() => _inlineError = 'Enter the 6-digit code');
     }
   }
 
@@ -88,11 +95,11 @@ class _VerifyScreenState extends State<VerifyScreen> {
               hint: '000000',
               keyboardType: TextInputType.number,
             ),
-            if (errorText.isNotEmpty)
+            if (_inlineError != null || errorText.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Text(
-                  errorText,
+                  _inlineError ?? errorText,
                   style: AppText.caption.copyWith(color: AppColors.danger),
                   textAlign: TextAlign.center,
                 ),

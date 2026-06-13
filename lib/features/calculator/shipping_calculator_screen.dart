@@ -80,11 +80,33 @@ class _ShippingCalculatorScreenState
 
   void _setFrom(int idx) => setState(() {
         _fromIdx = idx;
+        // Prevent same-country selection: if To matches From, shift To.
+        if (_kToCountries[_toIdx].pricingKey ==
+            _kFromCountries[_fromIdx].pricingKey) {
+          // Pick the first To country that doesn't match.
+          _toIdx = Iterable<int>.generate(_kToCountries.length).firstWhere(
+            (i) =>
+                _kToCountries[i].pricingKey !=
+                _kFromCountries[_fromIdx].pricingKey,
+            orElse: () => _toIdx,
+          );
+        }
         _recalc();
       });
 
   void _setTo(int idx) => setState(() {
         _toIdx = idx;
+        // Prevent same-country selection: if From matches To, shift From.
+        if (_kFromCountries[_fromIdx].pricingKey ==
+            _kToCountries[_toIdx].pricingKey) {
+          // Pick the first From country that doesn't match.
+          _fromIdx = Iterable<int>.generate(_kFromCountries.length).firstWhere(
+            (i) =>
+                _kFromCountries[i].pricingKey !=
+                _kToCountries[_toIdx].pricingKey,
+            orElse: () => _fromIdx,
+          );
+        }
         _recalc();
       });
 
@@ -502,6 +524,7 @@ class _WeightDialog extends StatefulWidget {
 
 class _WeightDialogState extends State<_WeightDialog> {
   late final TextEditingController _ctrl;
+  String? _error;
 
   @override
   void initState() {
@@ -519,12 +542,25 @@ class _WeightDialogState extends State<_WeightDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Enter Weight (kg)'),
-      content: TextField(
-        controller: _ctrl,
-        keyboardType:
-            const TextInputType.numberWithOptions(decimal: true),
-        autofocus: true,
-        decoration: const InputDecoration(suffixText: 'kg'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: _ctrl,
+            keyboardType:
+                const TextInputType.numberWithOptions(decimal: true),
+            autofocus: true,
+            decoration: const InputDecoration(suffixText: 'kg'),
+          ),
+          if (_error != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              _error!,
+              style: const TextStyle(color: Colors.red, fontSize: 12),
+            ),
+          ],
+        ],
       ),
       actions: [
         TextButton(
@@ -534,7 +570,11 @@ class _WeightDialogState extends State<_WeightDialog> {
         TextButton(
           onPressed: () {
             final v = double.tryParse(_ctrl.text);
-            if (v != null && v > 0) Navigator.pop(context, v);
+            if (v != null && v > 0) {
+              Navigator.pop(context, v);
+            } else {
+              setState(() => _error = 'Enter a weight greater than 0');
+            }
           },
           child: const Text('OK'),
         ),

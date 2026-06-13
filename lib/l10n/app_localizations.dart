@@ -1403,6 +1403,12 @@ abstract class AppLocalizations {
   /// **'Invalid verification code.'**
   String get errorAuthInvalidOtp;
 
+  /// No description provided for @declareRequiredField.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a store or tracking number first'**
+  String get declareRequiredField;
+
   /// No description provided for @advanceStatus.
   ///
   /// In en, this message translates to:

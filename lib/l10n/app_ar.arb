@@ -236,6 +236,8 @@
   "verifyInvalidCode": "الرمز غير صحيح. يرجى المحاولة مجدداً.",
   "errorAuthInvalidOtp": "رمز التحقق غير صحيح.",
 
+  "declareRequiredField": "أضف متجراً أو رقم تتبع أولاً",
+
   "advanceStatus": "تقدم الحالة (تجريبي)",
 
   "paymentDemoHint": "وضع تجريبي — لا يوجد خصم حقيقي",

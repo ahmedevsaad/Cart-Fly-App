@@ -33,9 +33,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   }
 
   Future<void> _submit() async {
-    final currentPw = _current.text.trim();
-    final newPw = _newPass.text.trim();
-    final confirmPw = _confirm.text.trim();
+    final currentPw = _current.text;
+    final newPw = _newPass.text;
+    final confirmPw = _confirm.text;
 
     if (currentPw.isEmpty || newPw.isEmpty || confirmPw.isEmpty) {
       setState(() => _error = 'All fields are required.');

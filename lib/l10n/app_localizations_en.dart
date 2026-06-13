@@ -671,6 +671,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorAuthInvalidOtp => 'Invalid verification code.';
 
   @override
+  String get declareRequiredField => 'Add a store or tracking number first';
+
+  @override
   String get advanceStatus => 'Advance status (demo)';
 
   @override

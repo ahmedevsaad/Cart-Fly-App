@@ -240,6 +240,8 @@
   "verifyInvalidCode": "Invalid code. Please try again.",
   "errorAuthInvalidOtp": "Invalid verification code.",
 
+  "declareRequiredField": "Add a store or tracking number first",
+
   "advanceStatus": "Advance status (demo)",
 
   "paymentDemoHint": "Demo mode — no real charge",

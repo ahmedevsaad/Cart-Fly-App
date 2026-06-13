@@ -182,7 +182,7 @@ class _TrackStepper extends StatelessWidget {
       case OrderStatus.ready:
         return 2;
       case OrderStatus.delivered:
-        return 2;
+        return 3;
     }
   }
 

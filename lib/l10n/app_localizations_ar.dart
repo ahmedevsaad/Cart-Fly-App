@@ -671,6 +671,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorAuthInvalidOtp => 'رمز التحقق غير صحيح.';
 
   @override
+  String get declareRequiredField => 'أضف متجراً أو رقم تتبع أولاً';
+
+  @override
   String get advanceStatus => 'تقدم الحالة (تجريبي)';
 
   @override
