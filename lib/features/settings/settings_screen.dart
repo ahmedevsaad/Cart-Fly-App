@@ -39,7 +39,10 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 8),
           _SettingsGroup(
             rows: [
-              _SettingsRow(label: l.settingsSavedAddresses),
+              _SettingsRow(
+                label: l.settingsSavedAddresses,
+                onTap: () => context.push(Routes.myAddress),
+              ),
               _SettingsRow(
                 label: l.settingsEditProfile,
                 onTap: () => context.push(Routes.editProfile),

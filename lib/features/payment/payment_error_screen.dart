@@ -66,10 +66,10 @@ class PaymentErrorScreen extends StatelessWidget {
             ),
             const SizedBox(height: 36),
 
-            // Try again — pops back to payment
+            // Try again — pops back to payment (or goes home if deep-linked)
             CfButton(
               label: l.tryAgain,
-              onPressed: () => context.pop(),
+              onPressed: () => context.canPop() ? context.pop() : context.go(Routes.home),
             ),
             const SizedBox(height: 14),
 

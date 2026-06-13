@@ -112,7 +112,7 @@ class HowItWorksScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(22, 0, 22, 16),
             child: CfButton(
               label: 'Next',
-              onPressed: () => context.go(Routes.home),
+              onPressed: () => context.canPop() ? context.pop() : context.go(Routes.home),
             ),
           ),
         ],

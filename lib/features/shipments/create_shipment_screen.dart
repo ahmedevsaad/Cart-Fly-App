@@ -103,7 +103,7 @@ class _CreateShipmentScreenState extends State<CreateShipmentScreen> {
         declaredValue: double.tryParse(_estimatedValue.text.trim()),
         quantity: int.tryParse(_quantity.text.trim()),
       ));
-      if (mounted) context.go(Routes.trackOrder.replaceFirst(':id', id));
+      if (mounted) context.push(Routes.trackOrder.replaceFirst(':id', id));
     } finally {
       if (mounted) setState(() => _loading = false);
     }

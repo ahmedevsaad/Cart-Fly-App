@@ -102,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return CfScaffold(
-      topBar: CfTopBar(onBack: () => context.pop()),
+      topBar: CfTopBar(onBack: () => context.canPop() ? context.pop() : context.go(Routes.welcome)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: ListView(
