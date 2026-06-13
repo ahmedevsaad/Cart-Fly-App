@@ -55,6 +55,7 @@ class AuthProvider extends ChangeNotifier {
   final FirebaseFirestore _db;
   StreamSubscription<User?>? _sub;
 
+  bool _disposed = false;
   AuthState _state = AuthState.initial();
   String? _pendingCode;
   // Set once the user passes OTP in THIS session. Lets sign-in proceed even if
@@ -117,12 +118,14 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void _set(AuthState s) {
+    if (_disposed) return;
     _state = s;
     errorKey = null;
     notifyListeners();
   }
 
   void _fail(String key) {
+    if (_disposed) return;
     errorKey = key;
     notifyListeners();
   }
@@ -237,6 +240,7 @@ class AuthProvider extends ChangeNotifier {
 
   @override
   void dispose() {
+    _disposed = true;
     _sub?.cancel();
     super.dispose();
   }

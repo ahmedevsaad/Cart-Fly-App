@@ -3,14 +3,28 @@ import 'package:flutter/foundation.dart';
 import '../data/repositories/user_repository.dart';
 
 class PlanProvider extends ChangeNotifier {
-  PlanProvider({required this.uid, FirebaseFirestore? db})
-      : _repo = UserRepository(
-            db: db ?? FirebaseFirestore.instance, uid: uid);
+  PlanProvider({required this.uid, FirebaseFirestore? db, bool demo = false})
+      : _demo = demo,
+        _repo = demo
+            ? null
+            : UserRepository(
+                db: db ?? FirebaseFirestore.instance, uid: uid);
   final String uid;
-  final UserRepository _repo;
+  final bool _demo;
+  final UserRepository? _repo;
 
   Future<void> subscribe(String code) async {
-    await _repo.setPlan(code);
+    if (_demo) {
+      notifyListeners();
+      return;
+    }
+    try {
+      await _repo!
+          .setPlan(code)
+          .timeout(const Duration(seconds: 6));
+    } catch (_) {
+      // timeout or Firestore error — non-fatal
+    }
     notifyListeners();
   }
 }

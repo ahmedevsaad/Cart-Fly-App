@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -169,13 +171,12 @@ class PlanDetailScreen extends StatelessWidget {
                     )
                   else
                     OutlinedButton(
-                      onPressed: () async {
-                        await context
+                      onPressed: () {
+                        unawaited(context
                             .read<PlanProvider>()
-                            .subscribe('basic');
-                        if (context.mounted) {
-                          context.go(Routes.paymentSuccess);
-                        }
+                            .subscribe('basic')
+                            .catchError((_) {}));
+                        context.go(Routes.paymentSuccess);
                       },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(

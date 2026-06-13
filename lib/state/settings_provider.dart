@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsProvider extends ChangeNotifier {
+  bool _disposed = false;
   Locale _locale = const Locale('en');
   String _currency = 'USD';
   Locale get locale => _locale;
@@ -15,12 +16,12 @@ class SettingsProvider extends ChangeNotifier {
     final code = p.getString(_localeKey);
     if (code != null) _locale = Locale(code);
     _currency = p.getString(_currencyKey) ?? 'USD';
-    notifyListeners();
+    if (!_disposed) notifyListeners();
   }
 
   Future<void> setLocale(Locale locale) async {
     _locale = locale;
-    notifyListeners();
+    if (!_disposed) notifyListeners();
     final p = await SharedPreferences.getInstance();
     await p.setString(_localeKey, locale.languageCode);
   }
@@ -30,8 +31,14 @@ class SettingsProvider extends ChangeNotifier {
 
   Future<void> setCurrency(String c) async {
     _currency = c;
-    notifyListeners();
+    if (!_disposed) notifyListeners();
     final p = await SharedPreferences.getInstance();
     await p.setString(_currencyKey, c);
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

@@ -53,9 +53,10 @@ class OrdersProvider extends ChangeNotifier {
         ),
       ];
       // notify on next microtask so listeners registered after construction see data
-      Future.microtask(notifyListeners);
+      Future.microtask(() { if (!_disposed) notifyListeners(); });
     } else {
       _sub = _repo!.watch().listen((list) {
+        if (_disposed) return;
         _orders = list;
         notifyListeners();
       });
@@ -63,6 +64,7 @@ class OrdersProvider extends ChangeNotifier {
     }
   }
 
+  bool _disposed = false;
   final bool _demo;
   final OrderRepository? _repo;
   StreamSubscription<List<Order>>? _sub;
@@ -120,6 +122,7 @@ class OrdersProvider extends ChangeNotifier {
 
   @override
   void dispose() {
+    _disposed = true;
     _sub?.cancel();
     super.dispose();
   }

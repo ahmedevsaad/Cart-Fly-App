@@ -19,23 +19,38 @@ import '../../widgets/icons/cf_icons.dart';
 // Current-status card + tracking history list
 // ──────────────────────────────────────────────────────────────────────────────
 
-class TrackOrderScreen extends StatelessWidget {
+class TrackOrderScreen extends StatefulWidget {
   const TrackOrderScreen({super.key, required this.id});
   final String id;
 
   @override
-  Widget build(BuildContext context) {
-    final orders = context.watch<OrdersProvider>().orders;
-    final order = orders.where((o) => o.id == id).firstOrNull;
+  State<TrackOrderScreen> createState() => _TrackOrderScreenState();
+}
 
-    // Order already in the live stream — render directly.
+class _TrackOrderScreenState extends State<TrackOrderScreen> {
+  Future<Order>? _future;
+
+  @override
+  void initState() {
+    super.initState();
+    // Only fetch from Firestore if the order isn't already in the live stream.
+    // We defer the fast-path check to build(); here we always cache the future
+    // so it is never re-created on rebuild.
+    _future = context.read<OrdersProvider>().getOnce(widget.id);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Fast-path: order is already in the live stream — render directly.
+    final orders = context.watch<OrdersProvider>().orders;
+    final order = orders.where((o) => o.id == widget.id).firstOrNull;
     if (order != null) {
-      return _TrackBody(id: id, order: order);
+      return _TrackBody(id: widget.id, order: order);
     }
 
-    // Not in stream yet — fetch once from Firestore, then let stream take over.
+    // Not in stream yet — use the future cached in initState.
     return FutureBuilder<Order>(
-      future: context.read<OrdersProvider>().getOnce(id),
+      future: _future,
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
           return CfScaffold(
@@ -51,7 +66,7 @@ class TrackOrderScreen extends StatelessWidget {
             body: const CfEmptyState(message: 'Order not found'),
           );
         }
-        return _TrackBody(id: id, order: snap.data!);
+        return _TrackBody(id: widget.id, order: snap.data!);
       },
     );
   }

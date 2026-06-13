@@ -214,4 +214,5 @@ const _cn = CountryLockers(
 const countryLockers = <CountryLockers>[_eg, _sa, _ae, _us, _cn];
 
 CountryLockers lockersByCode(String code) =>
-    countryLockers.firstWhere((c) => c.code == code);
+    countryLockers.firstWhere((c) => c.code == code,
+        orElse: () => countryLockers.first);

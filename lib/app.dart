@@ -59,7 +59,8 @@ class _CartFlyAppState extends State<CartFlyApp> {
                     create: (_) =>
                         OrdersProvider(uid: uid, demo: _bypassAuth)),
                 ChangeNotifierProvider(
-                    create: (_) => PlanProvider(uid: uid)),
+                    create: (_) =>
+                        PlanProvider(uid: uid, demo: _bypassAuth)),
               ],
               child: child!,
             );
