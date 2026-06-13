@@ -16,7 +16,8 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(l10n.appTitle, style: AppText.display),
+            // Brand name is constant across all languages — never localized.
+            Text('CartFly', style: AppText.display),
             Text(l10n.tagline, style: AppText.caption),
           ],
         ),

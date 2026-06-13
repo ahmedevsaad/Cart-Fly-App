@@ -7,7 +7,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'كارت فلاي';
+  String get appTitle => 'CartFly';
 
   @override
   String get tagline => 'من السلة إلى باب البيت';

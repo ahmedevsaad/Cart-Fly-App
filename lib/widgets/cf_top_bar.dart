@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
 import '../theme/app_text.dart';
 import 'icons/cf_icons.dart';
 
@@ -31,7 +30,8 @@ class CfTopBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       centerTitle: true,
-      title: Text(AppLocalizations.of(context)!.appTitle, style: AppText.logo),
+      // Brand name is constant across all languages — never localized.
+      title: Text('CartFly', style: AppText.logo),
     );
   }
 }
