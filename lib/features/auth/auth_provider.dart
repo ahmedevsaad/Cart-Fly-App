@@ -213,6 +213,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> refreshProfile() async {
+    if (kBypassAuth) return; // demo session is stable; don't re-resolve auth
     final u = _auth.currentUser;
     if (u != null) await _onAuthChange(u);
   }

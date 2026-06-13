@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -30,15 +32,17 @@ class CurrencyScreen extends StatelessWidget {
     Future<void> onSelect(String code) async {
       final settingsProv = context.read<SettingsProvider>();
       final authProv = context.read<AuthProvider>();
+      // Local preference drives the UI immediately.
       await settingsProv.setCurrency(code);
+      // Mirror to Firestore best-effort — never block the selection on it
+      // (a slow/unreachable Firestore would otherwise freeze the screen).
       final uid = authProv.state.user?.uid;
       if (uid != null) {
-        final repo = UserRepository(
-          db: FirebaseFirestore.instance,
-          uid: uid,
+        unawaited(
+          UserRepository(db: FirebaseFirestore.instance, uid: uid)
+              .setCurrency(code)
+              .catchError((_) {}),
         );
-        await repo.setCurrency(code);
-        await authProv.refreshProfile();
       }
     }
 

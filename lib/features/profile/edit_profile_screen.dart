@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late final TextEditingController _name;
   late final TextEditingController _phone;
   String? _country;
-  bool _saving = false;
+
 
   @override
   void initState() {
@@ -59,19 +61,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final authProv = context.read<AuthProvider>();
     final uid = authProv.state.user?.uid;
     if (uid == null) return;
-    setState(() => _saving = true);
-    try {
-      final repo = UserRepository(db: FirebaseFirestore.instance, uid: uid);
-      await repo.updateProfile(
-        name: _name.text.trim(),
-        phone: _phone.text.trim(),
-        country: _country,
-      );
-      await authProv.refreshProfile();
-      if (mounted) context.pop();
-    } finally {
-      if (mounted) setState(() => _saving = false);
-    }
+    // Persist best-effort in the background and return immediately, so a slow/
+    // unreachable Firestore can't freeze the Save button.
+    unawaited(
+      UserRepository(db: FirebaseFirestore.instance, uid: uid)
+          .updateProfile(
+            name: _name.text.trim(),
+            phone: _phone.text.trim(),
+            country: _country,
+          )
+          .then((_) => authProv.refreshProfile())
+          .catchError((_) {}),
+    );
+    context.pop();
   }
 
   @override
@@ -112,7 +114,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             const SizedBox(height: 24),
             CfButton(
               label: 'Save',
-              onPressed: _saving ? null : _save,
+              onPressed: _save,
             ),
           ],
         ),

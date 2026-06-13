@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -67,26 +69,28 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   bool get _isDeclined => _cardCtrl.text.startsWith('4000');
 
-  Future<void> _confirm() async {
+  void _confirm() {
     // Simulate decline for cards starting with 4000.
     if (_isDeclined) {
-      if (mounted) context.push(Routes.paymentError);
+      context.push(Routes.paymentError);
       return;
     }
+    // DEMO checkout: navigate to the result immediately and persist in the
+    // background. Never block the button on a Firestore round-trip (which can
+    // hang on a flaky network and make the button look dead).
     if (_isPlanMode) {
       final planProvider = context.read<PlanProvider>();
       final authProvider = context.read<AuthProvider>();
-      await planProvider.subscribe(_planCode);
-      await authProvider.refreshProfile();
-      if (!mounted) return;
+      unawaited(planProvider
+          .subscribe(_planCode)
+          .then((_) => authProvider.refreshProfile())
+          .catchError((_) {}));
       context.go('${Routes.paymentSuccess}?plan=$_planCode');
     } else if (_isOrderMode) {
-      final ordersProvider = context.read<OrdersProvider>();
-      await ordersProvider.advance(_orderId);
-      if (!mounted) return;
+      unawaited(context.read<OrdersProvider>().advance(_orderId).catchError((_) {}));
       context.go(Routes.paymentSuccess);
     } else {
-      if (mounted) context.go(Routes.paymentSuccess);
+      context.go(Routes.paymentSuccess);
     }
   }
 
